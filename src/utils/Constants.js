@@ -1,18 +1,20 @@
 // import { Login } from "@mui/icons-material"
 
-// export const Song_URL= 'https://academics.newtonschool.co/api/v1/music/song'
+export const project_ID= 'b8cjykmftj1r';
+
+export const Song_URL= 'https://academics.newtonschool.co/api/v1/music/song'
 
 export const Album_URL= 'https://academics.newtonschool.co/api/v1/music/album'
 
-// export const more_Songs_URL= 'https://academics.newtonschool.co/api/v1/music/album?limit=100'
+export const more_Songs_URL= 'https://academics.newtonschool.co/api/v1/music/album?limit=100'
 
-// export const filter_Songs_URL=  'https://academics.newtonschool.co/api/v1/music/song?filter={"mood":"romantic"}'
+export const filter_Songs_URL=  'https://academics.newtonschool.co/api/v1/music/song?filter={"mood":"romantic"}'
 
-// export const latest_Songs_URL= 'https://academics.newtonschool.co/api/v1/music/song?sort={"release":1}'
+export const latest_Songs_URL= 'https://academics.newtonschool.co/api/v1/music/song?sort={"release":1}'
 
-export const paginations_Songs_URL= 'https://academics.newtonschool.co/api/v1/music/song?page=7&limit=10';
+export const paginations_Songs_URL= 'https://academics.newtonschool.co/api/v1/music/song?';
 
-// export const current_Song_URL= 'https://academics.newtonschool.co/api/v1/music/album/:id'
+export const current_Song_URL= 'https://academics.newtonschool.co/api/v1/music/album/:id'
 
 // export const search_Song_URL= fetch('https://academics.newtonschool.co/api/v1/music/song?filter={"title":"search_term_here"}', {
 //     headers: {
@@ -20,9 +22,9 @@ export const paginations_Songs_URL= 'https://academics.newtonschool.co/api/v1/mu
 //     }
 // })
 
-// export const album_Current_URL= 'https://academics.newtonschool.co/api/v1/music/album/:id'
+export const album_Current_URL= 'https://academics.newtonschool.co/api/v1/music/album/:id'
 
-// export const artist_URL= 'https://academics.newtonschool.co/api/v1/music/artist/:id'
+export const artist_URL= 'https://academics.newtonschool.co/api/v1/music/artist/:id'
 
 // export const Login_URL= fetch('https://academics.newtonschool.co/api/v1/user/login', {
 //     method: 'POST',

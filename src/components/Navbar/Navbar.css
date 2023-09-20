@@ -1,0 +1,96 @@
+.navbar{
+    background-color: black;
+    display: flex;
+    color: white;
+    height: 4.5rem;
+    position: fixed;
+    width: 100%;
+}
+
+.navbarLeft{
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 0.5rem;
+    align-items: center;
+}
+
+.navLinks{
+    display: flex;
+    width: 70%;
+    justify-content: start;
+    gap: 4rem;
+    text-transform: uppercase;
+    font-size: 1rem;
+}
+
+.navLinkHome, .navLinkPodcast, .navLinkLibrary{
+    display: flex;
+    justify-content: center;
+    align-items: center ;
+    gap: 0.3rem;
+}
+
+.navLinkHome:hover, .navLinkPodcast:hover, .navLinkLibrary:hover{
+    color: aqua;
+}
+
+.navLogo{
+    position: relative;
+}
+
+.scrolled{
+    background-color: transparent;
+    backdrop-filter: blur(5px);
+}
+
+.logoImg{
+    width: 11rem;
+    height: 3rem;
+}
+
+.inputForm{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.inputSearch{
+    width: 35%;
+    height: 2.1rem;
+    border-radius: 20px;
+}
+
+.searchIconContainer{
+    position: relative;
+}
+
+.searchIcon{
+    position: absolute;
+    top: -0.7rem;
+    right: 0.5rem;
+    color: black;
+}
+
+.navbarRight{
+    width: 50%;
+    display: flex;
+    gap: 2rem;
+    justify-content: end;
+    border: 1px solid red;  
+    align-items: center;
+    padding: 0 2rem 0 0;
+}
+
+.userLogo{
+    width: 10%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.lightModeIcon,.userLogoIcon{
+    font-size: 2rem;
+}
+

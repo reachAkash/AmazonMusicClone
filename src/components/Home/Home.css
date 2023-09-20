@@ -1,0 +1,11 @@
+.home{
+    position: absolute;
+    top: 5rem;
+    left: 1rem;
+    display: flex;
+    flex-direction: column;
+    /* background-color: black;
+    color: white; */
+
+}
+
