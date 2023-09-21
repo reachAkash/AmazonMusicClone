@@ -15,6 +15,8 @@ function Provider({children}) {
     const paginationLastLink1= 'page=10&limit=10';
     const paginationLastLink2= 'page=4&limit=10';
     const paginationLastLink3= 'page=7&limit=10';
+    const artistsLastLink= 'page=9&limit=10';
+
 
 
 
@@ -29,7 +31,7 @@ function Provider({children}) {
     function musicReducer(state, action) {
       switch(action.type){
         case action.type: return state.map((e)=>{
-          return e.type===action.type? {...e,data:action.payload}:{...e};
+          return e.type===action.type ? {...e,data:action.payload}:{...e};
         })
         default : state;
       }
@@ -38,6 +40,20 @@ function Provider({children}) {
 
     const[musicState,dispatch]= useReducer(musicReducer,initialState); 
 
+    function getArtists(data){
+      // destructed artists array from data
+      const artists= data.map((eItem,idx)=>{
+        return eItem.artist;
+      })
+      // creating objects of artists and pushing in array
+      const artistsArray= [];
+      for(let artist of artists){
+        if(Array.isArray(artist)){
+          artistsArray.push(...artist);
+        }
+      }
+      return artistsArray;
+    }
 
     async function getData(type,endPoint){
   
@@ -47,6 +63,10 @@ function Provider({children}) {
       }
       });
       const data= await res.json();
+      if(type=='artist'){
+        dispatch({type:type,payload:getArtists(data.data)})
+        return;
+      } 
       dispatch({type:type,payload:data.data})
     }
 
@@ -56,9 +76,9 @@ function Provider({children}) {
           if (eItem.type === 'song') {
             return getData(eItem.type, paginations_Songs_URL + paginationLastLink1);
           } else if (eItem.type === 'album') {
-            return getData(eItem.type, Album_URL);
+            return getData(eItem.type, paginations_Songs_URL+paginationLastLink3);
           } else if (eItem.type === 'artist') {
-            return getData(eItem.type, paginations_Songs_URL + paginationLastLink2);
+            return getData(eItem.type, paginations_Songs_URL + artistsLastLink);
           } else if (eItem.type === 'latest') {
             return getData(eItem.type, latest_Songs_URL);
           } else if (eItem.type === 'paginationsSong') {

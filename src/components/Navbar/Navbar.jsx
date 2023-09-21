@@ -11,12 +11,15 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
+import {useNavigate} from 'react-router-dom';
 
 function Navbar() {
 
     const[LibraryItemsHovered,setLibraryItemsHovered]= useState(false);
     const[scrolled,setScrolled]= useState(false);
-
+    const[input,setInput]= useState('');
+    const nav= useNavigate();
+    // for navbar glassy css
     useEffect(()=>{
 
         function scroll(){
@@ -28,14 +31,29 @@ function Navbar() {
 
     },[])
 
+    function hovered(){
+        setLibraryItemsHovered(true);
+    }
+
+    function outHovered(){
+        setLibraryItemsHovered(false);
+    }
+
+    function redirect(){
+        nav('/search');
+    }
+
+    function handleInput(){
+
+    }
 
   return (
-     <div className={`navbar ${scrolled && scrolled}`}>
+     <div className={`navbar ${scrolled ? 'scrolled':''}`}>
           <div className="navbarLeft">
 
             <div className="navLogo">
-                {/* <img src={AmazonLogo}
-                alt="amazonLogo" className='logoImg'/> */}
+                <img src={'https://i.pinimg.com/originals/47/b7/bd/47b7bdac4285ee24654ca7d68cf06351.png'}
+                alt="amazonLogo" className='logoImg'/>
             </div>
 
             <div className="navLinks">
@@ -51,13 +69,18 @@ function Navbar() {
                     Podcast
                     </div>
                 </NavLink>
-                <NavLink className="navItems">
+                <NavLink className="navItems navItemLibrary" onMouseEnter={hovered} onMouseLeave={outHovered}>
                     <div className="navLinkLibrary">
-                    <HeadsetRoundedIcon/>
-                    Library
-                    { LibraryItemsHovered ? <KeyboardArrowUpRounded/> : <KeyboardArrowDownRoundedIcon/>}
+                        <HeadsetRoundedIcon/>
+                        Library
+                        { LibraryItemsHovered ? <KeyboardArrowUpRounded/> : <KeyboardArrowDownRoundedIcon/>}
+                            
+                        {LibraryItemsHovered && 
+                         <div className="hoveredItems">
+                            <LibraryItems/>
+                        </div>
+                        }
                     </div>
-                    {LibraryItemsHovered && <LibraryItems/>}
                 </NavLink>
             </div>
            
@@ -65,18 +88,17 @@ function Navbar() {
 
             <div className="navbarRight">
                 <form action="" className='inputForm'>
-                    <input className='inputSearch' type="text" />
+                    <input className='inputSearch' value={input} onChange={handleInput} onClick={redirect} placeholder='Search...'/>
                     <div className='searchIconContainer'>
-                        <SearchOutlinedIcon className='searchIcon'/>
+                        <SearchOutlinedIcon style={{color:'black'}} className='searchIcon'/>
                     </div>
                 </form>
                 <div className="userLogo">
-                    <LightModeIcon className='lightModeIcon'/>
-                    <AccountCircleIcon className='userLogoIcon'/>
+                    <LightModeIcon style={{fontSize:'2rem'}} className='lightModeIcon'/>
+                    <AccountCircleIcon style={{fontSize:'2rem'}} className='userLogoIcon'/>
                 </div>
             </div>
     </div>
-
   )
 }
 

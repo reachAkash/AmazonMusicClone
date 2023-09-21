@@ -4,8 +4,37 @@
     left: 1rem;
     display: flex;
     flex-direction: column;
-    /* background-color: black;
-    color: white; */
-
 }
 
+.navItemLibrary{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.hoveredItems{
+    position: absolute;
+    top: 1.5rem;
+    left: -0.5rem;
+    width: 20rem;
+    height: 8rem;
+    background-color: rgba(0, 0, 0, 0.6);   
+    /* background-color: transparent; */
+    backdrop-filter: blur(5rem);
+    padding: 0 1rem;
+}
+
+.navItems{
+    display: flex;
+    color: white;
+    /* backdrop-filter: blur(5rem); */
+    height: 100%;
+    flex-direction: column;
+    gap: 0.6rem;
+    justify-content: center;
+}
+
+.hoverItem:hover{
+    width: 100%;
+    color: aqua;
+}

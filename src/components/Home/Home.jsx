@@ -5,10 +5,9 @@ import MusicContainer from '../MusicContainer/MusicContainer'
 function Home() {
 
     const {musicState}= ContextProvider();
-
   return (
     <div className='home'>
-        {musicState.map((musicCard,idx)=>{
+        {musicState?.map((musicCard,idx)=>{
           return <MusicContainer key={idx} musicData={musicCard} />
         })}
     </div>

@@ -1,11 +1,15 @@
 .navbar{
-    background-color: black;
     display: flex;
     color: white;
-    height: 4.5rem;
+    height: 5rem;
     position: fixed;
     width: 100%;
     z-index: 9;
+}
+
+.scrolled{
+    background-color: rgba(0, 0, 0, 0.6) !important;
+    backdrop-filter: blur(1rem);
 }
 
 .navbarLeft{
@@ -40,15 +44,19 @@
     position: relative;
 }
 
-.scrolled{
-    background-color: transparent;
-    backdrop-filter: blur(5px);
-}
-
 .logoImg{
     width: 11rem;
     height: 3rem;
 }
+
+.navbarRight{
+    width: 50%;
+    display: flex;
+    gap: 2rem;
+    justify-content: end;
+    align-items: center;
+    padding: 0 2rem 0 0;
+} 
 
 .inputForm{
     width: 100%;
@@ -62,6 +70,23 @@
     width: 35%;
     height: 2.1rem;
     border-radius: 20px;
+    background-color: white;
+    outline: none;
+    color: black;
+    text-align: center  ;
+    font-weight: 600;
+    transition: 0.2s ease-in-out;
+}
+
+.inputSearch:focus{
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+}
+.inputSearch::placeholder{
+    content: 'Akash';
+    text-align: center;
+    color: darkgray;
 }
 
 .searchIconContainer{
@@ -72,26 +97,14 @@
     position: absolute;
     top: -0.7rem;
     right: 0.5rem;
-    color: black;
-}
-
-.navbarRight{
-    width: 50%;
-    display: flex;
-    gap: 2rem;
-    justify-content: end;
-    border: 1px solid red;  
-    align-items: center;
-    padding: 0 2rem 0 0;
 }
 
 .userLogo{
-    width: 10%;
+    width: 15%;
     display: flex;
     justify-content: space-between;
 }
 
-.lightModeIcon,.userLogoIcon{
-    font-size: 2rem;
+.lightModeIcon,.userLogoIcon,.searchIcon{
+    cursor: pointer;
 }
-

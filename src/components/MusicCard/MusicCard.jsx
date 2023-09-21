@@ -6,12 +6,13 @@ import PauseCircleOutlineIcon from '@mui/icons-material/PauseCircleOutline';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 
 function MusicCard({music}) {
-
-    const{thumbnail,image,artists,title}= music; 
-
+    // const 
+    const{thumbnail,image,title,name}= music; 
+    
     const[hovered,setHovered]= useState(true);
     const[play,setPlay]= useState(false);
-
+    
+    // console.log(music)
   return (
     <div className='musicCard'>
             <div className="musicImageContainer">
@@ -19,8 +20,9 @@ function MusicCard({music}) {
                 {hovered && <Hover play={play} />}
                 </div>
             <div className="musicDetails">
-                <div className="name">{title}</div>
-                <div className="artist">Akash Artist</div>
+                <div className="name">{title?title:name}</div>
+                {/* { && <div className="artist">{}</div>}
+                { && <div className="artist">{}</div>} */}
             </div>
     </div>
   )

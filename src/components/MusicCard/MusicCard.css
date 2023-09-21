@@ -3,3 +3,7 @@
     height: 300px;
     margin-right: 1.2rem;
 }
+
+.sliderLeftIcon, .sliderRightIcon{
+    cursor: pointer;
+}

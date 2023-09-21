@@ -4,6 +4,7 @@ import AppContext from '../../utils/App';
 import Navbar from '../Navbar/Navbar.jsx';
 import Home from '../Home/Home.jsx'
 import PopUp from '../PopUp/PopUp'
+import { Search } from '@mui/icons-material';
 function App() {
 
 
@@ -12,6 +13,7 @@ function App() {
        <Navbar/> 
        <Routes>
           <Route path='/' element={<Home/>} />
+          <Route path='/search' element={<Search/>} />
        </Routes>
     </AppContext> 
   )
