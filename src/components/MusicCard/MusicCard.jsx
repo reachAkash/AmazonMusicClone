@@ -9,14 +9,14 @@ function MusicCard({music}) {
 
     const{thumbnail,image,artists,title}= music; 
 
-    const[hovered,setHovered]= useState('');
-    const[play,setPlay]= useState('');
-    
+    const[hovered,setHovered]= useState(true);
+    const[play,setPlay]= useState(false);
+
   return (
     <div className='musicCard'>
             <div className="musicImageContainer">
                 <img className='musicImage' src={thumbnail?thumbnail:image} alt="" />
-                {hovered && <Hover/>}
+                {hovered && <Hover play={play} />}
                 </div>
             <div className="musicDetails">
                 <div className="name">{title}</div>
@@ -27,7 +27,7 @@ function MusicCard({music}) {
 }
 
 
-function Hover(){
+function Hover({play}){
 
     return <div className='imageCover'>
        {
