@@ -1,4 +1,5 @@
 import React from 'react'
+import './Search.css';
 import Button from '../Button/Button.jsx';
 
 function Search() {
@@ -46,20 +47,25 @@ const bottomCategories= [
   return (
     <div className='searchPage'>
         <h2>Trending</h2>
+    <div className="topButtonsContainer">
     {topCategories?.map((eItem,idx)=>{
-        return <searchCategory data={eItem} key={idx} />
-        // console  .log(eItem);
+        return <SearchCategory data={eItem} key={idx} />
     })}
+    </div>
         <h2>Solo</h2>
     {middleCategories?.map((eItem,idx)=>{
-
+        return <SearchCategory data={eItem} key={idx} />
+    })}
+        <h2>Moods</h2>
+    {bottomCategories?.map((eItem,idx)=>{
+        return <SearchCategory data={eItem} key={idx} />
     })}
     </div>
   )
 }
 
-function searchCategory({data}){
-    return <h2>Akash</h2>
+function SearchCategory({data}){
+    return <Button className='searchButton'>{data}</Button>
 }
 
-export default Search
+export default Search;

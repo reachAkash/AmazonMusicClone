@@ -1,4 +1,26 @@
 .searchPage{
-    font-size: 4rem;
-    color: white;
+    position: absolute;
+    top: 7rem;
+    left: 1rem;
+    width: 100%;
+    margin: auto;
+    max-width: 100%;
+    border: 1px solid green;
+}
+
+h2{
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.topButtonsContainer{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 3rem;
+    height: 30vh;
+}
+
+.searchButton{
+    border: 1px solid red;
+
 }

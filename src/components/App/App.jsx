@@ -4,7 +4,7 @@ import AppContext from '../../utils/App';
 import Navbar from '../Navbar/Navbar.jsx';
 import Home from '../Home/Home.jsx'
 import PopUp from '../PopUp/PopUp'
-import { Search } from '@mui/icons-material';
+import Search from '../Search/Search';
 function App() {
 
 
