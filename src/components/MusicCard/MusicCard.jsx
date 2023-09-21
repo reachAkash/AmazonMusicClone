@@ -1,21 +1,26 @@
 import React,{useState} from 'react'
 import './MusicCard.css';
+import AddRoundedIcon from '@mui/icons-material/AddRounded';
+import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
+import PauseCircleOutlineIcon from '@mui/icons-material/PauseCircleOutline';
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 
+function MusicCard({music}) {
 
-function MusicCard() {
+    const{thumbnail,image,artists,title}= music; 
 
     const[hovered,setHovered]= useState('');
-const[play,setPlay]= useState('');
+    const[play,setPlay]= useState('');
 
 
   return (
     <div className='musicCard'>
             <div className="musicImageContainer">
-                <img className='musicImage' src="https://wp.dailybruin.com/images/2023/09/web.ae_.guts_.review.courtesy.jpg" alt="" />
+                <img className='musicImage' src={thumbnail?thumbnail:image} alt="" />
                 {hovered && <Hover/>}
                 </div>
             <div className="musicDetails">
-                <div className="name">Akash Song</div>
+                <div className="name">{title}</div>
                 <div className="artist">Akash Artist</div>
             </div>
     </div>

@@ -1,20 +1,21 @@
 import './App.css'
 import {Routes,Route} from 'react-router-dom';
-import Provider from '../../utils/App';
-import Navbar from './Navbar';
-import Home from './Home'
-import PopUp from '../PopUp'
+import AppContext from '../../utils/App';
+import Navbar from '../Navbar/Navbar.jsx';
+import Home from '../Home/Home.jsx'
+import PopUp from '../PopUp/PopUp'
 function App() {
 
 
   return (
-    <Provider>
+    <AppContext>
        <Navbar/> 
        <Routes>
           <Route path='/' element={<Home/>} />
        </Routes>
-    </Provider> 
+    </AppContext> 
   )
 }
 
 export default App
+

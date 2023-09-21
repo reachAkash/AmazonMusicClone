@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from 'react'
 import './Navbar.css';
 import { NavLink } from 'react-router-dom';
-import AmazonLogo from '../assets/Amazon-Music-Logo600.png';
+// import AmazonLogo from 'Amazon-Music-Logo600.png';
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import PodcastsRoundedIcon from '@mui/icons-material/PodcastsRounded';
 import HeadsetRoundedIcon from '@mui/icons-material/HeadsetRounded';
@@ -34,8 +34,8 @@ function Navbar() {
           <div className="navbarLeft">
 
             <div className="navLogo">
-                <img src={AmazonLogo}
-                alt="amazonLogo" className='logoImg' />
+                {/* <img src={AmazonLogo}
+                alt="amazonLogo" className='logoImg'/> */}
             </div>
 
             <div className="navLinks">

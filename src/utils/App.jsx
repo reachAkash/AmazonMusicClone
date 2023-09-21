@@ -1,84 +1,77 @@
-import React,{createContext, useEffect, useReducer, useState} from 'react'
+import React,{createContext, useContext, useEffect, useReducer, useState} from 'react'
 import { album_Current_URL, paginations_Songs_URL } from './Constants';
 import { Album_URL } from './Constants';
 import { artist_URL } from './Constants';
 import { latest_Songs_URL } from './Constants';
 import { filter_Songs_URL } from './Constants';
-import useGetSongData from '../Hooks/useGetSongData';
+import {project_ID} from '../utils/Constants';
 
 
-export const Context= createContext(null);
+const Context= createContext(null);
 
 function Provider({children}) {
 
     const[userIsLoggedIn,setUserLoggedIn]= useState(false);
-    const paginationLastLink1= 'page=4&limit=10';
-    const paginationLastLink2= 'page=5&limit=10';
-    const paginationLastLink3= 'page=6&limit=10';
+    const paginationLastLink1= 'page=10&limit=10';
+    const paginationLastLink2= 'page=4&limit=10';
+    const paginationLastLink3= 'page=7&limit=10';
+
+
 
     const initialState=  [
-      { title: "Trending Songs", data: [], type: "song" }, 
       { title: "Trending Playlist", data: [], type: "album"},
+      { title: "Retro Hits", data: [], type: "song" }, 
       { title: "All Stars", data: [], type: "artist" },
       { title: "New Release", data: [], type: "latest" },
       { title: "Let's Party", data: [], type: "paginationsSong" },
     ]
-    function musicReducer(state,action){
+
+    function musicReducer(state, action) {
       switch(action.type){
-        case action.type:
-          return state.map((s)=>{
-            if(s.type===action.type){
-              return {...state,data:action.payload}
-            } 
-            else {
-              return {...state};
-            }
-          })
-        default : return state;
+        case action.type: return state.map((e)=>{
+          return e.type===action.type? {...e,data:action.payload}:{...e};
+        })
+        default : state;
       }
     }
+    
 
     const[musicState,dispatch]= useReducer(musicReducer,initialState); 
 
-    useEffect(()=>{
 
-      musicState.map((eItem)=>{
+    async function getData(type,endPoint){
+  
+      const res= await fetch(endPoint,{
+        headers: {
+          'projectId': project_ID
+      }
+      });
+      const data= await res.json();
+      dispatch({type:type,payload:data.data})
+    }
 
-        if(eItem.type==='song'){
-          const musicData= useGetSongData(paginations_Songs_URL+paginationLastLink1);
-          dispatch({type:eItem.type})
-        }
+      function updateState() {
 
-        else if(eItem.type==='album'){
-          const musicData= useGetSongData(Album_URL);
-          dispatch({type:eItem.type,payload:musicData});
-        }
+        const promises = musicState.map((eItem) => {
+          if (eItem.type === 'song') {
+            return getData(eItem.type, paginations_Songs_URL + paginationLastLink1);
+          } else if (eItem.type === 'album') {
+            return getData(eItem.type, Album_URL);
+          } else if (eItem.type === 'artist') {
+            return getData(eItem.type, paginations_Songs_URL + paginationLastLink2);
+          } else if (eItem.type === 'latest') {
+            return getData(eItem.type, latest_Songs_URL);
+          } else if (eItem.type === 'paginationsSong') {
+            return getData(eItem.type, paginations_Songs_URL+paginationLastLink3);
+          }
+        });
 
-        else if(eItem.type==='artist'){
-          const musicData= useGetSongData(paginations_Songs_URL+paginationLastLink2);
-          const artist= musicData?.data?.artists;
-          dispatch({type:eItem.type,payload:artist});
-        }
+        // await Promise.all(promises);
+      }
 
-        else if(eItem.type==='latest'){
-          const musicData= useGetSongData(latest_Songs_URL);
-          dispatch({type:eItem.type,payload:musicData});
-        }
-
-        else{
-          const musicData= useGetSongData(paginations_Songs_URL+paginationLastLink3);
-          console.log(musicData +'at App'  )
-          dispatch({type:eItem.type,payload:musicData});
-        }
-      })
-
-        },[])
-        
-
-        useEffect(()=>{
-          console.log(musicState)
-        },[musicState])
-
+      useEffect(()=>{
+        updateState();
+      },[])
 
     const obj={
         userIsLoggedIn,
@@ -90,6 +83,10 @@ function Provider({children}) {
       {children}
     </Context.Provider>
   )
+}
+
+export function ContextProvider(){
+  return useContext(Context);
 }
 
 export default Provider;
