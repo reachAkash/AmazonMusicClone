@@ -1,8 +1,9 @@
 import React from 'react'
 
-function Button({children,className}) {
+function Button({children,className,style}) {
+  console.log(style);
   return (
-    <button className={className}>{children}</button>
+    <button style={style=='linear-gradient(90deg,#af57d2)'?'linear-gradient(135deg,#ef3945)':style} className={className}>{children}</button>
   )
 }
 

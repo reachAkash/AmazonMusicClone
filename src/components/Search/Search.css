@@ -1,26 +1,40 @@
 .searchPage{
     position: absolute;
     top: 7rem;
-    left: 1rem;
-    width: 100%;
+    left: 2rem;
+    width: 95%;
     margin: auto;
     max-width: 100%;
-    border: 1px solid green;
 }
 
 h2{
     font-size: 2rem;
     font-weight: bold;
+    margin-bottom: 1rem ;
 }
 
-.topButtonsContainer{
+.topButtonsContainer,.middleButtonsContainer,.bottomButtonsContainer{
     display: grid;
     grid-template-columns: repeat(4,1fr);
-    gap: 3rem;
-    height: 30vh;
+    row-gap: 2rem;
+    column-gap: 3rem;
+    height: 25vh;
+}
+
+.bottomButtonsContainer{
+    height: 70vh;
+}
+
+.searchTop{
+    padding: 0 1rem;
+}
+.searchMiddle,.searchBottom{
+    padding: 2rem 1rem;
 }
 
 .searchButton{
-    border: 1px solid red;
-
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: bold;
+    scroll-behavior: smooth;
 }

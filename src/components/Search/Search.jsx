@@ -2,7 +2,7 @@ import React from 'react'
 import './Search.css';
 import Button from '../Button/Button.jsx';
 
-function Search() {
+const colorDeg = ["0deg", "45deg", "90deg", "135deg", "180deg", "225deg", "270deg", "315deg"]
 const topCategories = [
     "Love",
     "Happy",
@@ -44,28 +44,46 @@ const bottomCategories= [
     "Leisure",
     "Technology"
 ];
-  return (
+
+
+function Search() {
+
+return (
     <div className='searchPage'>
-        <h2>Trending</h2>
-    <div className="topButtonsContainer">
-    {topCategories?.map((eItem,idx)=>{
-        return <SearchCategory data={eItem} key={idx} />
-    })}
+        <div className="searchTop">
+            <h2>Trending</h2>
+        <div className="topButtonsContainer">
+            {topCategories?.map((eItem,idx)=>{
+                return <SearchCategory data={eItem} key={idx} />
+            })}
+        </div>
+        </div>
+        <div className="searchMiddle">
+            <h2>Solo</h2>
+        <div className="middleButtonsContainer">
+            {middleCategories?.map((eItem,idx)=>{
+                return <SearchCategory data={eItem} key={idx} />
+            })}
+        </div>
+        </div>
+        <div className="searchBottom">
+             <h2>Moods</h2>
+        <div className="bottomButtonsContainer">
+            {bottomCategories?.map((eItem,idx)=>{
+                return <SearchCategory data={eItem} key={idx} />
+            })}
+        </div>
+        </div>
     </div>
-        <h2>Solo</h2>
-    {middleCategories?.map((eItem,idx)=>{
-        return <SearchCategory data={eItem} key={idx} />
-    })}
-        <h2>Moods</h2>
-    {bottomCategories?.map((eItem,idx)=>{
-        return <SearchCategory data={eItem} key={idx} />
-    })}
-    </div>
-  )
+    )
 }
 
 function SearchCategory({data}){
-    return <Button className='searchButton'>{data}</Button>
+    return <Button style={{
+        backgroundImage: `linear-gradient(${colorDeg[Math.floor(Math.random() * (colorDeg.length-1))]}, 
+                                          #${Math.floor(Math.random()*8388607).toString(16)}, 
+                                          #${(Math.floor(Math.random()*(16777215-8388608+1))+8388608).toString(16)})`
+      }} className='searchButton'>{data}</Button>
 }
 
 export default Search;
