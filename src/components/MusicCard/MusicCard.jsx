@@ -11,8 +11,7 @@ function MusicCard({music}) {
 
     const[hovered,setHovered]= useState('');
     const[play,setPlay]= useState('');
-
-
+    
   return (
     <div className='musicCard'>
             <div className="musicImageContainer">
