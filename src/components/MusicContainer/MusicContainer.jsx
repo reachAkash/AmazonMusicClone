@@ -27,7 +27,7 @@ export default function MusicContainer({musicData}) {
         
         <div className="containerSongs">
                 {data?.map((music,idx)=>{   
-                    return <MusicCard key={idx} music={music} />
+                    return <MusicCard key={idx} music={music} type={type}/>
                 })}
             </div>
     </div>

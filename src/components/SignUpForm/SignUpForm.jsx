@@ -12,8 +12,29 @@ function SignUpForm() {
   const nav= useNavigate();
 
 
+  function signUpUser(e){
+
+    e.preventDefault();
+    fetch('https://academics.newtonschool.co/api/v1/user/signup',{
+      method:'POST',
+      headers:{
+        'Content-Type': 'application/json',
+        'projectId': 'YOUR_PROJECT_ID'
+      },
+      body: JSON.stringify({
+        name:userName,
+        email:userEmail,
+        password:userPassword,
+        appType: 'music'
+      })
+    })
+    .then((res)=>res.json())
+    .then((data)=>console.log(data))
+    .catch((err)=>console.log(err));
+  }
+
+
   function redirectLogin(){
-    console.log('hi im inside login form')
     nav('/login');
   }
 
@@ -21,7 +42,7 @@ function SignUpForm() {
   return (
     <div className='signUpFormContainer'>
     <div className='signUpForm'>
-        <form className='signUpFormTop'>
+        <form className='signUpFormTop' onSubmit={signUpUser}>
             <h2>Sign In</h2>
             <div className='signUpUserNameForm'>
             <label for='userName'>Username</label>
@@ -46,7 +67,7 @@ function SignUpForm() {
             </form>
         <div className='signUpFormBottom'>
           <p>Already have a Account?</p>
-          <Button className='updatePasswordSubmit' style={{backgroundColor:'lightseagreen',width:'100%', marginTop:'1rem', borderRadius:'5px',padding:'0.5rem'}}>Login</Button>
+          <Button className='updatePasswordSubmit' style={{backgroundColor:'lightseagreen',width:'100%', marginTop:'1rem', borderRadius:'5px',padding:'0.5rem'}} onClick={redirectLogin}>Login</Button>
         </div>
     </div>
     </div>

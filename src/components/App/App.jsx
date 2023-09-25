@@ -10,6 +10,7 @@ import UpdatePasswordForm from '../UpdatePasswordForm/UpdatePasswordForm.jsx';
 import LoginForm from '../LoginForm/LoginForm.jsx';
 import SignUpForm from '../SignUpForm/SignUpForm.jsx';
 import Loader from '../Loader/Loader';
+import Artist from '../Artist/Artist';
 function App() {
 
   return (
@@ -17,11 +18,12 @@ function App() {
        <Navbar/> 
        <Routes>
           <Route path='/' element={<Home/>} />
-          <Route path='/signInBanner' element={<PopUp/>} />
           <Route path='/search' element={<Search/>} />
           <Route path='/signup' element={<SignUpForm/>} />
           <Route path='/login' element={<LoginForm/>} />
           <Route path='/update' element={<UpdatePasswordForm/>} />
+          <Route path='/artist/:id' element={<Artist/>}>
+          </Route>
        </Routes>
     </Provider> 
   )

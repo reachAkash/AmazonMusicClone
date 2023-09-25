@@ -20,6 +20,7 @@
     function Navbar() {
         
         const[LibraryItemsHovered,setLibraryItemsHovered]= useState(false);
+        const[popUpShow,setPopUpShow]= useState(false);
         const[scrolled,setScrolled]= useState(false);
         const[input,setInput]= useState('');
         const[userLogoClicked,setUserLogoClicked] = useState(false);
@@ -57,6 +58,7 @@
         }
 
     return (
+        <>
         <div className={`navbar ${scrolled ? 'scrolled':''}`}>
             <div className="navbarLeft">
 
@@ -85,7 +87,7 @@
                             { LibraryItemsHovered ? <KeyboardArrowUpRounded/> : <KeyboardArrowDownRoundedIcon/>}
 
                             {LibraryItemsHovered && <div className='libraryHover'>
-                            <LibraryItems/>
+                            <LibraryItems setPopUpShow={setPopUpShow} />
                             </div> 
                             }
                         </div>
@@ -108,20 +110,22 @@
                         {userLogoClicked && <UserLoginContainer/>}
                 </div>
         </div>
+        {popUpShow && <PopUp/>}
+        </>
     )
     }
 
-    function LibraryItems(){
+    function LibraryItems({setPopUpShow}){
 
-        const nav= useNavigate();
-        function signUpModal(){
-            nav('/signInBanner')
+        function handlePopUp(){
+            setPopUpShow((prev)=>!prev);
+            console.log('clicked')
+            console.log(setPopUpShow)
         }
-
         return (
             <div className='navItems'>
-                <h3 className='hoverItem navHoverMusicItem' onClick={()=>signUpModal()} >Music</h3>
-                <h3 className='hoverItem' onClick={()=>signUpModal()}>Podcast</h3>
+                <h3 className='hoverItem navHoverMusicItem' onClick={handlePopUp} >Music</h3>
+                <h3 className='hoverItem' onClick={handlePopUp}>Podcast</h3>
             </div>
         )    
     }

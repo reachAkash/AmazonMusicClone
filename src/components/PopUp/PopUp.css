@@ -8,12 +8,15 @@
     justify-content: center;
     align-items: center;
     backdrop-filter: blur(1rem);
+    z-index: 999;
 }
 
 .popUpModal{
     width: 30%;
-    height: 40%;
+    height: 50%;
     color: black;
+    border-radius: 5px;
+    background-color: white;
     display: flex;
     flex-direction: column ;
     justify-content: center;
@@ -54,10 +57,10 @@
 }
 
 .modalBtn{
-    border: 2px solid aqua;
+    border: 2px solid lightseagreen;
     border-radius: 20px;
     padding: 0.2rem 0.8rem;
-    background-color: red;
+    background-color: aqua;
     margin-right: 1rem;
     font-size: 0.7rem ;
     text-transform: uppercase;
@@ -65,7 +68,7 @@
 }
 
 .modalBtn:hover{
-    border: 2px solid red;
+    border: 2px solid black;
     background-color: aqua;
 }
 
