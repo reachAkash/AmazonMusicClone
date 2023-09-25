@@ -1,9 +1,54 @@
 .musicCard{
-    width: 300px;
-    height: 300px;
-    margin-right: 1.2rem;
+    position: relative;
 }
 
-.sliderLeftIcon, .sliderRightIcon{
-    cursor: pointer;
+.imgContainer{
+    position: relative;
+    width: 248px;
+    height: 230px;
+    padding: 0 1rem 0 0;
+}
+
+img{
+    width: 100%;
+    height: 100%;
+}
+
+.playerIcons{
+   position: absolute;
+   top: 0rem;
+   background-color: rgba(0,0,0,0.5);
+   backdrop-filter: blur(5px);
+   height: 100%;
+   width: 94%;
+   z-index: 888;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   gap: 2rem;
+}
+
+.playPauseIcon{
+    padding: 0.5rem;
+    background-color: gray;
+    border-radius: 50%;
+}
+
+.musicDataContainer{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    padding: 0.6rem 0;
+}
+
+.musicDataContainer .name{
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.musicDataContainer .artist{
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: gray;
 }

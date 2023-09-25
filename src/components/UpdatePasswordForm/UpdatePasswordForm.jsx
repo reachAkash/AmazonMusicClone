@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import TextField from '@mui/material/TextField';
 import Button from '../Button/Button.jsx'
 import './UpdatePasswordForm.css';
 function UpdatePasswordForm() {
@@ -14,8 +15,9 @@ function UpdatePasswordForm() {
   return (
     
     <div className='updateFormContainer'>
-    <div className='updateForm'>
-        <form className='formTop'>
+
+    <div className='updatePassForm'>
+        <form className='updatePassFormTop'>
             <h2>Update Password</h2>
             <div className='updatePasswordInputs'>
                 <div className='userNameContainer'>
@@ -30,16 +32,17 @@ function UpdatePasswordForm() {
                     <label for='password'>New Password</label>
                     <input type='password' className='userPasswordInput'/>
                 </div>
-                <div className='goBackUpdateForm'>
-                    <Link  to={'..'}
-                        onClick={(e) => handleGoBack(e)} className='goBackLink' >Go back</Link>
-                </div>
             </div>
         </form>
         <div className='formBottom'>
-          <Button style={{width:'100%', marginTop:'1rem', borderRadius:'5px',padding:'0.5rem'}}>Update Password</Button>
+        <div className='goBackUpdateForm'>
+                    <Link  to={'..'}
+                        onClick={(e) => handleGoBack(e)} className='goBackLink' >Go back</Link>
+                </div>
+          <Button className='updatePasswordSubmit' style={{backgroundColor:'yellow',width:'90%', marginTop:'1rem', borderRadius:'5px',padding:'0.5rem'}}>Update Password</Button>
         </div>
     </div>
+
     </div>
   )
 }

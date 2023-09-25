@@ -1,0 +1,59 @@
+
+.musicPlayerContainer{
+    position: fixed;
+      top: 86vh;
+      width: 100vw;
+      height: 5.9rem;
+      display: flex;
+      justify-content: space-between;
+      padding: 5px 2rem;
+      align-items: center;
+      bottom: 0;
+      z-index: 999;
+      display: flex;
+      color: white;
+      background-color: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(2rem);
+  }
+  
+  .musicLeft{
+    display: flex;
+    width: 33%;
+    justify-content: start;
+    align-items: center;
+  }
+  
+  .musicLogo{
+    width: 4rem;
+    height: 4rem;
+    border-radius: 3px;
+  }
+  
+  .musicDetails{
+    padding-left: 1rem;
+  }
+  
+  .musicPlayerIcons{
+    display: flex;
+  }
+  
+  .musicMiddle{
+    width: 51%;
+    display: flex;
+    justify-content: start;
+    /* border: 1px solid red; */
+  }
+  
+  .musicPlayerIcons{
+    display: flex;
+    width: 40%;
+    justify-content: space-around;
+    align-items: center;
+    
+  }
+  
+  .musicRight{
+    padding-right: 1rem ;
+  
+  }
+  

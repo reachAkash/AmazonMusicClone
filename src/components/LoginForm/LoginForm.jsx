@@ -11,31 +11,31 @@ function LoginForm() {
   return (
     <div className='loginFormContainer'>
     <div className='loginForm'>
-        <form className='formTop'>
+        <form className='loginFormTop'>
             <h2>Login</h2>
-            <div className='userNameForm marginBottom'>
+            <div className='loginUserNameForm'> 
             <label for='userName'>Email</label>
-            <input value={userEmail} onChange={(e)=>setUserEmail(e.target.value)} type='text' className='userNameInput'/>
+            <input value={userEmail} onChange={(e)=>setUserEmail(e.target.value)} type='text' className='loginUserNameInput'/>
             </div>
-            <div className='userPasswordForm'>
-                <div className='passwordTop'>
+            <div className='loginUserPasswordForm'>
+                <div className='loginPasswordTop'>
                     <label for='password'>Password</label>
-                    <Link to='/update'>Update Password</Link>
+                    <Link className='updatePassLink' to='/update'>Update Password</Link>
                 </div>
             <input value={userPassword} onChange={(e)=>setUserPassword(e.target.value)} type='password' className='userPasswordInput'/>
             </div>
-            {status && <p>{status.desciption}</p>}
+            {status && <p>{status}</p>}
             <Button style={{backgroundColor:'yellow',padding:'0.5rem' ,border:'none',borderRadius:'8px' ,color:'black', width:'100%' , textAlign:'center', cursor:'pointer', marginTop:'1rem'}}>Login</Button> 
         </form>
-        <div className='formMiddle loginFormMiddle'>
+        <div className='loginFormMiddle'>
         <div className='checkbox'>
                 <input type='checkbox' />
                 <p>Keep me signed in</p>    
         </div>
         </div>
-        <div className='formBottom'>
+        <div className='loginFormBottom'>
           <p>Don't have a Account?</p>
-          <Button style={{width:'100%', marginTop:'1rem', borderRadius:'5px',padding:'0.5rem'}}>Sign Up</Button>
+          <Button style={{backgroundColor:'lightseagreen',width:'100%', marginTop:'1rem', borderRadius:'5px',padding:'0.5rem',color:'white',fontWeight:'bold'}}>Sign Up</Button>
         </div>
     </div>
     </div>

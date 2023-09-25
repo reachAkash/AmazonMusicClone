@@ -1,40 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
 .home{
-    position: absolute;
-    top: 5rem;
-    left: 1rem;
-    display: flex;
-    flex-direction: column;
+     position: relative;
+        max-width: 1500px;
+        top: 5rem;
+        margin-left: 2rem;
+        display: flex;
+        flex-direction: column;
+        font-family: 'Roboto',sans-serif;
 }
 
-.navItemLibrary{
+
+/* .navItemLibrary{
     display: flex;
     flex-direction: column;
     position: relative;
-}
+} */
 
-.hoveredItems{
-    position: absolute;
+/* .hoveredItems{
+    position: relative;
     top: 1.5rem;
     left: -0.5rem;
     width: 20rem;
     height: 8rem;
-    background-color: rgba(0, 0, 0, 0.6);   
-    /* background-color: transparent; */
+    background-color: rgba(0, 0, 0, 0.9);   
+    border-radius: 6px;
     backdrop-filter: blur(5rem);
     padding: 0 1rem;
-}
+} */
 
-.navItems{
+/* .navItems{
     display: flex;
     color: white;
-    /* backdrop-filter: blur(5rem); */
     height: 100%;
     flex-direction: column;
     gap: 0.6rem;
     justify-content: center;
-}
+} */
 
-.hoverItem:hover{
+/* .hoverItem:hover{
     width: 100%;
     color: aqua;
-}
+} */
+
+
+  

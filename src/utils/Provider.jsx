@@ -1,16 +1,17 @@
 import React,{createContext, useContext, useEffect, useReducer, useState} from 'react'
+import Loader from '../components/Loader/Loader.jsx';
 import { album_Current_URL, paginations_Songs_URL } from './Constants';
 import { Album_URL } from './Constants';
 import { artist_URL } from './Constants';
 import { latest_Songs_URL } from './Constants';
 import { filter_Songs_URL } from './Constants';
-import {project_ID} from '../utils/Constants';
+import {project_ID} from './Constants';
 
 
 const Context= createContext(null);
 
 function Provider({children}) {
-
+    const[loader,setLoader]= useState(true);
     const[userIsLoggedIn,setUserLoggedIn]= useState(false);
     const paginationLastLink1= 'page=10&limit=10';
     const paginationLastLink2= 'page=4&limit=10';
@@ -36,6 +37,9 @@ function Provider({children}) {
         default : state;
       }
     }
+
+
+    
     
 
     const[musicState,dispatch]= useReducer(musicReducer,initialState); 
@@ -70,7 +74,7 @@ function Provider({children}) {
       dispatch({type:type,payload:data.data})
     }
 
-      function updateState() {
+    function updateState() {
 
         const promises = musicState.map((eItem) => {
           if (eItem.type === 'song') {
@@ -89,16 +93,22 @@ function Provider({children}) {
         // await Promise.all(promises);
       }
 
+
       useEffect(()=>{
         updateState();
+        setTimeout(()=>{
+          setLoader(false);
+        },1000)
       },[])
+
+
 
     const obj={
         userIsLoggedIn,
         setUserLoggedIn,
         musicState,
     }
-  return (
+  return loader ? <Loader/> : (
     <Context.Provider value={obj}>
       {children}
     </Context.Provider>

@@ -1,14 +1,14 @@
-import React,{useState} from 'react'
+import React,{useEffect, useState, useRef} from 'react'
 import './MusicContainer.css'
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import Button from '../Button/Button'
 import MusicCard from '../MusicCard/MusicCard';
-function MusicContainer({musicData}) {
+
+export default function MusicContainer({musicData}) {
 
     const{title,data,type}= musicData;
-   
-    
+  
   return (
     <div className='container'>
 
@@ -18,15 +18,15 @@ function MusicContainer({musicData}) {
             </div>
             <div className="seeAllItems">
                 <div className="sliderIcons">
-                    <KeyboardArrowLeftIcon className='sliderLeftIcon' />
+                    <KeyboardArrowLeftIcon  className='sliderLeftIcon' />
                     <KeyboardArrowRightIcon className='sliderRightIcon' />
                 </div>
-                    <Button className='seeAllBtn' >SEE ALL</Button>
+                    <button className='seeAllBtn'  >SEE ALL</button>
             </div>
         </div>
         
-        <div className="containerSongs" >
-                {data?.map((music,idx)=>{
+        <div className="containerSongs">
+                {data?.map((music,idx)=>{   
                     return <MusicCard key={idx} music={music} />
                 })}
             </div>
@@ -36,5 +36,3 @@ function MusicContainer({musicData}) {
 
 
 
-
-export default MusicContainer

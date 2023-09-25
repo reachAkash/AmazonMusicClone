@@ -3,7 +3,7 @@
     flex-direction: column;
     max-width: 1500px;
     margin: auto;
-
+    gap: 0.6rem;
 }
 
 .containerHeader{
@@ -15,7 +15,7 @@
 
 .title{
     font-size: 1.3rem;
-    font-weight: bold;
+    font-weight: 700;
 }
 
 .seeAllItems{
@@ -26,19 +26,30 @@
 }
 
 .seeAllBtn{
-    width: 6rem;
-    background-color: rgba(0,0,0,0.5);
+    width: 7rem;
+    font-size: 0.9rem;
+    font-weight: 400;
+    background-color: rgba(255, 255, 255, 0.2);
     border-radius: 20px;
+    color:'black';
+}
+
+.sliderLeftIcon, .sliderRightIcon{
+    cursor: pointer;
 }
 
 .seeAllBtn:hover{
-background-color: rgba(0,0,0,0.3);    
+    background-color: rgba(255, 255, 255, 0.4);
+    color: black;
 }
 
 .sliderIcons{
-    width: 10%;
-    padding: 0 0.5rem;
+    width: 15%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center; 
 }
+
 
 .musicImageContainer{
     width: 225px;
@@ -50,10 +61,15 @@ background-color: rgba(0,0,0,0.3);
     height: 100%;
 }
 
+.iconDisable{
+    color: rgba(255, 255, 255, 0.1)
+}
+
 .containerSongs{
     display: flex;
     overflow-y: hidden;
     overflow-x: visible;
+    transition: 1s ease-in-out;
 }
 
 .containerSongs::-webkit-scrollbar{
