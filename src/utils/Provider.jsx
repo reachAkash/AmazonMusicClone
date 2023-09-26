@@ -70,7 +70,7 @@
         if(type=='artist'){
           dispatch({type:type,payload:getArtists(data.data)})
           return;
-        } 
+        }
         dispatch({type:type,payload:data.data})
       }
 

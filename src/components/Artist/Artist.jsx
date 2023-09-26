@@ -29,7 +29,7 @@ function Artist() {
         .catch((err)=>alert(err));
         setTimeout(()=>{
             setLoader(false);
-        },200);
+        },500);
     },[]);
 
     
@@ -48,7 +48,7 @@ function Artist() {
                 </div>
                 <div className='albumTopRightContents'>
                     <div>{artistData.description}</div>
-                    <div>{artistData.languages.join(', ')}</div>
+                    <div>{artistData?.languages?.join(', ')}</div>
                     <div>99 songs • 5 hr and 54 min</div>
                 </div>
                 <div className='albumTopRightContents albumControls'>
