@@ -16,7 +16,6 @@ function Artist() {
     const [artistData,setArtistData]= useState({});
     
     const {id}= useParams();
-    console.log(id);
 
     useEffect(()=>{
         fetch(artist_URL+id,{

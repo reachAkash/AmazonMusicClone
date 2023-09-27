@@ -4,15 +4,15 @@ import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import Button from '../Button/Button'
 import MusicCard from '../MusicCard/MusicCard';
+import { useNavigate } from 'react-router-dom';
 
-export default function MusicContainer({musicData}) {
+export default function MusicContainer({musicData,setMusicPlayed,setSongUrl}) {
 
     const{title,data,type}= musicData;
-
+    const nav= useNavigate();
   
     function handleSeeAll(){
-        
-        nav('/searchquery');
+        nav(`/search/type/seeall/query/${title}`);
     }
   
   return (
@@ -33,7 +33,7 @@ export default function MusicContainer({musicData}) {
         
         <div className="containerSongs">
                 {data?.map((music,idx)=>{   
-                    return <MusicCard key={idx} music={music} type={type}/>
+                    return <MusicCard setSongUrl={setSongUrl} setMusicPlayed={setMusicPlayed} key={idx} music={music} type={type}/>
                 })}
             </div>
     </div>

@@ -10,7 +10,6 @@ function SearchContainer({searchData}) {
 
     const {musicState} = ContextProvider();
     const {typeId,queryId}= useParams();
-    console.log(typeId,queryId)
     const[searchedData,setSearchedData] = useState([]);
     const[loader,setLoader]= useState(true);
 
@@ -31,9 +30,19 @@ function SearchContainer({searchData}) {
             }
 
         }
+        
         if(typeId==='mood'){
             getData();
-        }else{
+        }
+
+        else if(typeId==='seeall'){
+            const data= musicState.find((e)=>{
+                return e.title===queryId;
+            })
+            setSearchedData(data);
+            setLoader(false);
+        }
+        else{
             const artists= musicState.find((e)=>{
                 return e.type=='artist'
             })?.data?.find((eData)=>{
@@ -48,11 +57,11 @@ function SearchContainer({searchData}) {
     <div className='searchPage'>
         <div className="searchContainer">
         <div className="searchedHeader">
-            Found {searchedData?.data?.length} results for <span>{queryId}</span> :
+            { typeId==='seeall' ? <span>{queryId}</span> : <div>Found {searchedData?.data?.length} results for <span>{queryId}</span></div> }
         </div>
         <div className="searchedBody">
            {
-            typeId==='mood' ?
+            typeId==='mood' || typeId=='seeall' ?
                 searchedData?.data?.map((music,idx)=>{
                     return <MusicCard key={idx} music={music} />
                 }) :

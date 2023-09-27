@@ -3,20 +3,23 @@ import {Link} from 'react-router-dom'
 import './LoginForm.css'
 import Button from '../Button/Button';
 import { useNavigate } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
+
 function LoginForm() {
 
-    const[userEmail,setUserEmail]= useState('akash@gmail.com');
-    const[userPassword,setUserPassword]= useState('ItsPersonal');
-    const[status,setStatus]= useState('');
+    const[userEmail,setUserEmail]= useState('');
+    const[userPassword,setUserPassword]= useState('');
     const nav= useNavigate();
 
     function redirectSignUp(){
       nav('/signup');
     }
 
-    function loginUser(e){
+   async function loginUser(e){
       e.preventDefault();
-      fetch('https://academics.newtonschool.co/api/v1/user/login',{
+    try{
+      const res= await fetch('https://academics.newtonschool.co/api/v1/user/login',{
         method:'POST',
         headers:{
           'Content-Type': 'application/json',
@@ -27,10 +30,27 @@ function LoginForm() {
           password:userPassword,
           appType: 'music'
         })
-      })
-      .then((res)=>res.json())
-      .then((data)=>console.log(data))
-      .catch((err)=>console.log(err));
+      });
+      const data= await res.json();
+      console.log(data);
+      if(data.status=='fail'){
+        toast.error(data.message, {
+          position: toast.POSITION.TOP_CENTER
+        });
+        return ;
+      }
+      toast.success("Login Successful!", {
+        position: toast.POSITION.TOP_CENTER
+      });
+      setTimeout(()=>{
+        nav('/');
+      },1000)
+    }
+    catch(err){
+      toast.error("Something Went Wrong!", {
+        position: toast.POSITION.TOP_CENTER
+      });
+    }
     }
 
   return (
@@ -49,7 +69,7 @@ function LoginForm() {
                 </div>
             <input value={userPassword} onChange={(e)=>setUserPassword(e.target.value)} type='password' className='userPasswordInput' required/>
             </div>
-            <Button style={{backgroundColor:'yellow',padding:'0.5rem' ,border:'none',borderRadius:'8px' ,color:'black', width:'100%' , textAlign:'center', cursor:'pointer', marginTop:'1rem'}}>Login</Button> 
+            <Button style={{backgroundColor:'yellow',padding:'0.5rem' ,border:'none',borderRadius:'8px' ,color:'black', width:'100%' ,fontWeight:'bold', textAlign:'center', cursor:'pointer', marginTop:'1rem'}}>Login</Button> 
         </form>
         <div className='loginFormMiddle'>
         <div className='checkbox'>
@@ -62,6 +82,7 @@ function LoginForm() {
           <Button style={{backgroundColor:'lightseagreen',width:'100%', marginTop:'1rem', borderRadius:'5px',padding:'0.5rem',color:'white',fontWeight:'bold'}} onClick={redirectSignUp}>Sign Up</Button>
         </div>
     </div>
+    <ToastContainer/>
     </div>
  
   )

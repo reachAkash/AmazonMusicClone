@@ -108,9 +108,7 @@
           //   console.log('Offline');
           //   setOffline(true);
           // });
-        }, []); 
-        
-
+        }, []);
 
 
       const obj={
