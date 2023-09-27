@@ -20,8 +20,8 @@ const mood = [
 
 const [artist,setArtist]= useState([]);
 const {musicState}= ContextProvider();
+const {backColor} = ContextProvider();
 const nav= useNavigate();
-    
     useEffect(()=>{
         setArtist(musicState.find((e)=>e.type==='artist'));
     })
@@ -31,6 +31,7 @@ const nav= useNavigate();
     }   
 
 return  (
+<div className={`searchContainer ${backColor}Container`}>
     <div className='searchPage'>
         <div className="searchTop">
             <h2>Mood</h2>
@@ -49,6 +50,7 @@ return  (
         </div>
         </div>
     </div>
+</div>
     )
 }
 

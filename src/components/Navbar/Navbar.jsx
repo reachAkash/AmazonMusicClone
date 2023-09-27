@@ -14,6 +14,7 @@
     import Button from '../Button/Button.jsx'
     import PopUp from '../PopUp/PopUp';
     import {useNavigate} from 'react-router-dom';
+    import { ContextProvider } from '../../utils/Provider';
 
 
     
@@ -24,7 +25,7 @@
         const[scrolled,setScrolled]= useState(false);
         const[input,setInput]= useState('');
         const[userLogoClicked,setUserLogoClicked] = useState(false);
-        
+        const {backColor,setBackColor,width} = ContextProvider();
         const nav= useNavigate();
 
         // for navbar glassy css
@@ -64,7 +65,7 @@
 
     return (
         <>
-        <div className={`navbar ${scrolled ? 'scrolled':''}`}>
+        <div className={`navbar ${backColor} ${scrolled ? 'scrolled':''}`}>
             <div className="navbarLeft">
 
                 <div className="navLogo">
@@ -76,19 +77,19 @@
                     <NavLink to={'/'} className="navItems">
                         <div className="navLinkHome">
                         <HomeRoundedIcon/>
-                        Home
+                        {width>=1280 && <span>Home</span>}
                         </div>
                     </NavLink>
                     <NavLink to={'/podcast'} className="navItems">
                         <div className="navLinkPodcast">
                         <PodcastsRoundedIcon/>
-                        Podcast
+                        {width>=1280 && <span>Podcast</span>}
                         </div>
                     </NavLink>
                     <Link className="navItems navItemLibrary" onMouseEnter={hovered} onMouseLeave={outHovered}>
                         <div className="navLinkLibrary">
                             <HeadsetRoundedIcon/>
-                            Library
+                            {width>=1280 && <span>Library</span>}
                             { LibraryItemsHovered ? <KeyboardArrowUpRounded/> : <KeyboardArrowDownRoundedIcon/>}
 
                             {LibraryItemsHovered && <div className='libraryHover'>
@@ -103,13 +104,13 @@
 
                 <div className="navbarRight">
                     <form action="" className='inputForm' onSubmit={handleSearch}>
-                        <input className='inputSearch' value={input} onChange={handleInput} onClick={redirect} placeholder='Search...'/>
+                        {<input className='inputSearch' value={input} onChange={handleInput} onClick={redirect} placeholder='Search...'/>}
                         <div className='searchIconContainer'>
                             <SearchOutlinedIcon style={{color:'black'}} className='searchIcon'/>
                         </div>
                     </form>
                     <div className="userLogo">
-                        <LightModeIcon style={{fontSize:'2rem'}} className='lightModeIcon'/>
+                       {backColor==='dark' && <LightModeIcon style={{fontSize:'2rem'}} className='lightModeIcon' onClick={()=>setBackColor('light')}/> || <DarkModeIcon style={{fontSize:'2rem'}} className='darkModeIcon' onClick={()=>setBackColor('dark')}/>}
                         <AccountCircleIcon onClick={()=>setUserLogoClicked(!userLogoClicked)} style={{fontSize:'2rem'}} className='userLogoIcon'/>
                     </div>
                         {userLogoClicked && <UserLoginContainer/>}

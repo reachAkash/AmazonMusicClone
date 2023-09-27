@@ -5,9 +5,11 @@ import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import Button from '../Button/Button'
 import MusicCard from '../MusicCard/MusicCard';
 import { useNavigate } from 'react-router-dom';
+import { ContextProvider } from '../../utils/Provider';
 
 export default function MusicContainer({musicData,setMusicPlayed,setSongUrl}) {
 
+    const{backColor,width}= ContextProvider();
     const{title,data,type}= musicData;
     const nav= useNavigate();
   
@@ -16,18 +18,19 @@ export default function MusicContainer({musicData,setMusicPlayed,setSongUrl}) {
     }
   
   return (
-    <div className='container'>
+    <div className={`container ${backColor}`}>
 
         <div className="containerHeader">
             <div className="title">
                 {title}
             </div>
             <div className="seeAllItems">
-                <div className="sliderIcons">
+               {width>='438px' && <div className="sliderIcons">
                     <KeyboardArrowLeftIcon  className='sliderLeftIcon' />
+                    <div className="swipe">SWIPE</div>
                     <KeyboardArrowRightIcon className='sliderRightIcon' />
-                </div>
-                    <button className='seeAllBtn' onClick={handleSeeAll} >SEE ALL</button>
+                </div>}
+                    <button className={`seeAllBtn seeAll${backColor}`} onClick={handleSeeAll} >SEE ALL</button>
             </div>
         </div>
         

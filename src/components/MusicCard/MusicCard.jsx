@@ -6,9 +6,11 @@ import PauseIcon from '@mui/icons-material/Pause';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import pauseImg from '../../assets/Song Pause.png';
 import { useNavigate } from 'react-router-dom';
+import { ContextProvider } from '../../utils/Provider';
 
 export default function MusicCard({music,type,setMusicPlayed,setSongUrl}) {
-   
+
+    const {backColor} = ContextProvider();
     const{thumbnail,image,title,name,audio_url,_id,description}= music; 
     const[clicked,setClicked]= useState(false);
     const [hovered,setHovered]= useState(false);
@@ -32,13 +34,13 @@ export default function MusicCard({music,type,setMusicPlayed,setSongUrl}) {
     }
 
     return (
-      <div className="musicCard">
+      <div className={`musicCard ${backColor}Card`}>
         <div className="imgContainer" onMouseEnter={()=>setHovered(true)} onMouseLeave={()=>setHovered(false)}>
           <img src={thumbnail?thumbnail:image} className='mainImg' alt="" />
           {hovered && <div className='playerIcons'>
             <AddRoundedIcon style={{fontSize:'2rem'}}/>
             <div className="playPauseIcon">
-            {clicked ? <PauseIcon onClick={()=>setClicked(!clicked)} style={{fontSize:'3rem'}} /> : <PlayArrowIcon onClick={()=>{setClicked(!clicked); setMusicPlayed(true); setSongUrl(_id) ; type==='artist' && handleArtistRedirect()}} style={{fontSize:'3rem'}}/>}
+            {clicked ? <PauseIcon onClick={()=>setClicked(!clicked)} style={{fontSize:'3rem',color:'white'}} /> : <PlayArrowIcon onClick={()=>{setClicked(!clicked); setMusicPlayed(true); setSongUrl(_id) ; type==='artist' && handleArtistRedirect()}} style={{fontSize:'3rem',color:'white'}}/>}
             </div>
             <MoreHorizIcon style={{fontSize:'2rem'}}/>
           </div>}

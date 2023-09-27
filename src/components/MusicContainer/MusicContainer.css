@@ -11,6 +11,7 @@
     justify-content: space-between;
     margin-top: 1rem;
     margin-bottom: 0.5rem;
+    width: 100%;
 }
 
 .title{
@@ -23,15 +24,23 @@
     display: flex;
     justify-content: end;
     padding: 0 2rem;
+    gap: 1rem;
 }
 
 .seeAllBtn{
     width: 7rem;
     font-size: 0.9rem;
     font-weight: 400;
-    background-color: rgba(255, 255, 255, 0.2);
     border-radius: 20px;
     color:'black';
+}
+
+.seeAlldark{
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.seeAlllight{
+    background-color: rgba(255, 255, 255, 0.3);
 }
 
 .sliderLeftIcon, .sliderRightIcon{
@@ -40,7 +49,7 @@
 
 .seeAllBtn:hover{
     background-color: rgba(255, 255, 255, 0.4);
-    color: black;
+    scale: 1.04;
 }
 
 .sliderIcons{
@@ -74,4 +83,10 @@
 
 .containerSongs::-webkit-scrollbar{
     scroll-behavior: smooth;
+}
+
+@media (width<=995px) {
+    .seeAllItems{
+        gap: 2rem;
+    }
 }

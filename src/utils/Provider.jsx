@@ -6,16 +6,19 @@
   import { latest_Songs_URL } from './Constants';
   import { filter_Songs_URL } from './Constants';
   import {project_ID} from './Constants';
-  import Offline from '../components/Offline/Offline.jsx';
+  import { toast, ToastContainer } from 'react-toastify';
+  import "react-toastify/dist/ReactToastify.css";
 
 
   const Context= createContext(null);
 
   function Provider({children}) {
 
-      const[offline,setOffline]= useState(true);
+      const[offline,setIsOffline]= useState(false);
       const[loader,setLoader]= useState(true);
       const[userIsLoggedIn,setUserLoggedIn]= useState(false);
+      const[width,setWidth]= useState('');
+      const[backColor,setBackColor] = useState('dark');
       const paginationLastLink1= 'page=15&limit=10';
       const paginationLastLink2= 'page=3&limit=10';
       const paginationLastLink3= 'page=7&limit=10';
@@ -30,6 +33,7 @@
         { title: "All Stars", data: [], type: "artist" },
         { title: "All Time Hits", data: [], type: "latest" },
         { title: "Let's Get Classy", data: [], type: "paginationsSong" },
+        {title:'loader'}
       ]
 
       function musicReducer(state, action) {
@@ -60,11 +64,12 @@
       }
 
       async function getData(type,endPoint){
-    
+
+      try{
         const res= await fetch(endPoint,{
           headers: {
             'projectId': project_ID
-        }
+          }
         });
         const data= await res.json();
         if(type=='artist'){
@@ -73,6 +78,14 @@
         }
         dispatch({type:type,payload:data.data})
       }
+      catch(err){
+        console.log(err);
+        setIsOffline(true);
+        toast.error("We're Under Maintainance, Sorry for the incovenience", {
+          position: toast.POSITION.TOP_CENTER
+        });
+      }
+    }
 
       function updateState() {
 
@@ -87,6 +100,10 @@
               return getData(eItem.type, paginations_Songs_URL + paginationLastLink3);
             } else if (eItem.type === 'paginationsSong') {
               return getData(eItem.type, paginations_Songs_URL+paginationLastLink2);
+            }else{
+              setTimeout(()=>{
+                setLoader(false);
+              },1000)
             }
           });
 
@@ -95,19 +112,17 @@
 
 
         useEffect(() => {
-          // window.addEventListener('online', () => {
-            // console.log('Online');
-            updateState();
-            setOffline(false);
-            setTimeout(() => {
-              setLoader(false);
-            }, 1200);
-          // });
         
-          // window.addEventListener('offline', () => {
-          //   console.log('Offline');
-          //   setOffline(true);
-          // });
+            updateState();
+        
+          window.addEventListener('resize', () => {
+            console.log(window.innerWidth)
+            setWidth(window.innerWidth);
+          });
+
+          return window.removeEventListener('resize',()=>{
+            setWidth(window.innerWidth);
+          })
         }, []);
 
 
@@ -115,12 +130,15 @@
           userIsLoggedIn,
           setUserLoggedIn,
           musicState,
+          width,
+          backColor,
+          setBackColor 
       }
-      return loader ? <Loader/> : (
+      return !offline ? loader ? <Loader/> : (
       <Context.Provider value={obj}>
         {children}
-      </Context.Provider>
-    )
+      </Context.Provider> 
+    ): <ToastContainer/>
   }
 
   export function ContextProvider(){

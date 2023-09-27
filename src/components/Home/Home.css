@@ -2,10 +2,20 @@
 
 .home{
      position: relative;
-        max-width: 1500px;
+        padding-right: 1rem;
         top: 5rem;
-        margin-left: 2rem;
+        padding-left: 2rem;
         display: flex;
         flex-direction: column;
         font-family: 'Roboto',sans-serif;
+}
+
+.light{
+        background-color: black;
+        color: white;
+}
+
+.dark{
+        background-color: white;
+        color: black;
 }
