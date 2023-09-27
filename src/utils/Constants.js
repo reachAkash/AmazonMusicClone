@@ -1,5 +1,3 @@
-// import { Login } from "@mui/icons-material"
-
 export const project_ID= 'b8cjykmftj1r';
 
 export const Song_URL= 'https://academics.newtonschool.co/api/v1/music/song'
@@ -67,3 +65,11 @@ export const artist_URL= 'https://academics.newtonschool.co/api/v1/music/artist/
 //         appType: 'music',
 //     })
 // })
+
+
+// const addFav= URL: https://academics.newtonschool.co/api/v1/music/favorites/like
+// headers: {
+//     'Authorization': 'Bearer YOUR_JWT_TOKEN',
+//      'projectID': 'Your Project ID'
+// }
+// BODY: { "songId" : songId }

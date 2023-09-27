@@ -8,6 +8,12 @@ import MusicCard from '../MusicCard/MusicCard';
 export default function MusicContainer({musicData}) {
 
     const{title,data,type}= musicData;
+
+  
+    function handleSeeAll(){
+        
+        nav('/searchquery');
+    }
   
   return (
     <div className='container'>
@@ -21,7 +27,7 @@ export default function MusicContainer({musicData}) {
                     <KeyboardArrowLeftIcon  className='sliderLeftIcon' />
                     <KeyboardArrowRightIcon className='sliderRightIcon' />
                 </div>
-                    <button className='seeAllBtn'  >SEE ALL</button>
+                    <button className='seeAllBtn' onClick={handleSeeAll} >SEE ALL</button>
             </div>
         </div>
         

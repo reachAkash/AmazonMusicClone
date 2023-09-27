@@ -1,0 +1,33 @@
+.searchedPage{
+    position: relative;
+       max-width: 1500px;
+       top: 5rem;
+       margin-left: 2rem;
+       display: flex;
+       flex-direction: column;
+       font-family: 'Roboto',sans-serif;
+}
+
+.searchContainer{
+    display: flex;
+    flex-direction: column;
+    max-width: 1500px;
+    margin: auto;
+    gap: 2rem;
+
+}
+
+.searchedHeader{
+    font-size: 1.4rem;
+}
+
+.searchedHeader span{
+    font-size: 1.5rem;
+    color: aqua
+}
+
+.searchedBody{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+}

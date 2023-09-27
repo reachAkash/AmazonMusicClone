@@ -1,76 +1,50 @@
-import React from 'react'
+import React,{useEffect, useState} from 'react'
 import './Search.css';
 import Button from '../Button/Button.jsx';
+import { ContextProvider } from '../../utils/Provider';
+import SearchContainer from '../SearchContainer/SearchContainer.jsx';
+import { useNavigate } from 'react-router-dom';
+
+
 
 const colorDeg = ["0deg", "45deg", "90deg", "135deg", "180deg", "225deg", "270deg", "315deg"]
-const topCategories = [
-    "Love",
-    "Happy",
-    "Party",
-    "Workout",
-    "Travel",
-    "Chill",
-    "At Home",
-    "At the Movies"
-];
-
-const middleCategories= [   
-    "Playlists",
-    "Stations",
-    "Indian Classical",
-    "Indian Devotional",
-    "Women in Music",
-    "Amazon Music Originals",
-];
-
-const bottomCategories= [
-    "Top Podcasts",
-    "Arts",
-    "Business",
-    "Religion & Spirituality",
-    "Education",
-    "Health & Fitness",
-    "Comedy",
-    "True Crime",
-    "News",
-    "Society & Culture",
-    "Kids & Family",
-    "Sports",
-    "History",
-    "Music",
-    "Fiction",
-    "Science",
-    "TV & Film",
-    "Leisure",
-    "Technology"
-];
-
 
 function Search() {
 
-return (
+const mood = [
+    "Romantic",
+    "Happy",
+    "Excited",
+    "Sad",
+];
+
+const [artist,setArtist]= useState([]);
+const {musicState}= ContextProvider();
+const nav= useNavigate();
+    
+    useEffect(()=>{
+        setArtist(musicState.find((e)=>e.type==='artist'));
+    })
+
+    function handleSearched(e){
+        nav(`/search/type/${e.target.id}/query/${e.target.innerText}`)
+    }   
+
+return  (
     <div className='searchPage'>
         <div className="searchTop">
-            <h2>Trending</h2>
+            <h2>Mood</h2>
         <div className="topButtonsContainer">
-            {topCategories?.map((eItem,idx)=>{
-                return <SearchCategory data={eItem} key={idx} />
-            })}
-        </div>
-        </div>
-        <div className="searchMiddle">
-            <h2>Solo</h2>
-        <div className="middleButtonsContainer">
-            {middleCategories?.map((eItem,idx)=>{
-                return <SearchCategory data={eItem} key={idx} />
+            {mood?.map((eItem,idx)=>{
+                return <SearchCategory id='mood' handleSearched={handleSearched} data={eItem} key={idx} />
             })}
         </div>
         </div>
         <div className="searchBottom">
-             <h2>Moods</h2>
+             <h2>Artists</h2>
         <div className="bottomButtonsContainer">
-            {bottomCategories?.map((eItem,idx)=>{
-                return <SearchCategory data={eItem} key={idx} />
+            {artist?.data?.map((eItem,idx)=>{
+                return <SearchCategory id='artist' handleSearched={handleSearched} data={eItem.name} key={idx} />
             })}
         </div>
         </div>
@@ -78,12 +52,12 @@ return (
     )
 }
 
-function SearchCategory({data}){
+function SearchCategory({data,handleSearched,id}){
     return <Button style={{
         backgroundImage: `linear-gradient(${colorDeg[Math.floor(Math.random() * (colorDeg.length-1))]}, 
                                           #${Math.floor(Math.random()*8388607).toString(16)}, 
                                           #${(Math.floor(Math.random()*(16777215-8388608+1))+8388608).toString(16)})`
-      }} className='searchButton'>{data}</Button>
+      }} onClick={handleSearched} id={id} className='searchButton'>{data}</Button>
 }
 
 export default Search;

@@ -53,8 +53,13 @@
             nav('/search');
         }
 
-        function handleInput(){
+        function handleInput(e){
+            setInput(e.target.value)
+        }
 
+        function handleSearch(e){
+            e.preventDefault();
+            nav(`/search/type/mood/query/${input}`);
         }
 
     return (
@@ -97,7 +102,7 @@
                 </div>
 
                 <div className="navbarRight">
-                    <form action="" className='inputForm'>
+                    <form action="" className='inputForm' onSubmit={handleSearch}>
                         <input className='inputSearch' value={input} onChange={handleInput} onClick={redirect} placeholder='Search...'/>
                         <div className='searchIconContainer'>
                             <SearchOutlinedIcon style={{color:'black'}} className='searchIcon'/>
@@ -145,7 +150,7 @@
         return (
             <div className='userLogoDiv'>
                 <Button onClick={()=>nav('/signup')} style={signUpBtnstyle} className='signInButton'>Sign In</Button>
-                <h3 className='MusicPreferenceDiv'>Music Preferences</h3>
+                <h3 className='musicPreferenceDiv'>Music Preferences</h3>
             </div>
         )    
     }

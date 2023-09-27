@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 
 export default function MusicCard({music,type}) {
    
-    const{thumbnail,image,title,name,audio_url,id}= music; 
+    const{thumbnail,image,title,name,audio_url,id,description}= music; 
     const [hovered,setHovered]= useState(false);
     const [clicked,setClicked]= useState(false);
     const nav= useNavigate();
@@ -42,7 +42,7 @@ export default function MusicCard({music,type}) {
 
         <div className="musicDataContainer">
           <div className="name">{songName}</div>    
-          <div className="artist">{artists?.slice(0,3)?.join(', ')}</div>
+          <div className="artist">{artists? artists.slice(0,2)?.join(', ') : description.split(' ').slice(0,3).join(' ')}</div>
         </div>
       </div>
     )

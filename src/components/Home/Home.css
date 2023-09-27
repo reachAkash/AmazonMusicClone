@@ -9,39 +9,3 @@
         flex-direction: column;
         font-family: 'Roboto',sans-serif;
 }
-
-
-/* .navItemLibrary{
-    display: flex;
-    flex-direction: column;
-    position: relative;
-} */
-
-/* .hoveredItems{
-    position: relative;
-    top: 1.5rem;
-    left: -0.5rem;
-    width: 20rem;
-    height: 8rem;
-    background-color: rgba(0, 0, 0, 0.9);   
-    border-radius: 6px;
-    backdrop-filter: blur(5rem);
-    padding: 0 1rem;
-} */
-
-/* .navItems{
-    display: flex;
-    color: white;
-    height: 100%;
-    flex-direction: column;
-    gap: 0.6rem;
-    justify-content: center;
-} */
-
-/* .hoverItem:hover{
-    width: 100%;
-    color: aqua;
-} */
-
-
-  

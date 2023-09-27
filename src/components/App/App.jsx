@@ -11,6 +11,7 @@ import LoginForm from '../LoginForm/LoginForm.jsx';
 import SignUpForm from '../SignUpForm/SignUpForm.jsx';
 import Loader from '../Loader/Loader';
 import Artist from '../Artist/Artist';
+import SearchContainer from '../SearchContainer/SearchContainer';
 function App() {
 
   return (
@@ -22,8 +23,8 @@ function App() {
           <Route path='/signup' element={<SignUpForm/>} />
           <Route path='/login' element={<LoginForm/>} />
           <Route path='/update' element={<UpdatePasswordForm/>} />
-          <Route path='/artist/:id' element={<Artist/>}>
-          </Route>
+          <Route path='/artist/:id' element={<Artist/>}/>
+          <Route path='/search/type/:typeId/query/:queryId' element={<SearchContainer/>} />  
        </Routes>
     </Provider> 
   )
