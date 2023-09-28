@@ -11,6 +11,7 @@ function SearchContainer({searchData}) {
     const {musicState} = ContextProvider();
     const {typeId,queryId}= useParams();
 
+    console.log(typeId,queryId)
    
     const[searchedData,setSearchedData] = useState([]);
     const[loader,setLoader]= useState(true);
@@ -27,7 +28,7 @@ function SearchContainer({searchData}) {
                     }
                 })
                 .then((res)=>res.json())
-                .then((data)=>setSearchedData(data))
+                .then((data)=>{setSearchedData(data)})
                 setLoader(false);
             }
             catch(err){
@@ -40,7 +41,7 @@ function SearchContainer({searchData}) {
         async function getSearchedData(){
            console.log('inside')
             try{
-                fetch(`https://academics.newtonschool.co/api/v1/music/song?limit=2000`,{
+                fetch(`https://academics.newtonschool.co/api/v1/music/song?limit=100`,{
                     headers:{
                         'projectId': project_ID
                     }
@@ -48,10 +49,16 @@ function SearchContainer({searchData}) {
                 .then((res)=>res.json())
                 .then((data)=>setFetchedData(data.data));
                
-                setSearchedData(fetchedData?.find((e)=>{
+                // setSearchedData(fetchedData?.find((e)=>{
+                //     console.log(e.title.split(' ').join('').toLowerCase().includes(queryId.split(' ').join('').toLowerCase()));
+                //     return e.title?.toLowerCase().includes(queryId.toLowerCase());
+                // }));
+                const data= fetchedData?.find((e)=>{
                     console.log(e.title.split(' ').join('').toLowerCase().includes(queryId.split(' ').join('').toLowerCase()));
                     return e.title?.toLowerCase().includes(queryId.toLowerCase());
-                }));
+                });
+
+                console.log(data);
 
                 setLoader(false);
             }

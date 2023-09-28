@@ -33,6 +33,7 @@ function LoginForm() {
       });
       const data= await res.json();
       console.log(data);
+      document.cookie= data.token;
       if(data.status=='fail'){
         toast.error(data.message, {
           position: toast.POSITION.TOP_CENTER

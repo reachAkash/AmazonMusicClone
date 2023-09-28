@@ -27,7 +27,7 @@ function SignUpForm() {
       method:'POST',
       headers:{
         'Content-Type': 'application/json',
-        'projectId': 'YOUR_PROJECT_ID'
+        'projectId': 'b8cjykmftj1r'
       },
       body: JSON.stringify({
         name:userName,
@@ -37,12 +37,14 @@ function SignUpForm() {
       })
     });
     const data= await res.json();
+
     if(data.status==='fail'){
       toast.error(data.message, {
         position: toast.POSITION.TOP_CENTER
       });
       return;
     }
+    document.cookie= data.token;
     toast.success("Sign Up Successful!", {
       position: toast.POSITION.TOP_CENTER
     });

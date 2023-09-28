@@ -19,6 +19,22 @@ export default function MusicCard({music,type,setMusicPlayed,setSongUrl}) {
     let audioUrl;
     const songName = name?.split(' ')?.slice(0,4).join(' ') || title?.split(' ')?.slice(0,4).join(' ');
 
+    async function addFavFunction(){
+      console.log(_id)
+      const res= await fetch('https://academics.newtonschool.co/api/v1/music/favorites/like',{
+        method:'PATCH',
+        headers:{
+          'Authorization':`Bearer ${decodeURIComponent(document.cookie)}`,
+          'projectId': 'b8cjykmftj1r'
+        },
+        body:JSON.stringify({
+          "songId": _id,
+        })
+      });
+      const data= await res.json();
+      console.log(data)
+    }
+
     function handleArtistRedirect(){
       nav(`/artist/${music._id}`);
     }
@@ -34,11 +50,11 @@ export default function MusicCard({music,type,setMusicPlayed,setSongUrl}) {
         <div className="imgContainer" onMouseEnter={()=>setHovered(true)} onMouseLeave={()=>setHovered(false)}>
           <img src={thumbnail?thumbnail:image} className='mainImg' alt="" />
           {hovered && <div className='playerIcons'>
-            <AddRoundedIcon style={{fontSize:'2rem',color:'white'}}/>
+            <AddRoundedIcon onClick={addFavFunction} className='cursor-pointer' style={{fontSize:'2rem',color:'white'}}/>
             <div className="playPauseIcon">
             {clicked ? <PauseIcon onClick={()=>setClicked(!clicked)} style={{fontSize:'3rem',color:'white'}} /> : <PlayArrowIcon onClick={()=>{setClicked(!clicked);  ; type==='artist' && handleArtistRedirect()}} style={{fontSize:'3rem',color:'white'}}/>}
             </div>
-            <MoreHorizIcon style={{fontSize:'2rem',color:'white'}}/>
+            <MoreHorizIcon className='cursor-pointer' style={{fontSize:'2rem',color:'white'}}/>
           </div>}
         </div>
 
