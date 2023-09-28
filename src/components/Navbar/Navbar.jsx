@@ -60,7 +60,7 @@
 
         function handleSearch(e){
             e.preventDefault();
-            nav(`/search/type/mood/query/${input}`);
+            nav(`/search/query/${input}`);
         }
 
     return (
@@ -77,19 +77,19 @@
                     <NavLink to={'/'} className="navItems">
                         <div className="navLinkHome">
                         <HomeRoundedIcon/>
-                        {width>=1280 && <span>Home</span>}
+                        {width>=1000 && <span>Home</span>}
                         </div>
                     </NavLink>
                     <NavLink to={'/podcast'} className="navItems">
                         <div className="navLinkPodcast">
                         <PodcastsRoundedIcon/>
-                        {width>=1280 && <span>Podcast</span>}
+                        {width>=1000 && <span>Podcast</span>}
                         </div>
                     </NavLink>
                     <Link className="navItems navItemLibrary" onMouseEnter={hovered} onMouseLeave={outHovered}>
                         <div className="navLinkLibrary">
                             <HeadsetRoundedIcon/>
-                            {width>=1280 && <span>Library</span>}
+                            {width>=1000 && <span>Library</span>}
                             { LibraryItemsHovered ? <KeyboardArrowUpRounded/> : <KeyboardArrowDownRoundedIcon/>}
 
                             {LibraryItemsHovered && <div className='libraryHover'>

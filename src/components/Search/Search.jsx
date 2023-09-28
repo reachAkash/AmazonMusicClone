@@ -55,7 +55,7 @@ return  (
 }
 
 function SearchCategory({data,handleSearched,id}){
-    return <Button style={{
+    return <Button style={{color:'white',
         backgroundImage: `linear-gradient(${colorDeg[Math.floor(Math.random() * (colorDeg.length-1))]}, 
                                           #${Math.floor(Math.random()*8388607).toString(16)}, 
                                           #${(Math.floor(Math.random()*(16777215-8388608+1))+8388608).toString(16)})`

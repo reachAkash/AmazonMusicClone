@@ -20,20 +20,54 @@
       const[width,setWidth]= useState('');
       const[backColor,setBackColor] = useState('dark');
       const paginationLastLink1= 'page=15&limit=10';
-      const paginationLastLink2= 'page=3&limit=10';
+      // const paginationLastLink2= 'page=12&limit=60';
+      const paginationLastLink2= 'page=16&limit=50';
       const paginationLastLink3= 'page=7&limit=10';
-      const artistsLastLink= 'page=9&limit=10';
+      const paginationLastLink4= 'page=18&limit=50';
+      const artistsLastLink= 'page=99&limit=10';
+      const searchedMusicLink= 'page=15&limit=50';
 
 
+      function updateState() {
+        try{
+          const promises = musicState.map((eItem) => {
+            if (eItem.type === 'song') {
+              return getData(eItem.type, paginations_Songs_URL + paginationLastLink1);
+            } else if (eItem.type === 'album') {
+              return getData(eItem.type, paginations_Songs_URL+ paginationLastLink4);
+            } else if (eItem.type === 'artist') {
+              return getData(eItem.type, paginations_Songs_URL + artistsLastLink);
+            } else if (eItem.type === 'latest') {
+              return getData(eItem.type, paginations_Songs_URL + paginationLastLink3);
+            } else if (eItem.type === 'paginationsSong') {
+              return getData(eItem.type, paginations_Songs_URL+paginationLastLink2);
+            }else if(eItem.type==='searchedMusic'){
+               return getData(eItem.type,paginations_Songs_URL+searchedMusicLink);
+            }
+          });
+        }
+        catch(err){
+          console.log(err);
+          toast.error("Error Fetching Data", {
+          position: toast.POSITION.TOP_CENTER
+        });
+        }
+        finally{
+          setTimeout(()=>{
+            setLoader(false);
+          },1000);
+        }
+          // await Promise.all(promises);
+        }   
 
 
       const initialState=  [
-        { title: "Refresh Your mood", data: [], type: "album"},
-        { title: "Retro Hits", data: [], type: "song" }, 
-        { title: "All Stars", data: [], type: "artist" },
-        { title: "All Time Hits", data: [], type: "latest" },
         { title: "Let's Get Classy", data: [], type: "paginationsSong" },
-        {title:'loader'}
+        { title: "Refresh Your Mood", data: [], type: "album"},
+        { title: "All Stars", data: [], type: "artist" },
+        { title: "Retro Hits", data: [], type: "song" }, 
+        { title: "Time to Pray", data: [], type: "latest" },
+        { title: "The Hangover", data: [], type: "searchedMusic" },
       ]
 
       function musicReducer(state, action) {
@@ -87,28 +121,6 @@
       }
     }
 
-      function updateState() {
-
-          const promises = musicState.map((eItem) => {
-            if (eItem.type === 'song') {
-              return getData(eItem.type, paginations_Songs_URL + paginationLastLink1);
-            } else if (eItem.type === 'album') {
-              return getData(eItem.type, Album_URL);
-            } else if (eItem.type === 'artist') {
-              return getData(eItem.type, paginations_Songs_URL + artistsLastLink);
-            } else if (eItem.type === 'latest') {
-              return getData(eItem.type, paginations_Songs_URL + paginationLastLink3);
-            } else if (eItem.type === 'paginationsSong') {
-              return getData(eItem.type, paginations_Songs_URL+paginationLastLink2);
-            }else{
-              setTimeout(()=>{
-                setLoader(false);
-              },1000)
-            }
-          });
-
-          // await Promise.all(promises);
-        }
 
 
         useEffect(() => {
@@ -116,7 +128,6 @@
             updateState();
         
           window.addEventListener('resize', () => {
-            console.log(window.innerWidth)
             setWidth(window.innerWidth);
           });
 
@@ -132,7 +143,7 @@
           musicState,
           width,
           backColor,
-          setBackColor 
+          setBackColor
       }
       return !offline ? loader ? <Loader/> : (
       <Context.Provider value={obj}>

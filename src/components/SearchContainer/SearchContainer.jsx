@@ -10,11 +10,16 @@ function SearchContainer({searchData}) {
 
     const {musicState} = ContextProvider();
     const {typeId,queryId}= useParams();
+
+   
     const[searchedData,setSearchedData] = useState([]);
     const[loader,setLoader]= useState(true);
+    const[fetchedData,setFetchedData]= useState([]);
 
     useEffect(()=>{
+
         async function getData(){
+           
             try{
                 fetch(`https://academics.newtonschool.co/api/v1/music/song?filter={"${typeId}":"${queryId.toLowerCase()}"}`,{
                     headers:{
@@ -30,6 +35,30 @@ function SearchContainer({searchData}) {
             }
 
         }
+
+        
+        async function getSearchedData(){
+           console.log('inside')
+            try{
+                fetch(`https://academics.newtonschool.co/api/v1/music/song?limit=2000`,{
+                    headers:{
+                        'projectId': project_ID
+                    }
+                })
+                .then((res)=>res.json())
+                .then((data)=>setFetchedData(data.data));
+               
+                setSearchedData(fetchedData?.find((e)=>{
+                    console.log(e.title.split(' ').join('').toLowerCase().includes(queryId.split(' ').join('').toLowerCase()));
+                    return e.title?.toLowerCase().includes(queryId.toLowerCase());
+                }));
+
+                setLoader(false);
+            }
+            catch(err){
+                throw new Error(err);
+            }
+        }
         
         if(typeId==='mood'){
             getData();
@@ -42,7 +71,8 @@ function SearchContainer({searchData}) {
             setSearchedData(data);
             setLoader(false);
         }
-        else{
+        else if(typeId==='artist'){
+            console.log(typeId);
             const artists= musicState.find((e)=>{
                 return e.type=='artist'
             })?.data?.find((eData)=>{
@@ -52,7 +82,13 @@ function SearchContainer({searchData}) {
             console.log(artists);
             setLoader(false);
         }
-    },[])
+        else{
+            getSearchedData();
+        }
+
+    },[searchedData])
+
+    
   return loader ? <Loader/> : (
     <div className='searchPage'>
         <div className="searchContainer">
@@ -60,8 +96,16 @@ function SearchContainer({searchData}) {
             { typeId==='seeall' ? <span>{queryId}</span> : <div>Found {searchedData?.data?.length} results for <span>{queryId}</span></div> }
         </div>
         <div className="searchedBody">
+           {/* {
+            typeId==='mood' || typeId=='seeall' || typeId=='' ?
+                searchedData?.data?.map((music,idx)=>{
+                    return <MusicCard key={idx} music={music} />
+                }) :
+                <MusicCard music={searchedData} type='artist' />
+        } */}
+
            {
-            typeId==='mood' || typeId=='seeall' ?
+            typeId==='mood' || typeId=='seeall' || typeId=='mood' && typeId!='seeall' && typeId!='artist' ?
                 searchedData?.data?.map((music,idx)=>{
                     return <MusicCard key={idx} music={music} />
                 }) :
@@ -73,4 +117,4 @@ function SearchContainer({searchData}) {
   )
 }
 
-export default SearchContainer
+export default SearchContainer;

@@ -35,7 +35,7 @@ function App() {
           <Route path='/update' element={<UpdatePasswordForm/>} />
           <Route path='/artist/:id' element={<Artist/>}/>
           <Route path='/search/type/:typeId/query/:queryId' element={<SearchContainer/>} />  
-          <Route path='/search/type/:typeId/query/:queryId' element={<SearchContainer/>} />  
+          <Route path='/search/query/:queryId' element={<SearchContainer/>} />  
           <Route path='/podcast' element={<ErrorPage/>} />  
        </Routes>
     </Provider> 
