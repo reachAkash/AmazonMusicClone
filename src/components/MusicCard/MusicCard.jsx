@@ -38,11 +38,11 @@ export default function MusicCard({music,type,setMusicPlayed,setSongUrl}) {
         <div className="imgContainer" onMouseEnter={()=>setHovered(true)} onMouseLeave={()=>setHovered(false)}>
           <img src={thumbnail?thumbnail:image} className='mainImg' alt="" />
           {hovered && <div className='playerIcons'>
-            <AddRoundedIcon style={{fontSize:'2rem'}}/>
+            <AddRoundedIcon style={{fontSize:'2rem',color:'white'}}/>
             <div className="playPauseIcon">
             {clicked ? <PauseIcon onClick={()=>setClicked(!clicked)} style={{fontSize:'3rem',color:'white'}} /> : <PlayArrowIcon onClick={()=>{setClicked(!clicked); setMusicPlayed(true); setSongUrl(_id) ; type==='artist' && handleArtistRedirect()}} style={{fontSize:'3rem',color:'white'}}/>}
             </div>
-            <MoreHorizIcon style={{fontSize:'2rem'}}/>
+            <MoreHorizIcon style={{fontSize:'2rem',color:'white'}}/>
           </div>}
         </div>
 
