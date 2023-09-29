@@ -4,6 +4,7 @@ import Button from '../Button/Button'
 import './SignUpForm.css'
 import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+import { ContextProvider } from '../../utils/Provider';
 
 function SignUpForm() {
 
@@ -11,7 +12,7 @@ function SignUpForm() {
   const[userEmail,setUserEmail]= useState('');
   const[userPassword,setUserPassword]= useState('');
   const nav= useNavigate();
-
+  const{setLoggedIn}= ContextProvider();
 
  async function signUpUser(e){
 
@@ -49,6 +50,7 @@ function SignUpForm() {
       position: toast.POSITION.TOP_CENTER
     });
     console.log(userName,userEmail,userPassword)
+    setLoggedIn(true);
     setTimeout(()=>{
       nav('/');
     },1000)

@@ -2,15 +2,18 @@ import React from 'react'
 import Button from '../Button/Button.jsx'
 import CloseIcon from '@mui/icons-material/Close';
 import './PopUp.css';
+import { ContextProvider } from '../../utils/Provider.jsx';
 
 function PopUp() {
+
+    const {setTryAmazonPopUp}= ContextProvider();
 
   return (
     <div className='overlay'>
 
         <div className="popUpModal">
 
-            <div className="closeIconContainer">
+            <div className="closeIconContainer" onClick={()=>setTryAmazonPopUp(false)}>
                 <CloseIcon className='closeIcon'/>
             </div>
 

@@ -176,8 +176,8 @@
     position: absolute;
     top: 4rem;
     right: 0.2rem;
-    background-color: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(1rem);
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(0.3rem);
     border-radius: 5px;
     width: 14rem;
     height: 6rem;

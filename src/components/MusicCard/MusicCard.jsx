@@ -11,8 +11,10 @@ import { ContextProvider } from '../../utils/Provider';
 
 export default function MusicCard({music,type,cardType}) {
 
-    const {backColor} = ContextProvider();
+    const {backColor,loggedIn,setTryAmazonPopUp} = ContextProvider();
+
     if(!music) return <h2 className='home'>No Song Found!</h2>
+
     const{thumbnail,image,title,name,audio_url,_id,description}= music?music:{}; 
     const[clicked,setClicked]= useState(false);
     const [hovered,setHovered]= useState(false);
@@ -58,13 +60,13 @@ export default function MusicCard({music,type,cardType}) {
           {hovered && <div className='playerIcons'>
           {
             cardType==='podcasts' || cardType==='artist'? 
-            <div className='artistAlbumIcon' onClick={()=>{cardType==='artist' && handleArtistRedirect(); cardType==='podcasts' && handleAlbumRedirect()}} >
+            <div className='artistAlbumIcon' onClick={()=>{ !loggedIn ? setTryAmazonPopUp(true) : cardType==='artist' && handleArtistRedirect(); cardType==='podcasts' && handleAlbumRedirect()}} >
               <ChevronRightIcon style={{fontSize:'2rem'}} />
             </div> :
             <div className='songsIconContainer'>
-            {cardType!=='album' ? <AddRoundedIcon onClick={addFavFunction} className='cursor-pointer' style={{fontSize:'2rem',color:'white'}}/>: <div style={{paddingRight:'1.4rem'}}></div> }
+            {cardType!=='album' ? <AddRoundedIcon onClick={()=>loggedIn && addFavFunction() || setTryAmazonPopUp(true)} className='cursor-pointer' style={{fontSize:'2rem',color:'white'}}/>: <div style={{paddingRight:'1.4rem'}}></div> }
             <div className="playPauseIcon">
-            {clicked ? <PauseIcon onClick={()=>setClicked(!clicked)} style={{fontSize:'3rem',color:'white'}} /> : <PlayArrowIcon onClick={()=>{setClicked(!clicked); cardType==='album' && handleAlbumRedirect() }} style={{fontSize:'3rem',color:'white'}}/>}
+            {clicked ? <PauseIcon onClick={()=>setClicked(!clicked)} style={{fontSize:'3rem',color:'white'}} /> : <PlayArrowIcon onClick={()=>{ !loggedIn ? setTryAmazonPopUp(true) : setClicked(!clicked); loggedIn && cardType==='album' && handleAlbumRedirect() }} style={{fontSize:'3rem',color:'white'}}/>}
             </div>
             <MoreHorizIcon className='cursor-pointer' style={{fontSize:'2rem',color:'white'}}/>
           </div>

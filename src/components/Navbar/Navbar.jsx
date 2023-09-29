@@ -21,12 +21,11 @@
     function Navbar() {
         
         const[LibraryItemsHovered,setLibraryItemsHovered]= useState(false);
-        const[popUpShow,setPopUpShow]= useState(false);
         const[scrolled,setScrolled]= useState(false);
         const[input,setInput]= useState('');
         const[userLogoClicked,setUserLogoClicked] = useState(false);
-        const {backColor,setBackColor,width} = ContextProvider();
         const nav= useNavigate();
+        const {backColor,setBackColor,width,loggedIn,tryAmazonPopUp,setTryAmazonPopUp} = ContextProvider();
 
         // for navbar glassy css
         useEffect(()=>{
@@ -93,7 +92,7 @@
                             { LibraryItemsHovered ? <KeyboardArrowUpRounded/> : <KeyboardArrowDownRoundedIcon/>}
 
                             {LibraryItemsHovered && <div className='libraryHover'>
-                            <LibraryItems setPopUpShow={setPopUpShow} />
+                            <LibraryItems />
                             </div> 
                             }
                         </div>
@@ -116,29 +115,37 @@
                         {userLogoClicked && <UserLoginContainer/>}
                 </div>
         </div>
-        {popUpShow && <PopUp/>}
+        {tryAmazonPopUp && <PopUp/>}
         </>
     )
     }
 
-    function LibraryItems({setPopUpShow}){
+    function LibraryItems(){
+
+        const {loggedIn,setTryAmazonPopUp} = ContextProvider();
 
         const nav= useNavigate();
 
         function handlePopUp(){
-            // nav('/podcast')
+            if(loggedIn){
+                nav('/podcast');
+            }
+            else{
+                setTryAmazonPopUp(true);
+            }
         }
 
 
         return (
             <div className='navItems'>
-                <h3 className='hoverItem navHoverMusicItem' >Music</h3>
-                <h3 className='hoverItem' onClick={()=>{nav('/podcast');console.log('im clicked')}}>Podcast</h3>
+                <h3 className='hoverItem navHoverMusicItem' onClick={handlePopUp} >Music</h3>
+                <h3 className='hoverItem' onClick={handlePopUp}>Podcast</h3>
             </div>
         )    
     }
 
     function UserLoginContainer(){
+        const {loggedIn,setLoggedIn} = ContextProvider();
         const nav= useNavigate();
 
         const signUpBtnstyle= {
@@ -152,7 +159,7 @@
         }
         return (
             <div className='userLogoDiv'>
-                <Button onClick={()=>nav('/signup')} style={signUpBtnstyle} className='signInButton'>Sign In</Button>
+                <Button onClick={()=> loggedIn ? setLoggedIn(false) : nav('/signup')} style={signUpBtnstyle} className='signInButton'>{loggedIn ? 'Logout': 'Sign Up' }</Button>
                 <h3 className='musicPreferenceDiv'>Music Preferences</h3>
             </div>
         )    

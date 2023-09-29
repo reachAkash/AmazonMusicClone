@@ -14,7 +14,7 @@
     max-width: 1500px;
     margin: auto;
     gap: 2rem;
-
+    font-family: 'Poppins',sans-serif;
 }
 
 .searchedHeader{
@@ -29,5 +29,7 @@
 .searchedBody{
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem 1rem;
+    padding: 0 1rem;
+    row-gap: 2rem;
+    column-gap: 0.1rem;
 }

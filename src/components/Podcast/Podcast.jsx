@@ -8,7 +8,7 @@ function Podcast() {
 
     const {musicState}= ContextProvider();
     const podcastData= musicState.find((e)=> e.title==='Podcasts');
-    console.log(podcastData)
+    
   return (
     <div className='home'>
         <MusicContainer musicData={podcastData} />

@@ -16,7 +16,8 @@
 
       const[offline,setIsOffline]= useState(false);
       const[loader,setLoader]= useState(true);
-      const[userIsLoggedIn,setUserLoggedIn]= useState(false);
+      const[tryAmazonPopUp,setTryAmazonPopUp]= useState(false);
+      const[loggedIn,setLoggedIn]= useState(false);
       const[width,setWidth]= useState(1400);
       const[backColor,setBackColor] = useState('dark');
       const paginationLastLink1= 'page=15&limit=10';
@@ -143,8 +144,10 @@
 
 
       const obj={
-          userIsLoggedIn,
-          setUserLoggedIn,
+          loggedIn,
+          setLoggedIn,
+          tryAmazonPopUp,
+          setTryAmazonPopUp,
           musicState,
           width,
           backColor,

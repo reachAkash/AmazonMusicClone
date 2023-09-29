@@ -5,12 +5,14 @@ import Button from '../Button/Button';
 import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+import { ContextProvider } from '../../utils/Provider';
 
 function LoginForm() {
 
     const[userEmail,setUserEmail]= useState('');
     const[userPassword,setUserPassword]= useState('');
     const nav= useNavigate();
+    const{setLoggedIn}= ContextProvider();
 
     function redirectSignUp(){
       nav('/signup');
@@ -43,6 +45,8 @@ function LoginForm() {
       toast.success("Login Successful!", {
         position: toast.POSITION.TOP_CENTER
       });
+      setLoggedIn(true);
+      
       setTimeout(()=>{
         nav('/');
       },1000)
