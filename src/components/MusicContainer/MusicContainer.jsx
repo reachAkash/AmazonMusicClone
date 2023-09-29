@@ -10,7 +10,7 @@ import { ContextProvider } from '../../utils/Provider';
 export default function MusicContainer({musicData,setMusicPlayed,setSongUrl}) {
 
     const{backColor,width}= ContextProvider();
-    const{title,data,type}= musicData;
+    const{title,data,type,cardType}= musicData;
     const nav= useNavigate();
   
     function handleSeeAll(){
@@ -36,7 +36,7 @@ export default function MusicContainer({musicData,setMusicPlayed,setSongUrl}) {
         
         <div className="containerSongs">
                 {data?.map((music,idx)=>{   
-                    return <MusicCard setSongUrl={setSongUrl} setMusicPlayed={setMusicPlayed} key={idx} music={music} type={type}/>
+                    return <MusicCard cardType={cardType} key={idx} music={music} type={type}/>
                 })}
             </div>
     </div>

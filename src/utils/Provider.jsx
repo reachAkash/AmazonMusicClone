@@ -34,7 +34,7 @@
             if (eItem.type === 'song') {
               return getData(eItem.type, paginations_Songs_URL + paginationLastLink1);
             } else if (eItem.type === 'album') {
-              return getData(eItem.type, paginations_Songs_URL+ paginationLastLink4);
+              return getData(eItem.type, Album_URL);
             } else if (eItem.type === 'artist') {
               return getData(eItem.type, paginations_Songs_URL + artistsLastLink);
             } else if (eItem.type === 'latest') {
@@ -62,12 +62,12 @@
 
 
       const initialState=  [
-        { title: "Let's Get Classy", data: [], type: "paginationsSong" },
-        { title: "Refresh Your Mood", data: [], type: "album"},
-        { title: "All Stars", data: [], type: "artist" },
-        { title: "Retro Hits", data: [], type: "song" }, 
-        { title: "Time to Pray", data: [], type: "latest" },
-        { title: "The Hangover", data: [], type: "searchedMusic" },
+        { title: "Refresh Your Mood", data: [], type: "album", cardType:'album'},
+        { title: "Let's Get Classy", data: [], type: "paginationsSong",cardType:'song' },
+        { title: "All Stars", data: [], type: "artist" ,cardType:'artist' },
+        { title: "Retro Hits", data: [], type: "song", cardType:'song'}, 
+        { title: "Time to Pray", data: [], type: "latest", cardType:'song' },
+        { title: "The Hangover", data: [], type: "searchedMusic", cardType:'song' },
       ]
 
       function musicReducer(state, action) {
@@ -76,7 +76,7 @@
             return e.type===action.type ? {...e,data:action.payload}:{...e};
           })
           default : state;
-        }
+        } 
       }
 
 
@@ -106,6 +106,7 @@
           }
         });
         const data= await res.json();
+        if(type==='album') console.log(data);
         if(type=='artist'){
           dispatch({type:type,payload:getArtists(data.data)})
           return;

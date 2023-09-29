@@ -33,7 +33,7 @@ function App() {
           <Route path='/signup' element={<SignUpForm/>} />
           <Route path='/login' element={<LoginForm/>} />
           <Route path='/update' element={<UpdatePasswordForm/>} />
-          <Route path='/artist/:id' element={<Artist/>}/>
+          <Route path='/type/:cardType/query/:id' element={<Artist/>}/>
           <Route path='/search/type/:typeId/query/:queryId' element={<SearchContainer/>} />  
           <Route path='/search/query/:queryId' element={<SearchContainer/>} />  
           <Route path='/podcast' element={<ErrorPage/>} />  

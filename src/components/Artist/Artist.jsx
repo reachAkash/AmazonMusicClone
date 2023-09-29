@@ -10,22 +10,41 @@ import { artist_URL } from '../../utils/Constants.js';
 import { useParams } from 'react-router-dom';
 import { data } from 'autoprefixer';
 import Loader from '../Loader/Loader';
+import {album_Current_URL} from '../../utils/Constants';
 
 function Artist() {
     const[loader,setLoader]= useState(true);
     const [artistData,setArtistData]= useState({});
     
-    const {id}= useParams();
+    const {cardType,id}= useParams();
+   
 
     useEffect(()=>{
-        fetch(artist_URL+id,{
-            headers:{
-                'projectId': 'b8cjykmftj1r' 
-            }
-        })
-        .then((res)=>res.json())
-        .then((data)=>{setArtistData(data.data); console.log(data.data)})
-        .catch((err)=>alert(err));
+        function fetchArtist(){
+
+            fetch(artist_URL+id,{
+                headers:{
+                    'projectId': 'b8cjykmftj1r' 
+                }
+            })
+            .then((res)=>res.json())
+            .then((data)=>{setArtistData(data.data)})
+            .catch((err)=>alert(err));
+        }
+
+        function fetchAlbum(){
+            fetch(album_Current_URL+id,{
+                headers:{
+                    'projectId': 'b8cjykmftj1r' 
+                }
+            })
+            .then((res)=>res.json())
+            .then((data)=>{setArtistData(data.data); console.log(data.data)})
+            .catch((err)=>alert(err));
+        }
+
+        if(cardType==='album') fetchAlbum();
+        else fetchArtist();
         setTimeout(()=>{
             setLoader(false);
         },500);
@@ -38,17 +57,17 @@ function Artist() {
     <div className='albumContainer'>
         <div className='albumTop'>
             <div className='albumTopLeft'>
-                <img className='albumTopLeftImg' src={artistData.image} />
+                <img className='albumTopLeftImg' src={artistData?.image?artistData?.image:artistData?.thumbnail} />
             </div>
             <div className='albumTopRight'>
                 <div className='albumTopRightContents'>
-                    <div>PlayList</div>
-                    <h1>{artistData.name}</h1>
+                    <div style={{textTransform:'uppercase'}}>{cardType} PlayList</div>
+                    <h1>{artistData?.name}</h1>
                 </div>
                 <div className='albumTopRightContents'>
-                    <div>{artistData.description}</div>
+                    <div>{artistData?.description}</div>
                     <div>{artistData?.languages?.join(', ')}</div>
-                    <div>99 songs • 5 hr and 54 min</div>
+                    <div>{artistData?.songs?.length} songs • {artistData?.songs?.length*1.5} mins</div>
                 </div>
                 <div className='albumTopRightContents albumControls'>
                     <Button className='albumRightContentsButton' style={{backgroundColor:'lightseagreen',border:'none',gap:'0.3rem',color:'black',width:'7rem',height:'3rem',borderRadius:'20px',display:'flex',alignItems:'center',justifyContent:'center'}} ><PlayArrowIcon /> Play</Button>
@@ -60,9 +79,12 @@ function Artist() {
             </div>
         </div>
         <div className='albumBottom'>
-            {artistData?.songs?.map((song,idx)=>{
-                return <ArtistSongs data={song} key={idx} count={idx+1} /> 
-            })}
+            {artistData?.songs?.length>=1 ?
+                artistData.songs.map((song,idx)=>{
+                    return <ArtistSongs data={song} key={idx} count={idx+1} /> 
+                })
+            : <h2>NO Songs Found!</h2>
+        }
         </div>
         </div>
     </div>

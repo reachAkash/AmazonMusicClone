@@ -22,7 +22,7 @@ export const current_Song_URL= 'https://academics.newtonschool.co/api/v1/music/a
 
 // AKASH AKASHTESTER@GMAIL.COM TESTER
 
-export const album_Current_URL= 'https://academics.newtonschool.co/api/v1/music/album/:id'
+export const album_Current_URL= 'https://academics.newtonschool.co/api/v1/music/album/'
 
 export const artist_URL= 'https://academics.newtonschool.co/api/v1/music/artist/'
 
