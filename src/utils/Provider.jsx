@@ -20,6 +20,7 @@
       const[loggedIn,setLoggedIn]= useState(false);
       const[width,setWidth]= useState(1400);
       const[backColor,setBackColor] = useState('dark');
+      const[preference,setPreference]= useState(false);
       const paginationLastLink1= 'page=15&limit=10';
       // const paginationLastLink2= 'page=12&limit=60';
       const paginationLastLink2= 'page=16&limit=50';
@@ -111,7 +112,7 @@
           }
         });
         const data= await res.json();
-        if(type==='album') console.log(data);
+        
         if(type=='artist'){
           dispatch({type:type,payload:getArtists(data.data)})
           return;
@@ -151,7 +152,9 @@
           musicState,
           width,
           backColor,
-          setBackColor
+          setBackColor,
+          preference,
+          setPreference,
       }
       return !offline ? loader ? <Loader/> : (
       <Context.Provider value={obj}>

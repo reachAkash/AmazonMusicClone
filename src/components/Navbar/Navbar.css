@@ -174,7 +174,7 @@
 
 .userLogoDiv{
     position: absolute;
-    top: 4rem;
+    top: 4.5rem;
     right: 0.2rem;
     background-color: rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(0.3rem);
@@ -186,13 +186,24 @@
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
-    padding: 0 1rem;
+    /* padding: 0 1rem; */
     z-index: 999999;
     color: black;
 }
 
 .musicPreferenceDiv{
-    color: white;
+    color:white;
+    width: 100%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+.musicPreferenceDiv:hover{
+    background-color: rgba(255, 255, 255, 0.3);
 }
 
 @media (width<=1280px){

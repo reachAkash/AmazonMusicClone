@@ -1,4 +1,5 @@
     import React,{useState,useEffect} from 'react'
+    import ReactDOM from 'react-dom';
     import './Navbar.css';
     import { NavLink,Link } from 'react-router-dom';
     import AmazonLogo from '../../assets/Amazon-Music-Logo600.png'
@@ -15,6 +16,7 @@
     import PopUp from '../PopUp/PopUp';
     import {useNavigate} from 'react-router-dom';
     import { ContextProvider } from '../../utils/Provider';
+import MusicPreference from '../MusicPreference/MusicPreference';
 
 
     
@@ -112,7 +114,7 @@
                        {backColor==='dark' && <LightModeIcon style={{fontSize:'2rem'}} className='lightModeIcon' onClick={()=>setBackColor('light')}/> || <DarkModeIcon style={{fontSize:'2rem'}} className='darkModeIcon' onClick={()=>setBackColor('dark')}/>}
                         <AccountCircleIcon onClick={()=>setUserLogoClicked(!userLogoClicked)} style={{fontSize:'2rem'}} className='userLogoIcon'/>
                     </div>
-                        {userLogoClicked && <UserLoginContainer/>}
+                        {userLogoClicked && <UserLoginContainer />}
                 </div>
         </div>
         {tryAmazonPopUp && <PopUp/>}
@@ -145,7 +147,7 @@
     }
 
     function UserLoginContainer(){
-        const {loggedIn,setLoggedIn} = ContextProvider();
+        const {loggedIn,setLoggedIn,setPreference} = ContextProvider();
         const nav= useNavigate();
 
         const signUpBtnstyle= {
@@ -160,7 +162,7 @@
         return (
             <div className='userLogoDiv'>
                 <Button onClick={()=> loggedIn ? setLoggedIn(false) : nav('/signup')} style={signUpBtnstyle} className='signInButton'>{loggedIn ? 'Logout': 'Sign Up' }</Button>
-                <h3 className='musicPreferenceDiv'>Music Preferences</h3>
+                <h3 className='musicPreferenceDiv' onClick={()=>{setPreference(true)}}>Music Preferences</h3>
             </div>
         )    
     }

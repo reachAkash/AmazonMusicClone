@@ -15,6 +15,7 @@ import MusicPlayer from '../MusicPlayer/MusicPlayer.jsx';
 import SearchContainer from '../SearchContainer/SearchContainer';
 import { useState } from 'react';
 import Podcast from '../Podcast/Podcast';
+import MusicPreference from '../MusicPreference/MusicPreference.jsx';
 
 function App() {
 
