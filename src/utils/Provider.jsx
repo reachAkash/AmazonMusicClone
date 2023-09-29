@@ -26,6 +26,7 @@
       const paginationLastLink4= 'page=18&limit=50';
       const artistsLastLink= 'page=99&limit=10';
       const searchedMusicLink= 'page=15&limit=50';
+      const podcastsLink= 'page=3';
 
 
       function updateState() {
@@ -43,6 +44,8 @@
               return getData(eItem.type, paginations_Songs_URL+paginationLastLink2);
             }else if(eItem.type==='searchedMusic'){
                return getData(eItem.type,paginations_Songs_URL+searchedMusicLink);
+            }else{
+               return getData(eItem.type,Album_URL+'?'+podcastsLink);
             }
           });
         }
@@ -68,6 +71,7 @@
         { title: "Retro Hits", data: [], type: "song", cardType:'song'}, 
         { title: "Time to Pray", data: [], type: "latest", cardType:'song' },
         { title: "The Hangover", data: [], type: "searchedMusic", cardType:'song' },
+        { title: "Podcasts", data: [], type: "podcasts", cardType:'podcasts' },
       ]
 
       function musicReducer(state, action) {

@@ -123,15 +123,17 @@
 
     function LibraryItems({setPopUpShow}){
 
+        const nav= useNavigate();
+
         function handlePopUp(){
-            setPopUpShow((prev)=>!prev);
-            console.log('clicked')
-            console.log(setPopUpShow)
+            // nav('/podcast')
         }
+
+
         return (
             <div className='navItems'>
-                <h3 className='hoverItem navHoverMusicItem' onClick={handlePopUp} >Music</h3>
-                <h3 className='hoverItem' onClick={handlePopUp}>Podcast</h3>
+                <h3 className='hoverItem navHoverMusicItem' >Music</h3>
+                <h3 className='hoverItem' onClick={()=>{nav('/podcast');console.log('im clicked')}}>Podcast</h3>
             </div>
         )    
     }

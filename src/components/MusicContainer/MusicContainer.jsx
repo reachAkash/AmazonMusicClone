@@ -7,8 +7,8 @@ import MusicCard from '../MusicCard/MusicCard';
 import { useNavigate } from 'react-router-dom';
 import { ContextProvider } from '../../utils/Provider';
 
-export default function MusicContainer({musicData,setMusicPlayed,setSongUrl}) {
-
+export default function MusicContainer({musicData}) {
+    
     const{backColor,width}= ContextProvider();
     const{title,data,type,cardType}= musicData;
     const nav= useNavigate();

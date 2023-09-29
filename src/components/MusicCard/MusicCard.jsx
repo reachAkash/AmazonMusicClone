@@ -5,6 +5,7 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PauseIcon from '@mui/icons-material/Pause';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import pauseImg from '../../assets/Song Pause.png';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { useNavigate } from 'react-router-dom';
 import { ContextProvider } from '../../utils/Provider';
 
@@ -55,12 +56,21 @@ export default function MusicCard({music,type,cardType}) {
         <div className="imgContainer" onMouseEnter={()=>setHovered(true)} onMouseLeave={()=>setHovered(false)}>
           <img src={thumbnail?thumbnail:image} className='mainImg' alt="" />
           {hovered && <div className='playerIcons'>
-           {cardType!=='album' && cardType!=='artist' ? <AddRoundedIcon onClick={addFavFunction} className='cursor-pointer' style={{fontSize:'2rem',color:'white'}}/>: <div style={{paddingRight:'1.4rem'}}></div> }
+          {
+            cardType==='podcasts' || cardType==='artist'? 
+            <div className='artistAlbumIcon' onClick={()=>{cardType==='artist' && handleArtistRedirect(); cardType==='podcasts' && handleAlbumRedirect()}} >
+              <ChevronRightIcon style={{fontSize:'2rem'}} />
+            </div> :
+            <div className='songsIconContainer'>
+            {cardType!=='album' ? <AddRoundedIcon onClick={addFavFunction} className='cursor-pointer' style={{fontSize:'2rem',color:'white'}}/>: <div style={{paddingRight:'1.4rem'}}></div> }
             <div className="playPauseIcon">
-            {clicked ? <PauseIcon onClick={()=>setClicked(!clicked)} style={{fontSize:'3rem',color:'white'}} /> : <PlayArrowIcon onClick={()=>{setClicked(!clicked);  ; cardType==='artist' && handleArtistRedirect(); cardType==='album' && handleAlbumRedirect() }} style={{fontSize:'3rem',color:'white'}}/>}
+            {clicked ? <PauseIcon onClick={()=>setClicked(!clicked)} style={{fontSize:'3rem',color:'white'}} /> : <PlayArrowIcon onClick={()=>{setClicked(!clicked); cardType==='album' && handleAlbumRedirect() }} style={{fontSize:'3rem',color:'white'}}/>}
             </div>
             <MoreHorizIcon className='cursor-pointer' style={{fontSize:'2rem',color:'white'}}/>
-          </div>}
+          </div>
+          }
+          </div>
+          }
         </div>
 
         <div className="musicDataContainer">

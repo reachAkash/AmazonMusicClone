@@ -172,7 +172,7 @@
     cursor: pointer;
 }
 
-/* .userLogoDiv{
+.userLogoDiv{
     position: absolute;
     top: 4rem;
     right: 0.2rem;
@@ -189,7 +189,7 @@
     padding: 0 1rem;
     z-index: 999999;
     color: black;
-} */
+}
 
 .musicPreferenceDiv{
     color: white;

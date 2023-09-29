@@ -14,7 +14,7 @@ import Artist from '../Artist/Artist';
 import MusicPlayer from '../MusicPlayer/MusicPlayer.jsx';
 import SearchContainer from '../SearchContainer/SearchContainer';
 import { useState } from 'react';
-import ErrorPage from '../ErrorPage/ErrorPage';
+import Podcast from '../Podcast/Podcast';
 
 function App() {
 
@@ -36,7 +36,7 @@ function App() {
           <Route path='/type/:cardType/query/:id' element={<Artist/>}/>
           <Route path='/search/type/:typeId/query/:queryId' element={<SearchContainer/>} />  
           <Route path='/search/query/:queryId' element={<SearchContainer/>} />  
-          <Route path='/podcast' element={<ErrorPage/>} />  
+          <Route path='/podcast' element={<Podcast/>} />  
        </Routes>
     </Provider> 
   )

@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 
 const colorDeg = ["0deg", "45deg", "90deg", "135deg", "180deg", "225deg", "270deg", "315deg"]
 
-function Search() {
+function Search({cardType}) {
 
 const mood = [
     "Romantic",
@@ -41,7 +41,8 @@ return  (
             })}
         </div>
         </div>
-        <div className="searchBottom">
+       {
+       cardType!=='podcasts' && <div className="searchBottom">
              <h2>Artists</h2>
         <div className="bottomButtonsContainer">
             {artist?.data?.map((eItem,idx)=>{
@@ -49,6 +50,7 @@ return  (
             })}
         </div>
         </div>
+        }
     </div>
 </div>
     )

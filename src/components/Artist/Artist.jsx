@@ -43,7 +43,7 @@ function Artist() {
             .catch((err)=>alert(err));
         }
 
-        if(cardType==='album') fetchAlbum();
+        if(cardType==='album' || cardType==='podcasts') fetchAlbum();
         else fetchArtist();
         setTimeout(()=>{
             setLoader(false);
