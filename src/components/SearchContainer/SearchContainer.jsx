@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import { project_ID } from '../../utils/Constants';
+import { filter_Songs_URL } from '../../utils/Constants';
 import MusicCard from '../MusicCard/MusicCard.jsx';
 import './SearchContainer.css'
 import Loader from '../Loader/Loader.jsx'
 import {useParams} from 'react-router-dom';
 import { ContextProvider } from '../../utils/Provider';
+import { data } from 'autoprefixer';
 function SearchContainer({searchData}) {
 
 
-    const {musicState} = ContextProvider();
+    const {musicState,input} = ContextProvider();
     const {typeId,queryId}= useParams();
 
     console.log(typeId,queryId)
@@ -40,23 +42,15 @@ function SearchContainer({searchData}) {
         
         async function getSearchedData(){
            console.log('inside')
+           let currentData;
             try{
-                fetch(`https://academics.newtonschool.co/api/v1/music/song?limit=100`,{
+                fetch(`https://academics.newtonschool.co/api/v1/music/song?filter={"song":"${input}"}`,{
                     headers:{
                         'projectId': project_ID
                     }
                 })
                 .then((res)=>res.json())
-                .then((data)=>setFetchedData(data.data));
-               
-                // setSearchedData(fetchedData?.find((e)=>{
-                //     console.log(e.title.split(' ').join('').toLowerCase().includes(queryId.split(' ').join('').toLowerCase()));
-                //     return e.title?.toLowerCase().includes(queryId.toLowerCase());
-                // }));
-                const data= fetchedData?.find((e)=>{
-                    console.log(e.title.split(' ').join('').toLowerCase().includes(queryId.split(' ').join('').toLowerCase()));
-                    return e.title?.toLowerCase().includes(queryId.toLowerCase());
-                });
+                .then((data)=>data?.status==='fail' && setSearchedData(data) || setSearchedData(data.data));
 
                 console.log(data);
 
@@ -93,7 +87,7 @@ function SearchContainer({searchData}) {
             getSearchedData();
         }
 
-    },[searchedData])
+    },[])
 
     
   return loader ? <Loader/> : (
@@ -115,7 +109,7 @@ function SearchContainer({searchData}) {
             typeId==='mood' || typeId=='seeall' || typeId=='mood' && typeId!='seeall' && typeId!='artist' ?
                 searchedData?.data?.map((music,idx)=>{
                     return <MusicCard key={idx} music={music} />
-                }) :
+                }) : 
                 <MusicCard music={searchedData} type='artist' />
         }
         </div>

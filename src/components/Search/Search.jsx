@@ -6,8 +6,7 @@ import SearchContainer from '../SearchContainer/SearchContainer.jsx';
 import { useNavigate } from 'react-router-dom';
 
 
-
-const colorDeg = ["0deg", "45deg", "90deg", "135deg", "180deg", "225deg", "270deg", "315deg"]
+const colorDeg = ["0deg", "45deg", "90deg", "135deg", "180deg", "225deg", "270deg", "315deg"];
 
 function Search({cardType}) {
 
@@ -57,7 +56,7 @@ return  (
 }
 
 function SearchCategory({data,handleSearched,id}){
-    return <Button style={{color:'white',
+    return <Button  style={{
         backgroundImage: `linear-gradient(${colorDeg[Math.floor(Math.random() * (colorDeg.length-1))]}, 
                                           #${Math.floor(Math.random()*8388607).toString(16)}, 
                                           #${(Math.floor(Math.random()*(16777215-8388608+1))+8388608).toString(16)})`

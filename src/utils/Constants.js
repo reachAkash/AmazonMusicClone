@@ -6,7 +6,7 @@ export const Album_URL= 'https://academics.newtonschool.co/api/v1/music/album'
 
 export const more_Songs_URL= 'https://academics.newtonschool.co/api/v1/music/album?limit=100'
 
-export const filter_Songs_URL=  'https://academics.newtonschool.co/api/v1/music/song?filter={"mood":"romantic"}'
+export const filter_Songs_URL=  'https://academics.newtonschool.co/api/v1/music/song?filter='
 
 export const latest_Songs_URL= 'https://academics.newtonschool.co/api/v1/music/song?sort={"release":1}'
 

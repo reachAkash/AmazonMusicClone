@@ -24,10 +24,9 @@ import MusicPreference from '../MusicPreference/MusicPreference';
         
         const[LibraryItemsHovered,setLibraryItemsHovered]= useState(false);
         const[scrolled,setScrolled]= useState(false);
-        const[input,setInput]= useState('');
         const[userLogoClicked,setUserLogoClicked] = useState(false);
         const nav= useNavigate();
-        const {backColor,setBackColor,width,loggedIn,tryAmazonPopUp,setTryAmazonPopUp} = ContextProvider();
+        const {backColor,input,setInput,setBackColor,width,loggedIn,tryAmazonPopUp,setTryAmazonPopUp} = ContextProvider();
 
         // for navbar glassy css
         useEffect(()=>{
@@ -61,6 +60,9 @@ import MusicPreference from '../MusicPreference/MusicPreference';
 
         function handleSearch(e){
             e.preventDefault();
+            if(input.trim()==='') return ;
+
+            console.log(input)
             nav(`/search/query/${input}`);
         }
 

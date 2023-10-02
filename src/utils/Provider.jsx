@@ -1,11 +1,13 @@
   import React,{createContext, useContext, useEffect, useReducer, useState} from 'react'
   import Loader from '../components/Loader/Loader.jsx';
+  import ReactDOM  from 'react-dom';
   import { album_Current_URL, paginations_Songs_URL } from './Constants';
   import { Album_URL } from './Constants';
   import { artist_URL } from './Constants';
   import { latest_Songs_URL } from './Constants';
   import { filter_Songs_URL } from './Constants';
   import {project_ID} from './Constants';
+  import MusicPlayer from '../components/MusicPlayer/MusicPlayer.jsx';
   import { toast, ToastContainer } from 'react-toastify';
   import "react-toastify/dist/ReactToastify.css";
 
@@ -16,8 +18,10 @@
 
       const[offline,setIsOffline]= useState(false);
       const[loader,setLoader]= useState(true);
+      const[input,setInput]= useState('');
       const[tryAmazonPopUp,setTryAmazonPopUp]= useState(false);
       const[loggedIn,setLoggedIn]= useState(false);
+      const[played,setPlayed]= useState(false);
       const[width,setWidth]= useState(1400);
       const[backColor,setBackColor] = useState('dark');
       const[preference,setPreference]= useState(false);
@@ -75,6 +79,12 @@
         { title: "The Hangover", data: [], type: "searchedMusic", cardType:'song' },
         { title: "Podcasts", data: [], type: "podcasts", cardType:'podcasts' },
       ]
+
+      const musicPlayerState={
+        id:'',
+        played,
+        setPlayed,
+      }
 
       function musicReducer(state, action) {
         switch(action.type){
@@ -147,6 +157,8 @@
       const obj={
           loggedIn,
           setLoggedIn,
+          input,
+          setInput,
           tryAmazonPopUp,
           setTryAmazonPopUp,
           musicState,
@@ -159,6 +171,7 @@
       return !offline ? loader ? <Loader/> : (
       <Context.Provider value={obj}>
         {children}
+        {loggedIn && ReactDOM.createPortal(<MusicPlayer/>,document.getElementById('musicPlayer-portal'))}
       </Context.Provider> 
     ): <ToastContainer/>
   }
