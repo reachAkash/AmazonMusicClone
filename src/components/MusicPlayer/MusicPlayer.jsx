@@ -12,6 +12,7 @@ import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 
 function MusicPlayer({songUrl,currentSong,setCurrentSong,musicPlayed,setMusicPlayed}) {
 
+    return;
     const[play,setPlay]= useState(true);
 
     useEffect(()=>{
