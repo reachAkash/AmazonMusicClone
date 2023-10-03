@@ -150,6 +150,33 @@
     color: darkgray;
 }
 
+.inputElementDiv{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.inputElementSearch{
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    background-color: rgba(200, 193, 193, 0.4);
+    padding: 0 1rem;
+    font-size: 1rem;
+}
+.inputElementSearch:focus{
+    outline: 2px solid aqua;
+}
+.inputElementDiv>h3{
+    position: absolute;
+    color: white;
+    font-size: 1rem;
+    font-weight: bolder;
+    right: 2rem;
+}
 .searchIconContainer{
     position: relative;
 }
@@ -256,4 +283,38 @@
     gap: 0rem;
    }
 
+}
+
+@media (width<=634px){
+    .navbarLeft{
+        width: 60%;
+    }
+    .navbarRight{
+        width: 40%;
+        gap: 2rem;
+    }
+    .inputForm{
+        width: 33%;
+    }
+    .userLogo{
+        width: 77%;
+        gap: 2rem;
+    }
+}
+
+@media (width<=634px){
+    .navbarLeft{
+        width: 60%;
+    }
+    .navbarRight{
+        width: 40%;
+        gap: 1rem ;
+    }
+    .inputForm{
+        margin-left: 0.5rem;
+    }
+    .userLogo{
+        gap: 0;
+        padding: 0;
+    }
 }

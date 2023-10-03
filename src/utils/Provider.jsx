@@ -27,7 +27,6 @@
       const[preference,setPreference]= useState(false);
       const[inputFocused,setInputFocused]= useState(false);
       const paginationLastLink1= 'page=15&limit=10';
-      // const paginationLastLink2= 'page=12&limit=60';
       const paginationLastLink2= 'page=16&limit=50';
       const paginationLastLink3= 'page=7&limit=10';
       const paginationLastLink4= 'page=18&limit=50';

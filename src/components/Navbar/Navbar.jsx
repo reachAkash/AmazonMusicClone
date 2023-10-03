@@ -27,7 +27,7 @@
         const[scrolled,setScrolled]= useState(false);
         const[userLogoClicked,setUserLogoClicked] = useState(false);
         const nav= useNavigate();
-        const {backColor,input,setInput,setBackColor,width,loggedIn,tryAmazonPopUp,setTryAmazonPopUp} = ContextProvider();
+        const {backColor,setInputFocused,inputFocused,input,setInput,setBackColor,width,loggedIn,tryAmazonPopUp,setTryAmazonPopUp} = ContextProvider();
 
         // for navbar glassy css
         useEffect(()=>{
@@ -38,8 +38,7 @@
             }
             window.addEventListener('scroll',scroll);
             return ()=> window.removeEventListener('scroll',scroll);
-
-        },[])
+        },[width])
 
 
         function hovered(){
@@ -70,6 +69,8 @@
     return (
         <>
         <div className={`navbar ${backColor} ${scrolled ? 'scrolled':''}`}>
+           {inputFocused ? <InputElement redirect={redirect} handleSearch={handleSearch} handleInput={handleInput} /> :
+           <>
             <div className="navbarLeft">
 
                 <div className="navLogo">
@@ -110,10 +111,10 @@
                 </div>
 
                 <div className="navbarRight">
-                    <form action="" className='inputForm' onSubmit={handleSearch}>
-                        <input className='inputSearch' value={input} onChange={handleInput} onClick={redirect} placeholder='Search...'/>
+                  <form action="" className='inputForm' onSubmit={handleSearch}>
+                       {width >=635 && <input className='inputSearch' value={input} onChange={handleInput} onClick={redirect} placeholder='Search...'/>}
                         <div className='searchIconContainer'>
-                            <SearchOutlinedIcon style={{color:width>=640 ? 'black':'aqua'}} className='searchIcon' />
+                            <SearchOutlinedIcon style={{color:width>=640 ? 'black':'aqua'}} className='searchIcon' onClick={(e)=>width<=634? setInputFocused(true): handleSearch(e) } />
                         </div>
                     </form>
                     <div className="userLogo">
@@ -122,10 +123,25 @@
                     </div>
                         {userLogoClicked && <UserLoginContainer />}
                 </div>
+           </>
+                }
         </div>
         {tryAmazonPopUp && <PopUp/>}
         </>
     )
+    }
+
+    function InputElement({handleInput,redirect,handleSearch}){
+        const {input,setInput,setInputFocused} = ContextProvider();
+
+        return (
+            <form className='inputElementDiv' onSubmit={handleSearch}>
+                <input className='inputElementSearch'
+                value={input} onChange={handleInput} 
+                onClick={redirect} placeholder='Search...'/>
+                <h3 onClick={()=>setInputFocused(false)} >Cancel</h3>
+            </form> 
+        )
     }
 
     function LibraryItems(){
