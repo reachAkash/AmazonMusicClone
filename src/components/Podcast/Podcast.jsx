@@ -2,6 +2,7 @@ import React from 'react'
 import { ContextProvider } from '../../utils/Provider'
 import MusicContainer from '../MusicContainer/MusicContainer';
 import Search from '../Search/Search';
+import Navbar from '../Navbar/Navbar';
 import './Podcast.css'
 
 function Podcast() {

@@ -12,6 +12,7 @@ function SearchContainer({searchData}) {
 
     const {musicState,input} = ContextProvider();
     const {typeId,queryId}= useParams();
+    const obj= useParams();
 
     console.log(typeId,queryId)
    

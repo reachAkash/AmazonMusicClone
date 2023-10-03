@@ -1,4 +1,4 @@
-.darkContainer{
+/* .darkContainer{
     background-color: white;
     color: black;
 }
@@ -6,7 +6,7 @@
 .lightContainer{
     font-size: 10rem;
     color: white;
-}
+} */
 
 .searchPage{
     position: absolute;
@@ -23,7 +23,7 @@ h2{
     margin-bottom: 1rem ;
 }
 
-.topButtonsContainer,.middleButtonsContainer,.bottomButtonsContainer{
+.topButtonsContainer,.bottomButtonsContainer{
     display: flex;
     flex-wrap: wrap;
     row-gap: 2rem;
@@ -31,12 +31,9 @@ h2{
     height: 25vh;
 }
 
-.bottomButtonsContainer{
-    height: 70vh;
-}
-
 .searchTop{
     padding: 0 1rem;
+    margin-bottom: 1.5rem;
 }
 .searchBottom{
     padding: 2rem 1rem;
@@ -50,4 +47,19 @@ h2{
     width: 30rem;
     max-width: 24rem;
     scroll-behavior: smooth;
+}
+
+@media (width<=929px){
+    .searchButton{
+        width: 15rem;
+    }
+}
+
+@media (width <= 589px){
+    .searchTop{
+        height: 80vh;
+    }
+    .searchButton{
+        width: 20rem;
+    }
 }

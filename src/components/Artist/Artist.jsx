@@ -17,7 +17,7 @@ function Artist() {
     const [artistData,setArtistData]= useState({});
     
     const {cardType,id}= useParams();
-   
+   console.log(cardType,id);
 
     useEffect(()=>{
         function fetchArtist(){

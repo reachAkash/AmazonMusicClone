@@ -23,7 +23,7 @@ function PopUp() {
                 <p>Ad-free music streaming included with Prime membership. Also includes free shipping and video streaming.</p>
                 <div className='modalBtns'>
                     <button className='modalBtn signInBtn' onClick={()=>{setTryAmazonPopUp(false);nav('/login')}}>Already a customer ? Login</button>
-                    <button className='modalBtn signUpBtn' onClick={()=>nav('/login')}>Try now</button>
+                    <button className='modalBtn signUpBtn' onClick={()=>{nav('/subscription');setTryAmazonPopUp(false)}}>Try now</button>
                 </div>
             </div>
         </div>

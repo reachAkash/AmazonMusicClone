@@ -1,0 +1,114 @@
+.subscibePage{
+    width: 100%;
+    min-height: 100vh;
+    background-color: #3600b6;
+    color: #fff;
+    z-index: 9;
+    position: absolute;
+    top: 0;
+}
+
+.subscribePageImg{
+    width: 100%;
+    gap: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 0 ;
+}
+
+.subscribePageImg img{
+    width: 40%;
+    height: 25vh;
+}
+
+.subscribePageImg p{
+    height: 31vh;
+    font-size: 5rem;
+    font-weight: 500;
+}
+
+.priceContainer{
+    padding: 0 50px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    row-gap: 30px;
+    column-gap: 10px;
+    flex-wrap: wrap;
+}
+
+.priceCard{
+    width: 250px;
+    text-align: center;
+    border-radius: 20px;
+    box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.5);
+}
+
+.priceCard div{
+    height: 50%;
+    padding: 20px 0;
+}
+
+.pricetitle{
+    font-size: 3rem;
+    font-weight: bold; 
+}
+
+.pricetype{
+    font-size: 1rem;
+}
+
+.price{
+    font-size: 3rem;
+    font-weight: 900;
+}
+
+.planprice{
+    font-weight: bold;
+}
+
+.subscribeButton{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.trialStartBtn{
+    width: 230px;
+    padding: 10px;
+    color: #000;
+    border: 0;
+    border-radius: 10px 10px 0 0;
+    background-color: #ffd814;
+    cursor: pointer;
+}
+
+.trialStartBtn:hover{
+    opacity: 0.9;
+}
+
+.subscribeImageDiv{
+    width: 100%;
+    color: #000;
+    background-color: #fff;
+    text-align: center;
+}
+
+.subscribeImageDiv p{
+    font-size: 2rem;
+    font-weight: bold;
+    padding: 50px 0;
+}
+
+.subscribeimg{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding-bottom: 50px;
+}
+
+.subscribeimg img{
+    width: 220px;
+}

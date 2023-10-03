@@ -17,14 +17,15 @@
   function Provider({children}) {
 
       const[offline,setIsOffline]= useState(false);
-      const[loader,setLoader]= useState(true);
+      const[loader,setLoader]= useState(false);
       const[input,setInput]= useState('');
       const[tryAmazonPopUp,setTryAmazonPopUp]= useState(false);
-      const[loggedIn,setLoggedIn]= useState(false);
+      const[loggedIn,setLoggedIn]= useState(true);
       const[played,setPlayed]= useState(false);
-      const[width,setWidth]= useState(1400);
+      const[width,setWidth]= useState(1600);
       const[backColor,setBackColor] = useState('dark');
       const[preference,setPreference]= useState(false);
+      const[inputFocused,setInputFocused]= useState(false);
       const paginationLastLink1= 'page=15&limit=10';
       // const paginationLastLink2= 'page=12&limit=60';
       const paginationLastLink2= 'page=16&limit=50';
@@ -37,6 +38,7 @@
 
       function updateState() {
         try{
+          setLoader(true);
           const promises = musicState.map((eItem) => {
             if (eItem.type === 'song') {
               return getData(eItem.type, paginations_Songs_URL + paginationLastLink1);
@@ -143,7 +145,7 @@
         useEffect(() => {
         
             updateState();
-        
+            setWidth(window.innerWidth)
           window.addEventListener('resize', () => {
             setWidth(window.innerWidth);
           });
@@ -167,6 +169,8 @@
           setBackColor,
           preference,
           setPreference,
+          inputFocused,
+          setInputFocused
       }
       return !offline ? loader ? <Loader/> : (
       <Context.Provider value={obj}>
@@ -177,6 +181,8 @@
   }
 
   export function ContextProvider(){
+    const data= useContext(Context);
+    if(!data) throw new Error('context cannot be called outside');
     return useContext(Context);
   }
 

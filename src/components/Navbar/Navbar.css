@@ -218,6 +218,42 @@
     }
 }
 
-/* @media (width>=643px){
+@media (width<=840px){
+    .navbarLeft{
+        width: 40%;
+        padding: 0 1rem;
+    }
+    .navLinks{
+        padding: 0 1rem;
+        margin: 0;
+        gap: 2rem;
+    }
+    .logoImg{
+        width: 55px;
+    }
+    .navbarRight{
+        width: 60%;
+    }
+}
 
-} */
+@media (width<=640px){
+   .navbarLeft{
+    width: 40%;
+    gap: 0;
+   }
+
+   .inputForm{
+    width: 50%;
+   }
+
+   .navbarRight{
+    width: 60%;
+    gap: 0;
+    display: flex;
+    justify-content: space-around;
+   }
+   .userLogo{
+    gap: 0rem;
+   }
+
+}

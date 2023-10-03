@@ -3,6 +3,7 @@
     import './Navbar.css';
     import { NavLink,Link } from 'react-router-dom';
     import AmazonLogo from '../../assets/Amazon-Music-Logo600.png'
+    import AmazonLogoSmall from '../../assets/Amazon-Music-Logo640.png'
     import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
     import PodcastsRoundedIcon from '@mui/icons-material/PodcastsRounded';
     import HeadsetRoundedIcon from '@mui/icons-material/HeadsetRounded';
@@ -16,7 +17,7 @@
     import PopUp from '../PopUp/PopUp';
     import {useNavigate} from 'react-router-dom';
     import { ContextProvider } from '../../utils/Provider';
-import MusicPreference from '../MusicPreference/MusicPreference';
+    import MusicPreference from '../MusicPreference/MusicPreference';
 
 
     
@@ -72,7 +73,7 @@ import MusicPreference from '../MusicPreference/MusicPreference';
             <div className="navbarLeft">
 
                 <div className="navLogo">
-                    <img src={AmazonLogo}
+                    <img src={width>='840' ? AmazonLogo : AmazonLogoSmall}
                     alt="amazonLogo" className='logoImg'/>
                 </div>
 
@@ -93,7 +94,10 @@ import MusicPreference from '../MusicPreference/MusicPreference';
                         <div className="navLinkLibrary">
                             <HeadsetRoundedIcon/>
                             {width>=1280 && <span>Library</span>}
-                            { LibraryItemsHovered ? <KeyboardArrowUpRounded/> : <KeyboardArrowDownRoundedIcon/>}
+                            {width>=1280 && <span>
+                               { LibraryItemsHovered ? <KeyboardArrowUpRounded/> : <KeyboardArrowDownRoundedIcon/>}
+                            </span>
+                            }
 
                             {LibraryItemsHovered && <div className='libraryHover'>
                             <LibraryItems />
@@ -107,9 +111,9 @@ import MusicPreference from '../MusicPreference/MusicPreference';
 
                 <div className="navbarRight">
                     <form action="" className='inputForm' onSubmit={handleSearch}>
-                        {<input className='inputSearch' value={input} onChange={handleInput} onClick={redirect} placeholder='Search...'/>}
+                        <input className='inputSearch' value={input} onChange={handleInput} onClick={redirect} placeholder='Search...'/>
                         <div className='searchIconContainer'>
-                            <SearchOutlinedIcon style={{color:'black'}} className='searchIcon'/>
+                            <SearchOutlinedIcon style={{color:width>=640 ? 'black':'aqua'}} className='searchIcon' />
                         </div>
                     </form>
                     <div className="userLogo">
@@ -164,7 +168,7 @@ import MusicPreference from '../MusicPreference/MusicPreference';
         return (
             <div className='userLogoDiv'>
                 <Button onClick={()=> loggedIn ? setLoggedIn(false) : nav('/signup')} style={signUpBtnstyle} className='signInButton'>{loggedIn ? 'Logout': 'Sign Up' }</Button>
-                <h3 className='musicPreferenceDiv' onClick={()=>{setPreference(true)}}>Music Preferences</h3>
+                {/* <h3 className='musicPreferenceDiv' onClick={()=>{setPreference(true)}}>Music Preferences</h3> */}
             </div>
         )    
     }

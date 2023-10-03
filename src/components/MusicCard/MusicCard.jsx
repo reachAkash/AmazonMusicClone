@@ -40,11 +40,11 @@ export default function MusicCard({music,type,cardType}) {
 
     function handleArtistRedirect(){
       // console.log(music)
-      nav(`/type/${cardType}/query/${music._id}`);
+      nav(`/${cardType}/${music._id}`);
     }
 
     function handleAlbumRedirect(){
-      nav(`/type/${cardType}/query/${music._id}`);
+      nav(`/${cardType}/${music._id}`);
     }
 
     if(title==='Jana Gana Mana'|| name==='Jana Gana Mana') return null;

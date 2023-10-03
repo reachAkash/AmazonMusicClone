@@ -14,7 +14,7 @@ export default function MusicContainer({musicData}) {
     const nav= useNavigate();
   
     function handleSeeAll(){
-        nav(`/search/type/seeall/query/${title}`);
+        nav(`/search/seeall/${title}`);
     }
   
   return (
@@ -25,12 +25,11 @@ export default function MusicContainer({musicData}) {
                 {title}
             </div>
             <div className="seeAllItems">
-               {width>='438px' && <div className="sliderIcons">
+               {width>='438' && <div className="sliderIcons">
                     <KeyboardArrowLeftIcon  className='sliderLeftIcon' />
-                    <div className="swipe">SWIPE</div>
                     <KeyboardArrowRightIcon className='sliderRightIcon' />
                 </div>}
-                    <button className={`seeAllBtn seeAll${backColor}`} onClick={handleSeeAll} >SEE ALL</button>
+                    <button className={`seeAllBtn`} onClick={handleSeeAll} >SEE ALL</button>
             </div>
         </div>
         

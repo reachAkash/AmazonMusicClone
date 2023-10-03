@@ -14,6 +14,7 @@ import Artist from '../Artist/Artist';
 import SearchContainer from '../SearchContainer/SearchContainer';
 import { useState } from 'react';
 import Podcast from '../Podcast/Podcast';
+import Subscription from '../Subscription/Subscription';
 import MusicPreference from '../MusicPreference/MusicPreference.jsx';
 
 function App() {
@@ -28,9 +29,10 @@ function App() {
           <Route path='/signup' element={<SignUpForm/>} />
           <Route path='/login' element={<LoginForm/>} />
           <Route path='/update' element={<UpdatePasswordForm/>} />
-          <Route path='/type/:cardType/query/:id' element={<Artist/>}/>
-          <Route path='/search/type/:typeId/query/:queryId' element={<SearchContainer/>} />  
-          <Route path='/search/query/:queryId' element={<SearchContainer/>} />  
+          <Route path='/:cardType/:id' element={<Artist/>}/>
+          <Route path='/search/:typeId/:queryId' element={<SearchContainer/>} />  
+          <Route path='/search/:queryId' element={<SearchContainer/>} />  
+          <Route path='/subscription' element={<Subscription/>} />  
        </Routes>
     </Provider> 
   )

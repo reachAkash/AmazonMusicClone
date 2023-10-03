@@ -5,6 +5,7 @@ import {ContextProvider} from '../../utils/Provider'
 import MusicContainer from '../MusicContainer/MusicContainer'
 import MusicPlayer from '../MusicPlayer/MusicPlayer'
 import MusicPreference from '../MusicPreference/MusicPreference'
+import Navbar from '../Navbar/Navbar'
 function Home({setSongUrl,setMusicPlayed,currentSong,setCurrentSong}) {
   
     const {musicState,backColor,loggedIn,preference}= ContextProvider();

@@ -4,6 +4,8 @@ import Button from '../Button/Button.jsx';
 import { ContextProvider } from '../../utils/Provider';
 import SearchContainer from '../SearchContainer/SearchContainer.jsx';
 import { useNavigate } from 'react-router-dom';
+import Navbar from '../Navbar/Navbar';
+
 
 
 const colorDeg = ["0deg", "45deg", "90deg", "135deg", "180deg", "225deg", "270deg", "315deg"];
@@ -26,10 +28,11 @@ const nav= useNavigate();
     })
 
     function handleSearched(e){
-        nav(`/search/type/${e.target.id}/query/${e.target.innerText}`)
+        nav(`/search/${e.target.id}/${e.target.innerText}`)
     }   
 
 return  (
+    
 <div className={`searchContainer ${backColor}Container`}>
     <div className='searchPage'>
         <div className="searchTop">
