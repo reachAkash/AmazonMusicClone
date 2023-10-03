@@ -20,7 +20,7 @@
       const[loader,setLoader]= useState(false);
       const[input,setInput]= useState('');
       const[tryAmazonPopUp,setTryAmazonPopUp]= useState(false);
-      const[loggedIn,setLoggedIn]= useState(true);
+      const[loggedIn,setLoggedIn]= useState(false);
       const[played,setPlayed]= useState(false);
       const[width,setWidth]= useState(1600);
       const[backColor,setBackColor] = useState('dark');

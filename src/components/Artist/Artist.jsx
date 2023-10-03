@@ -62,7 +62,7 @@ function Artist() {
             <div className='albumTopRight'>
                 <div className='albumTopRightContents'>
                     <div style={{textTransform:'uppercase'}}>{cardType} PlayList</div>
-                    <h1>{artistData?.name}</h1>
+                    <h1>{artistData?.name?artistData?.name:artistData?.title}</h1>
                 </div>
                 <div className='albumTopRightContents'>
                     <div>{artistData?.description}</div>

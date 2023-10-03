@@ -291,7 +291,7 @@
     }
     .navbarRight{
         width: 40%;
-        gap: 2rem;
+        /* gap: 2rem; */
     }
     .inputForm{
         width: 33%;
@@ -302,19 +302,25 @@
     }
 }
 
-@media (width<=634px){
+@media (width<=378px){
+    .navbar{
+        /* gap: 1rem; */
+    }
     .navbarLeft{
         width: 60%;
+        /* padding: 0; */
+        gap: 0;
     }
     .navbarRight{
         width: 40%;
-        gap: 1rem ;
     }
     .inputForm{
-        margin-left: 0.5rem;
+        margin-left: 1rem;
+       display: flex;
+       justify-content: end;
     }
     .userLogo{
-        gap: 0;
+        gap: 0rem;
         padding: 0;
     }
 }
