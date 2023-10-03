@@ -37,8 +37,10 @@
                 else setScrolled(false);
             }
             window.addEventListener('scroll',scroll);
+            
             return ()=> window.removeEventListener('scroll',scroll);
         },[width])
+
 
 
         function hovered(){
@@ -181,6 +183,8 @@
             border:'2px solid aqua',
             borderRadius:'30px',
         }
+ 
+
         return (
             <div className='userLogoDiv'>
                 <Button onClick={()=> loggedIn ? setLoggedIn(false) : nav('/signup')} style={signUpBtnstyle} className='signInButton'>{loggedIn ? 'Logout': 'Sign Up' }</Button>

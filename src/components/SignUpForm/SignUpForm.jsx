@@ -74,19 +74,19 @@ function SignUpForm() {
         <form className='signUpFormTop' onSubmit={signUpUser}>
             <h2>Sign In</h2>
             <div className='signUpUserNameForm'>
-            <label for='userName'>Username</label>
+            <label htmlFor='userName'>Username</label>
             <input value={userName} onChange={(e)=>{
                 setUserName(e.target.value)
                 }} type='text' className='signUpUserNameInput' style={{marginBottom:0}} required/>
             </div>
             <div className='userEmailForm'>
-            <label for='userName'>Email</label>
+            <label htmlFor='userName'>Email</label>
             <input value={userEmail} onChange={(e)=>{
                 setUserEmail(e.target.value)
                 }} type='text' className='signUpUserEmailInput' required/>
             </div>
             <div className='userPasswordForm'>
-            <label for='password'> Password</label>
+            <label htmlFor='password'> Password</label>
             <input value={userPassword} onChange={(e)=>{
                 setUserPassword(e.target.value)
                 }} type='password' className='signUpUserPasswordInput' required/>
