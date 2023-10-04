@@ -1,13 +1,3 @@
-/* .darkContainer{
-    background-color: white;
-    color: black;
-}
-
-.lightContainer{
-    font-size: 10rem;
-    color: white;
-} */
-
 .searchPage{
     position: absolute;
     top: 7rem;
@@ -23,6 +13,18 @@ h2{
     margin-bottom: 1rem ;
 }
 
+.searchedHistoryHeader{
+    font-size: 1.4rem;
+    font-weight: bolder;
+    padding-bottom: 1rem;
+}
+
+.searchedHistoryContainer,.searchedHistoryList{
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
 .topButtonsContainer,.bottomButtonsContainer{
     display: flex;
     flex-wrap: wrap;
@@ -31,7 +33,7 @@ h2{
     height: 25vh;
 }
 
-.searchTop{
+.searchTop,.searchedHistory{
     padding: 0 1rem;
     margin-bottom: 1.5rem;
 }
@@ -47,6 +49,38 @@ h2{
     width: 30rem;
     max-width: 24rem;
     scroll-behavior: smooth;
+}
+
+.suggestionsContainer{
+    position: absolute;
+    width: 100%;
+    top: 6rem;
+    left: 1rem;
+}
+
+.suggestionHeader{
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    font-weight: bolder;
+}
+
+.suggestionsList{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.suggestionItems{
+    width: 100%;
+    font-size: 1.2rem;
+    padding: 0.4rem;
+}
+
+.suggestionItems:hover{
+    background-color: rgba(255, 255, 255, 0.2);
+    color: aqua;
+    cursor: pointer;
 }
 
 @media (width<=929px){

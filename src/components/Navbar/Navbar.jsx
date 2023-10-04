@@ -1,7 +1,7 @@
     import React,{useState,useEffect} from 'react'
     import ReactDOM from 'react-dom';
     import './Navbar.css';
-    import { NavLink,Link } from 'react-router-dom';
+    import { NavLink,Link, json } from 'react-router-dom';
     import AmazonLogo from '../../assets/Amazon-Music-Logo600.png'
     import AmazonLogoSmall from '../../assets/Amazon-Music-Logo640.png'
     import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
@@ -63,8 +63,10 @@
         function handleSearch(e){
             e.preventDefault();
             if(input.trim()==='') return ;
-
-            console.log(input)
+            let items= JSON.parse(localStorage.getItem('searchedMusic'));
+            if(!items) items=[];
+            items.push(input);
+            localStorage.setItem('searchedMusic',JSON.stringify(items)); 
             nav(`/search/query/${input}`);
         }
 
@@ -123,7 +125,7 @@
                        {backColor==='dark' && <LightModeIcon style={{fontSize:'2rem'}} className='lightModeIcon' onClick={()=>setBackColor('light')}/> || <DarkModeIcon style={{fontSize:'2rem'}} className='darkModeIcon' onClick={()=>setBackColor('dark')}/>}
                         <AccountCircleIcon onClick={()=>setUserLogoClicked(!userLogoClicked)} style={{fontSize:'2rem'}} className='userLogoIcon'/>
                     </div>
-                        {userLogoClicked && loggedInUser.status ? <LoggedUserInfo/> : <UserLoginContainer/>}
+                        {/* {userLogoClicked && loggedInUser.status ? <LoggedUserInfo/> : <UserLoginContainer/>} */}
                 </div>
            </>
                 }
@@ -156,9 +158,9 @@
         return (
             <form className='inputElementDiv' onSubmit={handleSearch}>
                 <input className='inputElementSearch'
-                value={input} onChange={handleInput} 
+                value={input} onChange={handleInput} autoFocus
                 onClick={redirect} placeholder='Search...'/>
-                <h3 onClick={()=>setInputFocused(false)} >Cancel</h3>
+                <h3 onClick={()=>setInputFocused(false)} style={{cursor:'pointer'}} >Cancel</h3>
             </form> 
         )
     }

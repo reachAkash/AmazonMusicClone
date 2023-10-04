@@ -67,7 +67,7 @@ export default function MusicCard({music,type,cardType}) {
             <div className='songsIconContainer'>
             {cardType!=='album' ? <AddRoundedIcon onClick={()=>loggedIn && addFavFunction() || setTryAmazonPopUp(true)} className='cursor-pointer' style={{fontSize:'2rem',color:'white'}}/>: <div style={{paddingRight:'1.4rem'}}></div> }
             <div className="playPauseIcon">
-            {clicked ? <PauseIcon onClick={()=>setClicked(!clicked)} style={{fontSize:'3rem',color:'white'}} /> : <PlayArrowIcon onClick={()=>{ !loggedIn.status ? setTryAmazonPopUp(true) : setClicked(!clicked); loggedIn.status && cardType==='album' && handleAlbumRedirect() }} style={{fontSize:'3rem',color:'white'}}/>}
+            {clicked ? <PauseIcon onClick={()=>setClicked(!clicked)} style={{fontSize:'3rem',color:'white'}} /> : <PlayArrowIcon onClick={()=>{ !loggedInUser.status ? setTryAmazonPopUp(true) : setClicked(!clicked); loggedInUser.status && cardType==='album' && handleAlbumRedirect() }} style={{fontSize:'3rem',color:'white'}}/>}
             </div>
             <MoreHorizIcon className='cursor-pointer' style={{fontSize:'2rem',color:'white'}}/>
           </div>

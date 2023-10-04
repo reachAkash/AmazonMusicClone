@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { project_ID } from '../../utils/Constants';
+import { Album_URL, project_ID } from '../../utils/Constants';
 import { filter_Songs_URL } from '../../utils/Constants';
 import MusicCard from '../MusicCard/MusicCard.jsx';
 import './SearchContainer.css'
@@ -13,9 +13,6 @@ function SearchContainer({searchData}) {
     const {musicState,input} = ContextProvider();
     const {typeId,queryId}= useParams();
     const obj= useParams();
-
-    console.log(typeId,queryId)
-   
     const[searchedData,setSearchedData] = useState([]);
     const[loader,setLoader]= useState(true);
     const[fetchedData,setFetchedData]= useState([]);
@@ -42,25 +39,21 @@ function SearchContainer({searchData}) {
 
         
         async function getSearchedData(){
-           console.log('inside')
-           let currentData;
-            try{
-                fetch(`https://academics.newtonschool.co/api/v1/music/song?filter={"song":"${input}"}`,{
-                    headers:{
-                        'projectId': project_ID
+            const res= await fetch(Album_URL,{
+                headers:{
+                    'projectId': project_ID
                     }
                 })
-                .then((res)=>res.json())
-                .then((data)=>data?.status==='fail' && setSearchedData(data) || setSearchedData(data.data));
-
-                console.log(data);
-
-                setLoader(false);
-            }
-            catch(err){
-                throw new Error(err);
-            }
+            const data= await res.json();
+            const music= data.data;
+          
+            const found= music?.find((e)=>{
+                return e.title.split(' ').join('').toLowerCase().includes(input.split(' ').join('').toLowerCase())
+            })
+            setSearchedData(found);
+            setLoader(false);   
         }
+           
         
         if(typeId==='mood'){
             getData();
@@ -88,14 +81,14 @@ function SearchContainer({searchData}) {
             getSearchedData();
         }
 
-    },[])
+    },[input])
 
     
   return loader ? <Loader/> : (
     <div className='searchPage'>
         <div className="searchContainer">
         <div className="searchedHeader">
-            { typeId==='seeall' ? <span>{queryId}</span> : <div>Found {searchedData?.data?.length} results for <span>{queryId}</span></div> }
+            { typeId==='seeall' ? <span>{queryId}</span> : <div>Found {searchedData?.data?.length} results for <span>{input}</span></div> }
         </div>
         <div className="searchedBody">
            {/* {
@@ -111,7 +104,7 @@ function SearchContainer({searchData}) {
                 searchedData?.data?.map((music,idx)=>{
                     return <MusicCard key={idx} music={music} />
                 }) : 
-                <MusicCard music={searchedData} type='artist' />
+                <MusicCard music={searchedData} cardType='album' />
         }
         </div>
         </div>
