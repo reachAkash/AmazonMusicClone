@@ -46,12 +46,12 @@ function SearchContainer({searchData}) {
                 })
             const data= await res.json();
             const music= data.data;
-          
+            console.log(music)
             const found= music?.find((e)=>{
                 return e.title.split(' ').join('').toLowerCase().includes(input.split(' ').join('').toLowerCase())
             })
             setSearchedData(found);
-            setLoader(false);   
+            setLoader(false);
         }
            
         
@@ -81,14 +81,14 @@ function SearchContainer({searchData}) {
             getSearchedData();
         }
 
-    },[input])
+    },[])
 
     
   return loader ? <Loader/> : (
     <div className='searchPage'>
         <div className="searchContainer">
         <div className="searchedHeader">
-            { typeId==='seeall' ? <span>{queryId}</span> : <div>Found {searchedData?.data?.length} results for <span>{input}</span></div> }
+            { typeId==='seeall' ? <span>{queryId}</span> : <div>Found {searchedData?.data?.length} results for <span>{queryId}</span></div> }
         </div>
         <div className="searchedBody">
            {/* {

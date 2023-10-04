@@ -53,7 +53,7 @@ function Artist() {
     
 
   return loader ? <Loader/> : (
-    <div className='albumImageContainer' style={{backgroundImage:`url(${artistData.image})`,backgroundPosition:'bottom'}}>
+    <div className='albumImageContainer' style={{backgroundImage:`url(${artistData?.image})`,backgroundPosition:'bottom'}}>
     <div className='albumContainer'>
         <div className='albumTop'>
             <div className='albumTopLeft'>

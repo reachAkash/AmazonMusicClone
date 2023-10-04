@@ -33,7 +33,7 @@ const nav= useNavigate();
 
     function handleSearched(e){
         nav(`/search/${e.target.id}/${e.target.innerText}`)
-    }   
+    }  
 
     useEffect(()=>{
         let history= JSON.parse(localStorage.getItem('searchedMusic'));

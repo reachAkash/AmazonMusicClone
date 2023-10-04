@@ -7,57 +7,54 @@ import PauseIcon from '@mui/icons-material/Pause';
 import Forward10Icon from '@mui/icons-material/Forward10';
 import SkipNextIcon from '@mui/icons-material/SkipNext';
 import VolumeUpIcon from '@mui/icons-material/VolumeUp';
+import { ContextProvider } from '../../utils/Provider';
 
 
 
-function MusicPlayer({songUrl,currentSong,setCurrentSong,musicPlayed,setMusicPlayed}) {
+function MusicPlayer() {
 
-    return;
+    const {playSong} = ContextProvider();
     const[play,setPlay]= useState(true);
 
     useEffect(()=>{
-        fetch(`https://academics.newtonschool.co/api/v1/music/album/${songUrl}`,{
-            headers:{
-                'projectId':'b8cjykmftj1r'
-            }
-        })
-        .then((res)=>res.json())
-        .then((data)=>console.log(data));
-    },[])
+        // fetch(`https://academics.newtonschool.co/api/v1/music/album/${songUrl}`,{
+        //     headers:{
+        //         'projectId':'b8cjykmftj1r'
+        //     }
+        // })
+        // .then((res)=>res.json())
+        // .then((data)=>console.log(data));
+        console.log(playSong)
+    },[playSong.id])
 
-  return (
-      
-    <div className='musicPlayerContainer'>
-        <div className='musicLeft'>
-            <img className='musicLogo' src={'https://th.bing.com/th/id/OIG.lVXjWwlHyIo4QdjnC1YE'} />
-            <div className='musicDetails'>
-                {/* <h3>{data.title}</h3>
-                <p>{description}</p>
-                <h3>data.title</h3>
-                <p>description</p> */}
+    return (
+    
+        <div className='musicPlayerContainer'>
+            <div className='musicLeft'>
+                <img className='musicLogo' src={''} />
+                <div className='musicDetails'>
+                    {/* <h3>{data.title}</h3>
+                    <p>{description}</p> */}
+                </div>
+            </div>
+            <div className='musicMiddle'>
+                <div className='musicPlayerIcons'>
+                <SkipPreviousIcon style={{fontSize:'2rem',cursor: 'pointer'}}/>
+                <Replay10Icon style={{fontSize:'2rem',cursor: 'pointer'}}/>
+                {!true ? 
+                <PlayArrowIcon style={{fontSize:'3rem',cursor: 'pointer'}} />
+                : 
+                <PauseIcon style={{fontSize:'3rem',cursor: 'pointer'}} />
+                }
+                <Forward10Icon style={{fontSize:'2rem',cursor: 'pointer'}}/>
+                <SkipNextIcon style={{fontSize:'2rem',cursor: 'pointer'}}/>
+                </div>
+            </div>
+            <div className='musicRight'>
+                <VolumeUpIcon style={{fontSize:'2rem'}}/>
             </div>
         </div>
-        <div className='musicMiddle'>
-            <div className='musicPlayerIcons'>
-            <SkipPreviousIcon style={{fontSize:'1.5rem',cursor: 'pointer'}}/>
-            <Replay10Icon style={{fontSize:'1.5rem',cursor: 'pointer'}}/>
-            <div className="playPauseIcon">
-            {play ? 
-            <PauseIcon style={{fontSize:'2rem',cursor: 'pointer'}} onClick={()=>setPlay(!play)}/>
-            :
-            <PlayArrowIcon style={{fontSize:'2rem',cursor: 'pointer'}} onClick={()=>setPlay(!play)}/>
-        }
-        </div>
-            <Forward10Icon style={{fontSize:'1.5rem',cursor: 'pointer'}}/>
-            <SkipNextIcon style={{fontSize:'1.5rem',cursor: 'pointer'}}/>
-            </div>
-        </div>
-        <div className='musicRight'>
-            <VolumeUpIcon style={{fontSize:'2rem'}}/>
-        </div>
-    </div>
-
-  )
+      )
 }
 
 export default MusicPlayer
