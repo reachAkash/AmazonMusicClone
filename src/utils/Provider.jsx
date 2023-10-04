@@ -20,11 +20,18 @@
       const[loader,setLoader]= useState(false);
       const[input,setInput]= useState('');
       const[tryAmazonPopUp,setTryAmazonPopUp]= useState(false);
-      const[loggedIn,setLoggedIn]= useState(false);
+      const[loggedInUser,setLoggedInUser]= useState({
+        name:'Akash',
+        status:true ,
+      });
+      const[music,setMusic]= useState({
+        status:'inactive',
+        action:'pause',
+        id:'',
+      })
       const[played,setPlayed]= useState(false);
       const[width,setWidth]= useState(1600);
       const[backColor,setBackColor] = useState('dark');
-      const[preference,setPreference]= useState(false);
       const[inputFocused,setInputFocused]= useState(false);
       const paginationLastLink1= 'page=15&limit=10';
       const paginationLastLink2= 'page=16&limit=50';
@@ -156,8 +163,8 @@
 
 
       const obj={
-          loggedIn,
-          setLoggedIn,
+          loggedInUser,
+          setLoggedInUser,
           input,
           setInput,
           tryAmazonPopUp,
@@ -166,15 +173,12 @@
           width,
           backColor,
           setBackColor,
-          preference,
-          setPreference,
           inputFocused,
           setInputFocused
       }
       return !offline ? loader ? <Loader/> : (
       <Context.Provider value={obj}>
         {children}
-        {loggedIn && ReactDOM.createPortal(<MusicPlayer/>,document.getElementById('musicPlayer-portal'))}
       </Context.Provider> 
     ): <ToastContainer/>
   }

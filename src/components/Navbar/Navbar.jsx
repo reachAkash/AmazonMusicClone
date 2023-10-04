@@ -27,13 +27,13 @@
         const[scrolled,setScrolled]= useState(false);
         const[userLogoClicked,setUserLogoClicked] = useState(false);
         const nav= useNavigate();
-        const {backColor,setInputFocused,inputFocused,input,setInput,setBackColor,width,loggedIn,tryAmazonPopUp,setTryAmazonPopUp} = ContextProvider();
+        const {backColor,setInputFocused,inputFocused,input,setInput,setBackColor,width,loggedInUser,tryAmazonPopUp,setTryAmazonPopUp} = ContextProvider();
 
         // for navbar glassy css
         useEffect(()=>{
 
             function scroll(){
-                if(window.scrollY>10) setScrolled(true);
+                if(window.scrollY>1) setScrolled(true);
                 else setScrolled(false);
             }
             window.addEventListener('scroll',scroll);
@@ -123,7 +123,7 @@
                        {backColor==='dark' && <LightModeIcon style={{fontSize:'2rem'}} className='lightModeIcon' onClick={()=>setBackColor('light')}/> || <DarkModeIcon style={{fontSize:'2rem'}} className='darkModeIcon' onClick={()=>setBackColor('dark')}/>}
                         <AccountCircleIcon onClick={()=>setUserLogoClicked(!userLogoClicked)} style={{fontSize:'2rem'}} className='userLogoIcon'/>
                     </div>
-                        {userLogoClicked && <UserLoginContainer />}
+                        {userLogoClicked && loggedInUser.status ? <LoggedUserInfo/> : <UserLoginContainer/>}
                 </div>
            </>
                 }
@@ -131,6 +131,23 @@
         {tryAmazonPopUp && <PopUp/>}
         </>
     )
+    }
+
+    function LoggedUserInfo(){
+
+        const nav= useNavigate();
+
+       return <div className='userLogoDiv' style={{ backgroundColor: 'rgba(0,0,0,0.8)',
+       backdropFilter: 'blur(10rem)'}}>
+            <Link className="hoverableItems" target='_blank' to='https://www.amazon.in/music/settings?ref=dp_amp_settings_yasettings_click&language=en_IN'>Your Amazon Music Settings</Link>
+            <Link className="hoverableItems" to='/user' >My Profile</Link>
+            <Link className="hoverableItems" to='/preference'>Music Preferences</Link>
+            <Link className="hoverableItems" to='/explicit'>Block Explicit Songs</Link>
+            <Link className="hoverableItems" target='_blank' to='https://www.amazon.co.uk/b/?node=22830131031'>Import Your Playlist</Link>
+            <Link className="hoverableItems" target='_blank' to='https://www.amazon.in/gp/help/customer/display.html?pop-up=1&nodeId=201380010&language=en_IN'>Terms & Conditions</Link>
+            <Link className="hoverableItems" to='/gethelp'>Get Help</Link>
+            <Link className="hoverableItems" style={{border:'none'}}>Sign Out</Link>
+        </div>
     }
 
     function InputElement({handleInput,redirect,handleSearch}){
@@ -148,7 +165,7 @@
 
     function LibraryItems(){
 
-        const {loggedIn,setTryAmazonPopUp} = ContextProvider();
+        const {loggedInUser,setTryAmazonPopUp} = ContextProvider();
 
         const nav= useNavigate();
 
@@ -175,20 +192,22 @@
         const nav= useNavigate();
 
         const signUpBtnstyle= {
-            width:'8rem',
+            width:'85%',
             height:'2.5rem',
             outline: '2px solid black',
             backgroundColor:'aqua',
             color:'black',
-            border:'2px solid aqua',
+            border:'2px solid white',
             borderRadius:'30px',
+            marginBottom:'0.3rem'
         }
  
 
         return (
-            <div className='userLogoDiv'>
+            <div className='userLogoDiv' style={{ backgroundColor: 'rgba(0,0,0,0.8)',
+            backdropFilter: 'blur(10rem)'}}>
                 <Button onClick={()=> loggedIn ? setLoggedIn(false) : nav('/signup')} style={signUpBtnstyle} className='signInButton'>{loggedIn ? 'Logout': 'Sign Up' }</Button>
-                {/* <h3 className='musicPreferenceDiv' onClick={()=>{setPreference(true)}}>Music Preferences</h3> */}
+                <h3 className='hoverableItems' style={{border:'none'}} onClick={()=>{nav('/preference')}}>Music Preferences</h3>
             </div>
         )    
     }

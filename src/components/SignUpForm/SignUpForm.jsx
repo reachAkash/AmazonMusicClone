@@ -12,7 +12,7 @@ function SignUpForm() {
   const[userEmail,setUserEmail]= useState('');
   const[userPassword,setUserPassword]= useState('');
   const nav= useNavigate();
-  const{setLoggedIn}= ContextProvider();
+  const{setLoggedInUser}= ContextProvider();
 
  async function signUpUser(e){
 
@@ -50,10 +50,13 @@ function SignUpForm() {
       position: toast.POSITION.TOP_CENTER
     });
     console.log(userName,userEmail,userPassword)
-    setLoggedIn(true);
+    setLoggedInUser({
+      name:userName,
+      status:true
+    });
     setTimeout(()=>{
       nav('/');
-    },1000)
+    },1500)
   }
   catch(err){
     toast.error("Something went Wrong !", {

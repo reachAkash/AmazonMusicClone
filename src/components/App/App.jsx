@@ -16,6 +16,8 @@ import { useState } from 'react';
 import Podcast from '../Podcast/Podcast';
 import Subscription from '../Subscription/Subscription';
 import MusicPreference from '../MusicPreference/MusicPreference.jsx';
+import User from '../User/User';
+import Explicit from '../Explicit/Explicit';
 
 function App() {
 
@@ -33,6 +35,9 @@ function App() {
           <Route path='/search/:typeId/:queryId' element={<SearchContainer/>} />  
           <Route path='/search/:queryId' element={<SearchContainer/>} />  
           <Route path='/subscription' element={<Subscription/>} />  
+          <Route path='/preference' element={<MusicPreference/>} />  
+          <Route path='/user' element={<User/>} />  
+          <Route path='/explicit' element={<Explicit/>} />  
        </Routes>
     </Provider> 
   )

@@ -8,16 +8,14 @@ import MusicPreference from '../MusicPreference/MusicPreference'
 import Navbar from '../Navbar/Navbar'
 function Home({setSongUrl,setMusicPlayed,currentSong,setCurrentSong}) {
   
-    const {musicState,backColor,loggedIn,preference}= ContextProvider();
+    const {musicState,backColor,loggedIn}= ContextProvider();
     
   return(
     <div className={`home ${backColor}`}>
       {
-        !preference ?
         musicState?.map((musicCard,idx)=>{
-          return <MusicContainer key={idx} currentSong={currentSong} setCurrentSong={setCurrentSong} setSongUrl={setSongUrl} setMusicPlayed={setMusicPlayed} musicData={musicCard} />
+          return <MusicContainer key={idx} musicData={musicCard} />
         })
-        : ReactDOM.createPortal(<MusicPreference />,document.getElementById('preference-portal'))
       }
         </div>
   )

@@ -83,7 +83,7 @@ function MusicPreference() {
   return (
     <div className='musicPreferPage'>
         <div className='musicPreferPageContainer'>
-            <div className='closeBtn' onClick={()=>setPreference(false)}>
+            <div className='closeBtn' onClick={()=>goBack()}>
                 <ClearIcon/>
             </div>
             <p className='musicPageTitle'>Music Preferences</p>
@@ -108,8 +108,8 @@ function MusicPreference() {
                     </div>
                 ))
             }
-            <button className='ClearallBtn' onClick={()=>{setSelectedLanguages([]); setPreference(false)}}>CLEAR ALL</button>
-            <button className='ContinueBtn' onClick={()=>{setPreference(false)}}>CONTINUE</button>
+            <button className='ClearallBtn' onClick={()=>{setSelectedLanguages([]);goBack()}}>CLEAR ALL</button>
+            <button className='ContinueBtn' onClick={()=>{goBack()}}>CONTINUE</button>
         </div>
     </div>  
   )

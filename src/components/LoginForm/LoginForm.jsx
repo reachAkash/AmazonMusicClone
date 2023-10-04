@@ -12,7 +12,7 @@ function LoginForm() {
     const[userEmail,setUserEmail]= useState('');
     const[userPassword,setUserPassword]= useState('');
     const nav= useNavigate();
-    const{setLoggedIn}= ContextProvider();
+    const{setLoggedInUser}= ContextProvider();
 
     function redirectSignUp(){
       nav('/signup');
@@ -45,8 +45,12 @@ function LoginForm() {
       toast.success("Login Successful!", {
         position: toast.POSITION.TOP_CENTER
       });
-      setLoggedIn(true);
-      
+      console.log(data);
+      setLoggedInUser({
+        status:true,
+        name:data.data.name
+      });
+          
       setTimeout(()=>{
         nav('/');
       },1000)
@@ -64,12 +68,12 @@ function LoginForm() {
         <form className='loginFormTop' onSubmit={loginUser}>
             <h2>Login</h2>
             <div className='loginUserNameForm'> 
-            <label for='userName'>Email</label>
+            <label htmlFor='userName'>Email</label>
             <input value={userEmail} onChange={(e)=>setUserEmail(e.target.value)} type='email' className='loginUserNameInput' required />
             </div>
             <div className='loginUserPasswordForm'>
                 <div className='loginPasswordTop'>
-                    <label for='password'>Password</label>
+                    <label htmlFor='password'>Password</label>
                     <Link className='updatePassLink' to='/update'>Update Password</Link>
                 </div>
             <input value={userPassword} onChange={(e)=>setUserPassword(e.target.value)} type='password' className='userPasswordInput' required/>

@@ -1,0 +1,60 @@
+.imgDiv{
+    width: 22vw;
+    height: 22vw;
+}
+
+.imgDiv img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.user{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    top: 10rem;
+    left: 5rem;
+    position: relative;
+}
+.userTop{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    width: 100%;
+    gap: 2rem;
+}
+
+.userShare{
+    display: flex;
+    justify-content: start;
+    gap: 2rem;
+    align-items: center;
+}
+
+.penIcon{
+    padding: 1.4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center ;
+    border-radius: 50%;
+    background-color: rgb(126, 240, 240);
+    width: 2rem;
+    height: 2rem;
+}
+
+.userName{
+    font-size: 5rem;
+    font-weight: bolder;
+}
+
+.userInfo{
+    font-size: 2rem;
+    font-weight: bold;
+    color: gray;
+}
+
+.userBottom{
+    font-size: 1.5rem;
+    padding-top: 2rem;
+}

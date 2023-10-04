@@ -202,34 +202,34 @@
 .userLogoDiv{
     position: absolute;
     top: 4.5rem;
-    right: 0.2rem;
-    background-color: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(0.3rem);
+    right: 1rem;
+
     border-radius: 5px;
-    width: 14rem;
-    height: 6rem;
+    height: fit-content;
+    width: 20rem;
+    padding: 1rem 0rem;
     display: flex;
     flex-direction: column  ;
     justify-content: center;
     align-items: center;
-    gap: 0.5rem;
-    /* padding: 0 1rem; */
+    border: 1px solid gray;
     z-index: 999999;
-    color: black;
+    color: white;
 }
 
-.musicPreferenceDiv{
+.hoverableItems{
     color:white;
     width: 100%;
-    height: 50%;
+    height: 2.5rem;
+    border-bottom: 1px solid gray;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.1rem;
+    font-size: 1rem;
     cursor: pointer;
 }
 
-.musicPreferenceDiv:hover{
+.hoverableItems:hover{
     background-color: rgba(255, 255, 255, 0.3);
 }
 
