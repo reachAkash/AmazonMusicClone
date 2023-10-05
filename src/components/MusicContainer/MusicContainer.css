@@ -80,8 +80,6 @@
     display: flex;
     overflow-y: hidden;
     overflow-x: visible;
-    transition: 10s ease-in-out;
-    scroll-behavior: smooth;
 }
 
 .containerSongs::-webkit-scrollbar{
