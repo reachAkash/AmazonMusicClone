@@ -48,8 +48,9 @@ function SearchContainer({searchData}) {
             const music= data.data;
             console.log(music)
             const found= music?.find((e)=>{
-                return e.title.split(' ').join('').toLowerCase().includes(input.split(' ').join('').toLowerCase())
+                return e.title.split(' ').join('').toLowerCase().includes(queryId? queryId.split(' ').join('').toLowerCase():input.split(' ').join('').toLowerCase());
             })
+            console.log(found)
             setSearchedData(found);
             setLoader(false);
         }
@@ -78,10 +79,10 @@ function SearchContainer({searchData}) {
             setLoader(false);
         }
         else{
+            console.log('im inside')
             getSearchedData();
         }
-
-    },[])
+    },[queryId])
 
     
   return loader ? <Loader/> : (
@@ -99,13 +100,17 @@ function SearchContainer({searchData}) {
                 <MusicCard music={searchedData} type='artist' />
         } */}
 
+    {console.log(obj)}
            {
             typeId==='mood' || typeId=='seeall' || typeId=='mood' && typeId!='seeall' && typeId!='artist' ?
-                searchedData?.data?.map((music,idx)=>{
-                    return <MusicCard key={idx} music={music} />
+                searchedData?.data?.map((music,idx)=>{  
+                    return <MusicCard key={idx} music={music} cardType={typeId} />
                 }) : 
-                <MusicCard music={searchedData} cardType='album' />
+                <MusicCard music={searchedData} cardType={typeId==='query'?'album':typeId} />
         }
+        {/* {typeId!=='query' || typeId!=='artist' ?searchedData?.data?.map((music,idx)=>{  
+                    return <MusicCard key={idx} music={music} cardType={typeId} />
+                }): <MusicCard music={searchedData} cardType={typeId==='query'?'album':typeId} />} */}
         </div>
         </div>
     </div>

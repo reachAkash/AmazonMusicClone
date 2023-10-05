@@ -49,7 +49,7 @@ return input ? <Suggestions/> : (
     
 <div className={`searchContainer ${backColor}Container`}>
     <div className='searchPage'>
-       {searchedHistory && <div className="searchedHistory">
+       {cardType!=='podcasts' && searchedHistory && <div className="searchedHistory">
             <h3 className="searchedHistoryHeader">
                 Search History
             </h3>

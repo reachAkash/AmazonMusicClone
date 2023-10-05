@@ -55,6 +55,7 @@ export default function MusicCard({music,type,cardType}) {
       return eArtist.name;
     });
 
+
     return (
       <div className={`musicCard ${backColor}Card`}>
         <div className="imgContainer" onMouseEnter={()=>setHovered(true)} onMouseLeave={()=>setHovered(false)}>
