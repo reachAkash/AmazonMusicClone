@@ -18,11 +18,12 @@ import Subscription from '../Subscription/Subscription';
 import MusicPreference from '../MusicPreference/MusicPreference.jsx';
 import User from '../User/User';
 import Explicit from '../Explicit/Explicit';
-
+import MusicProvider from '../../utils/MusicProvider';
 function App() {
 
   return (
     <Provider>
+      <MusicProvider>
        <Navbar/> 
        <Routes>
           <Route path='/' element={<Home/>}/>
@@ -39,6 +40,7 @@ function App() {
           <Route path='/user' element={<User/>} />  
           <Route path='/explicit' element={<Explicit/>} />  
        </Routes>
+      </MusicProvider>
     </Provider> 
   )
 }

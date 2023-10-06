@@ -8,20 +8,23 @@ import pauseImg from '../../assets/Song Pause.png';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { useNavigate } from 'react-router-dom';
 import { ContextProvider } from '../../utils/Provider';
+import { useMusic } from '../../utils/MusicProvider';
 
 export default function MusicCard({music,type,cardType}) {
 
     const {playSong,backColor,loggedInUser,setTryAmazonPopUp} = ContextProvider();
-
+    const {musicStatus,musicDispatch} = useMusic();
     if(!music) return <h2 className='home text-red-400'>No Song Found!</h2>
 
     
     const{thumbnail,image,title,name,audio_url,_id,description}= music?music:{}; 
-    const[clicked,setClicked]= useState(false);
     const [hovered,setHovered]= useState(false);
     const nav= useNavigate();
-    let audioUrl;
+    const [clicked,setClicked]= useState(false);
+
     const songName = name?.split(' ')?.slice(0,4).join(' ') || title?.split(' ')?.slice(0,4).join(' ');
+
+
 
     async function addFavFunction(){
       console.log(_id)
@@ -32,7 +35,7 @@ export default function MusicCard({music,type,cardType}) {
           'projectId': 'b8cjykmftj1r'
         },
         body:JSON.stringify({
-          "songId": _id,
+          "songId": _id
         })
       });
       const data= await res.json();
@@ -41,9 +44,13 @@ export default function MusicCard({music,type,cardType}) {
 
     function handlePlay(){
       if(cardType!=='song') return;
-      setClicked(!clicked);
-      playSong.status='active';
-      playSong.id= _id;
+      musicDispatch({type:'setMusicId',payload:_id})
+      setClicked(true);
+    }
+
+    function handlePause(){
+      musicDispatch({type:'pause'})
+      setClicked(false);
     }
 
     function handleRedirect(){
@@ -67,9 +74,9 @@ export default function MusicCard({music,type,cardType}) {
               <ChevronRightIcon style={{fontSize:'2rem'}} />
             </div> :
             <div className='songsIconContainer'>
-            {cardType!=='album' ? <AddRoundedIcon onClick={()=>loggedIn && addFavFunction() || setTryAmazonPopUp(true)} className='cursor-pointer' style={{fontSize:'2rem',color:'white'}}/>: <div style={{paddingRight:'1.4rem'}}></div> }
+            {cardType!=='album' ? <AddRoundedIcon onClick={()=>loggedInUser.status && addFavFunction() || setTryAmazonPopUp(true)} className='cursor-pointer' style={{fontSize:'2rem',color:'white'}}/>: <div style={{paddingRight:'1.4rem'}}></div> }
             <div className="playPauseIcon">
-            {clicked ? <PauseIcon onClick={()=>handlePlay()} style={{fontSize:'3rem',color:'white'}} /> : <PlayArrowIcon onClick={()=>{ !loggedInUser.status ? setTryAmazonPopUp(true) : handlePlay(); loggedInUser.status && cardType==='album' && handleRedirect() }} style={{fontSize:'3rem',color:'white'}}/>}
+            {musicStatus==='play' && clicked? <PauseIcon onClick={()=>handlePause()} style={{fontSize:'3rem',color:'white'}} /> : <PlayArrowIcon onClick={()=>{ !loggedInUser.status ? setTryAmazonPopUp(true) : handlePlay(); loggedInUser.status && cardType==='album' && handleRedirect() }} style={{fontSize:'3rem',color:'white'}}/>}
             </div>
             <MoreHorizIcon className='cursor-pointer' style={{fontSize:'2rem',color:'white'}}/>
           </div>

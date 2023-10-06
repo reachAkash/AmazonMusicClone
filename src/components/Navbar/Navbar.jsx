@@ -128,7 +128,7 @@
                        {backColor==='dark' && <LightModeIcon style={{fontSize:'2rem'}} className='lightModeIcon' onClick={()=>setBackColor('light')}/> || <DarkModeIcon style={{fontSize:'2rem'}} className='darkModeIcon' onClick={()=>setBackColor('dark')}/>}
                         <AccountCircleIcon onClick={()=>{setUserLogoClicked((prev)=>!prev)}} style={{fontSize:'2rem'}} className='userLogoIcon'/>
                     </div>
-                        {userLogoClicked ? loggedInUser.status ? <LoggedUserInfo  /> : <UserLoginContainer />:null}
+                        { userLogoClicked ? loggedInUser.status ? <LoggedUserInfo  /> : <UserLoginContainer /> : null}
                 </div>
            </>
                 }
@@ -143,7 +143,7 @@
         const nav= useNavigate();
 
 
-       return <div className='userLogoDiv' ref={modalRef} style={{ backgroundColor: 'rgba(0,0,0,0.8)',
+       return <div className='userLogoDiv' style={{ backgroundColor: 'rgba(0,0,0,0.8)',
        backdropFilter: 'blur(10rem)'}}>
             <Link className="hoverableItems" target='_blank' to='https://www.amazon.in/music/settings?ref=dp_amp_settings_yasettings_click&language=en_IN'>Your Amazon Music Settings</Link>
             <Link className="hoverableItems" to='/user' >My Profile</Link>

@@ -22,14 +22,8 @@
       const[tryAmazonPopUp,setTryAmazonPopUp]= useState(false);
       const[loggedInUser,setLoggedInUser]= useState({
         name:'Akash',
-        status:false ,
+        status:true ,
       });
-      const[playSong,setPlaySong]= useState({
-        status:'inactive',
-        action:'pause',
-        id:'',
-      })
-      const[played,setPlayed]= useState(false);
       const[width,setWidth]= useState(1600);
       const[backColor,setBackColor] = useState('dark');
       const paginationLastLink1= 'page=15&limit=10';
@@ -87,11 +81,6 @@
         { title: "Podcasts", data: [], type: "podcasts", cardType:'podcasts' },
       ]
 
-      const musicPlayerState={
-        id:'',
-        played,
-        setPlayed,
-      }
 
       function musicReducer(state, action) {
         switch(action.type){
@@ -172,8 +161,6 @@
           width,
           backColor,
           setBackColor,
-          playSong,
-          setPlaySong
       }
       return !offline ? loader ? <Loader/> : (
       <Context.Provider value={obj}>

@@ -5,9 +5,11 @@ import {ContextProvider} from '../../utils/Provider'
 import MusicContainer from '../MusicContainer/MusicContainer'
 import MusicPlayer from '../MusicPlayer/MusicPlayer'
 import Navbar from '../Navbar/Navbar'
+import { useMusic } from '../../utils/MusicProvider'
 function Home({setSongUrl,setMusicPlayed,currentSong,setCurrentSong}) {
   
-    const {playSong,musicState,backColor,loggedIn}= ContextProvider();
+    const {musicState,backColor,loggedIn}= ContextProvider();
+    const {musicPlayer} = useMusic();
     
   return(
     <div className={`home ${backColor}`}>
@@ -16,7 +18,7 @@ function Home({setSongUrl,setMusicPlayed,currentSong,setCurrentSong}) {
           return <MusicContainer key={idx} musicData={musicCard} />
         })
       }
-      {playSong.status==='active' && <MusicPlayer/>}
+      {musicPlayer==='active' && <MusicPlayer/>}
       </div>
   )
 }
