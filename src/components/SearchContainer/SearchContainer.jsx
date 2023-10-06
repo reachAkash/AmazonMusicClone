@@ -10,10 +10,13 @@ import { data } from 'autoprefixer';
 function SearchContainer({searchData}) {
 
 
-    const {musicState,input} = ContextProvider();
+    const {musicState,input,setInput} = ContextProvider();
     const {typeId,queryId}= useParams();
     const obj= useParams();
-    const[searchedData,setSearchedData] = useState([]);
+    const[searchedData,setSearchedData] = useState({
+        data:[],
+        cardType:'',
+    });
     const[loader,setLoader]= useState(true);
     const[fetchedData,setFetchedData]= useState([]);
 
@@ -28,7 +31,7 @@ function SearchContainer({searchData}) {
                     }
                 })
                 .then((res)=>res.json())
-                .then((data)=>{setSearchedData(data)})
+                .then((data)=>{{setSearchedData({data:data.data,cardType:'song'})}})
                 setLoader(false);
             }
             catch(err){
@@ -36,7 +39,6 @@ function SearchContainer({searchData}) {
             }
 
         }
-
         
         async function getSearchedData(){
             const res= await fetch(Album_URL,{
@@ -50,9 +52,9 @@ function SearchContainer({searchData}) {
             const found= music?.find((e)=>{
                 return e.title.split(' ').join('').toLowerCase().includes(queryId? queryId.split(' ').join('').toLowerCase():input.split(' ').join('').toLowerCase());
             })
-            console.log(found)
-            setSearchedData(found);
+            setSearchedData({data:found,cardType:'album'});
             setLoader(false);
+            console.log(found)
         }
            
         
@@ -64,26 +66,22 @@ function SearchContainer({searchData}) {
             const data= musicState.find((e)=>{
                 return e.title===queryId;
             })
-            setSearchedData(data);
-            setLoader(false);
+            setSearchedData({data:data.data,cardType:data.cardType});
+            setLoader(false)
         }
         else if(typeId==='artist'){
-            console.log(typeId);
             const artists= musicState.find((e)=>{
                 return e.type=='artist'
             })?.data?.find((eData)=>{
                 return eData.name==queryId;
             })
-            setSearchedData(artists);
-            console.log(artists);
+            setSearchedData({data:artists,cardType:typeId});
             setLoader(false);
         }
         else{
-            console.log('im inside')
             getSearchedData();
         }
-    },[queryId])
-
+    },[queryId,input])
     
   return loader ? <Loader/> : (
     <div className='searchPage'>
@@ -92,28 +90,15 @@ function SearchContainer({searchData}) {
             { typeId==='seeall' ? <span>{queryId}</span> : <div>Found {searchedData?.data?.length} results for <span>{queryId}</span></div> }
         </div>
         <div className="searchedBody">
-           {/* {
-            typeId==='mood' || typeId=='seeall' || typeId=='' ?
-                searchedData?.data?.map((music,idx)=>{
-                    return <MusicCard key={idx} music={music} />
-                }) :
-                <MusicCard music={searchedData} type='artist' />
-        } */}
-
-    {console.log(obj)}
-           {
-            typeId==='mood' || typeId=='seeall' || typeId=='mood' && typeId!='seeall' && typeId!='artist' ?
-                searchedData?.data?.map((music,idx)=>{  
-                    return <MusicCard key={idx} music={music} cardType={typeId} />
-                }) : 
-                <MusicCard music={searchedData} cardType={typeId==='query'?'album':typeId} />
-        }
-        {/* {typeId!=='query' || typeId!=='artist' ?searchedData?.data?.map((music,idx)=>{  
-                    return <MusicCard key={idx} music={music} cardType={typeId} />
-                }): <MusicCard music={searchedData} cardType={typeId==='query'?'album':typeId} />} */}
-        </div>
+            {
+        Array.isArray(searchedData.data)? searchedData?.data?.map((music,idx)=>{
+            return <MusicCard key={idx} music={music} cardType={searchedData?.cardType}/>
+        }) :<MusicCard key={searchedData?.data?._id} music={searchedData?.data} cardType={typeId==='query'?'album':searchedData?.cardType}/>
+    }
+       </div>
         </div>
     </div>
+    
   )
 }
 

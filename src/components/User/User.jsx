@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './User.css'
 import { ContextProvider } from '../../utils/Provider'
 import CreateIcon from '@mui/icons-material/Create';

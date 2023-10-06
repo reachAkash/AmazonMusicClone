@@ -22,7 +22,7 @@
       const[tryAmazonPopUp,setTryAmazonPopUp]= useState(false);
       const[loggedInUser,setLoggedInUser]= useState({
         name:'Akash',
-        status:true ,
+        status:false ,
       });
       const[playSong,setPlaySong]= useState({
         status:'inactive',

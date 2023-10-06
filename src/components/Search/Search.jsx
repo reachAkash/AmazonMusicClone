@@ -25,7 +25,7 @@ const mood = [
 ];
 
 const [artist,setArtist]= useState([]);
-const {musicState,backColor,input}= ContextProvider();
+const {musicState,backColor,input,setInput}= ContextProvider();
 const nav= useNavigate();
     useEffect(()=>{
         setArtist(musicState.find((e)=>e.type==='artist'));
@@ -45,7 +45,8 @@ const nav= useNavigate();
         localStorage.removeItem('searchedMusic');
         setSearchedHistory(null);
     }
-return input ? <Suggestions/> : (
+
+return input && cardType!=='podcasts' ?  <Suggestions /> : (
     
 <div className={`searchContainer ${backColor}Container`}>
     <div className='searchPage'>
@@ -59,7 +60,7 @@ return input ? <Suggestions/> : (
                 </div>
             <div className="searchedHistoryList">
                 {searchedHistory?.map((eItem,idx)=>{
-                    return <Button key={idx} style={{backgroundColor:'rgba(255,255,255,0.2)',padding:'0.3rem 2rem', borderRadius:'20px'}}>{eItem}</Button>
+                    return <Button key={idx} onClick={()=>{setInput(eItem);nav(`/search/query/${eItem}`)}} style={{backgroundColor:'rgba(255,255,255,0.2)',padding:'0.3rem 2rem', borderRadius:'20px'}}>{eItem}</Button>
                 })}
                 </div>
             </div>
@@ -112,10 +113,8 @@ function Suggestions(){
     },[])
 
     useEffect(()=>{
-
-        const ans= suggestions?.filter(eItem=>eItem.title.split(' ').join('').toLowerCase().includes(input.split(' ').join('').toLowerCase()));
-        setCurrentSuggestions(ans);
-
+            const ans= suggestions?.filter(eItem=>eItem.title.split(' ').join('').toLowerCase().includes(input.split(' ').join('').toLowerCase()));
+            setCurrentSuggestions(ans);
     },[input])
     
     

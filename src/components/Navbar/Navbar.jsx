@@ -1,4 +1,4 @@
-    import React,{useState,useEffect} from 'react'
+    import React,{useState,useEffect, useRef} from 'react'
     import ReactDOM from 'react-dom';
     import './Navbar.css';
     import { NavLink,Link, json } from 'react-router-dom';
@@ -27,8 +27,11 @@
         const[scrolled,setScrolled]= useState(false);
         const[userLogoClicked,setUserLogoClicked] = useState(false);
         const nav= useNavigate();
-        const {backColor,setInputFocused,inputFocused,input,setInput,setBackColor,width,loggedInUser,tryAmazonPopUp,setTryAmazonPopUp} = ContextProvider();
+        const {backColor,setInputFocused,inputFocused,
+            input,setInput,setBackColor,width,
+            loggedInUser,tryAmazonPopUp,setTryAmazonPopUp} = ContextProvider();
 
+        
         // for navbar glassy css
         useEffect(()=>{
 
@@ -123,9 +126,9 @@
                     </form>
                     <div className="userLogo">
                        {backColor==='dark' && <LightModeIcon style={{fontSize:'2rem'}} className='lightModeIcon' onClick={()=>setBackColor('light')}/> || <DarkModeIcon style={{fontSize:'2rem'}} className='darkModeIcon' onClick={()=>setBackColor('dark')}/>}
-                        <AccountCircleIcon onClick={()=>setUserLogoClicked(!userLogoClicked)} style={{fontSize:'2rem'}} className='userLogoIcon'/>
+                        <AccountCircleIcon onClick={()=>{setUserLogoClicked((prev)=>!prev)}} style={{fontSize:'2rem'}} className='userLogoIcon'/>
                     </div>
-                        {/* {userLogoClicked && loggedInUser.status ? <LoggedUserInfo/> : <UserLoginContainer/>} */}
+                        {userLogoClicked ? loggedInUser.status ? <LoggedUserInfo  /> : <UserLoginContainer />:null}
                 </div>
            </>
                 }
@@ -136,10 +139,11 @@
     }
 
     function LoggedUserInfo(){
-
+        const {setLoggedInUser} = ContextProvider();
         const nav= useNavigate();
 
-       return <div className='userLogoDiv' style={{ backgroundColor: 'rgba(0,0,0,0.8)',
+
+       return <div className='userLogoDiv' ref={modalRef} style={{ backgroundColor: 'rgba(0,0,0,0.8)',
        backdropFilter: 'blur(10rem)'}}>
             <Link className="hoverableItems" target='_blank' to='https://www.amazon.in/music/settings?ref=dp_amp_settings_yasettings_click&language=en_IN'>Your Amazon Music Settings</Link>
             <Link className="hoverableItems" to='/user' >My Profile</Link>
@@ -148,7 +152,7 @@
             <Link className="hoverableItems" target='_blank' to='https://www.amazon.co.uk/b/?node=22830131031'>Import Your Playlist</Link>
             <Link className="hoverableItems" target='_blank' to='https://www.amazon.in/gp/help/customer/display.html?pop-up=1&nodeId=201380010&language=en_IN'>Terms & Conditions</Link>
             <Link className="hoverableItems" to='/gethelp'>Get Help</Link>
-            <Link className="hoverableItems" style={{border:'none'}}>Sign Out</Link>
+            <div className="hoverableItems" onClick={()=>setLoggedInUser({name:'',status:false})} style={{border:'none'}}>Sign Out</div>
         </div>
     }
 
@@ -172,7 +176,7 @@
         const nav= useNavigate();
 
         function handlePopUp(){
-            if(loggedIn){
+            if(loggedInUser.status){
                 nav('/podcast');
             }
             else{
@@ -190,7 +194,6 @@
     }
 
     function UserLoginContainer(){
-        const {loggedIn,setLoggedIn,setPreference} = ContextProvider();
         const nav= useNavigate();
 
         const signUpBtnstyle= {
@@ -208,7 +211,7 @@
         return (
             <div className='userLogoDiv' style={{ backgroundColor: 'rgba(0,0,0,0.8)',
             backdropFilter: 'blur(10rem)'}}>
-                <Button onClick={()=> loggedIn ? setLoggedIn(false) : nav('/signup')} style={signUpBtnstyle} className='signInButton'>{loggedIn ? 'Logout': 'Sign Up' }</Button>
+                <Button onClick={()=> nav('/signup')} style={signUpBtnstyle} className='signInButton'>Sign Up</Button>
                 <h3 className='hoverableItems' style={{border:'none'}} onClick={()=>{nav('/preference')}}>Music Preferences</h3>
             </div>
         )    

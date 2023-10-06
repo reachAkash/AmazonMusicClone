@@ -13,7 +13,7 @@ export default function MusicCard({music,type,cardType}) {
 
     const {playSong,backColor,loggedInUser,setTryAmazonPopUp} = ContextProvider();
 
-    if(!music) return <h2 className='home'>No Song Found!</h2>
+    if(!music) return <h2 className='home text-red-400'>No Song Found!</h2>
 
     
     const{thumbnail,image,title,name,audio_url,_id,description}= music?music:{}; 
