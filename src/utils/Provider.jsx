@@ -22,7 +22,7 @@
       const[tryAmazonPopUp,setTryAmazonPopUp]= useState(false);
       const[loggedInUser,setLoggedInUser]= useState({
         name:'Akash',
-        status:true ,
+        status: false,
       });
       const[width,setWidth]= useState(1600);
       const[backColor,setBackColor] = useState('dark');
