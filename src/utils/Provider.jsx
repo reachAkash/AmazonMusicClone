@@ -19,6 +19,7 @@
       const[offline,setIsOffline]= useState(false);
       const[loader,setLoader]= useState(false);
       const[input,setInput]= useState('');
+      const[inputFocused,setInputFocused] = useState(false);
       const[tryAmazonPopUp,setTryAmazonPopUp]= useState(false);
       const[loggedInUser,setLoggedInUser]= useState({
         name:'Akash',
@@ -155,6 +156,8 @@
           setLoggedInUser,
           input,
           setInput,
+          inputFocused,
+          setInputFocused,
           tryAmazonPopUp,
           setTryAmazonPopUp,
           musicState,
