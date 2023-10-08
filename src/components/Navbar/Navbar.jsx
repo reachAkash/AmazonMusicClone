@@ -73,6 +73,9 @@
             nav(`/search/query/${input}`);
         }
 
+        useEffect(()=>{
+            console.log(userLogoClicked)
+        },[userLogoClicked])
     return (
         <>
         <div className={`navbar ${backColor} ${scrolled ? 'scrolled':''}`}>
@@ -128,7 +131,7 @@
                        {backColor==='dark' && <LightModeIcon style={{fontSize:'2rem'}} className='lightModeIcon' onClick={()=>setBackColor('light')}/> || <DarkModeIcon style={{fontSize:'2rem'}} className='darkModeIcon' onClick={()=>setBackColor('dark')}/>}
                         <AccountCircleIcon onClick={()=>{setUserLogoClicked((prev)=>!prev)}} style={{fontSize:'2rem'}} className='userLogoIcon'/>
                     </div>
-                        { userLogoClicked ? loggedInUser.status ? <LoggedUserInfo  /> : <UserLoginContainer /> : null}
+                        { userLogoClicked ? loggedInUser.status ? <LoggedUserInfo  /> : <UserLoginContainer setUserLogoClicked={setUserLogoClicked} userLogoClicked/> : null}
                 </div>
            </>
                 }
@@ -193,8 +196,9 @@
         )    
     }
 
-    function UserLoginContainer(){
+    function UserLoginContainer({userLogoClicked,setUserLogoClicked}){
         const nav= useNavigate();
+        const userLogoRef= useRef();
 
         const signUpBtnstyle= {
             width:'85%',
@@ -206,10 +210,39 @@
             borderRadius:'30px',
             marginBottom:'0.3rem'
         }
- 
+        
+        // useEffect(()=>{
+        //     function checkIsOpen(e){
+        //         if(userLogoClicked && userLogoRef.current && userLogoRef.current!==e.target){
+        //             console.log('hi im here')
+        //             setUserLogoClicked(false);
+        //         }else{
+        //             setUserLogoClicked(true);
+        //         }
+        //         e.stopPropagation();
+        //     }
+
+        //     window.addEventListener('click',checkIsOpen);
+        //     return ()=> window.removeEventListener('click',checkIsOpen);
+        // },[])
+
+        useEffect(() => {
+            function checkIsOpen(e) {
+                if (userLogoClicked && userLogoRef.current && userLogoRef.current !== e.target) {
+                    setUserLogoClicked(false);
+                } else {
+                    setUserLogoClicked((prev) => !prev);
+                }
+                e.stopPropagation();
+            }
+        
+            window.addEventListener('click', checkIsOpen);
+            return () => window.removeEventListener('click', checkIsOpen);
+        }, [userLogoClicked]);
+        
 
         return (
-            <div className='userLogoDiv' style={{ backgroundColor: 'rgba(0,0,0,0.8)',
+            <div className='userLogoDiv' ref={userLogoRef} style={{ backgroundColor: 'rgba(0,0,0,0.8)',
             backdropFilter: 'blur(10rem)'}}>
                 <Button onClick={()=> nav('/signup')} style={signUpBtnstyle} className='signInButton'>Sign Up</Button>
                 <h3 className='hoverableItems' style={{border:'none'}} onClick={()=>{nav('/preference')}}>Music Preferences</h3>
