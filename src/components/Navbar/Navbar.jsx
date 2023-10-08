@@ -1,7 +1,7 @@
     import React,{useState,useEffect, useRef} from 'react'
     import ReactDOM from 'react-dom';
     import './Navbar.css';
-    import { NavLink,Link, json } from 'react-router-dom';
+    import { NavLink,Link, json, useLoaderData } from 'react-router-dom';
     import AmazonLogo from '../../assets/Amazon-Music-Logo600.png'
     import AmazonLogoSmall from '../../assets/Amazon-Music-Logo640.png'
     import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
@@ -30,7 +30,7 @@
         const {backColor,setInputFocused,inputFocused,
             input,setInput,setBackColor,width,
             loggedInUser,tryAmazonPopUp,setTryAmazonPopUp} = ContextProvider();
-
+        const userLogoRef= useRef();
         
         // for navbar glassy css
         useEffect(()=>{
@@ -45,6 +45,23 @@
         },[width])
 
 
+        useEffect(()=>{
+            function checkUserLogo(e){
+                if(e.target==userLogoRef.current) setUserLogoClicked(!userLogoClicked);
+
+                else if(userLogoRef.current && userLogoRef.current!=e.target){
+                    setUserLogoClicked(false);
+                }else{
+                    setUserLogoClicked(true);
+                }
+            }
+
+            window.addEventListener('click',checkUserLogo);
+
+            return function(){
+                window.removeEventListener('click',checkUserLogo);
+            }
+            },[userLogoClicked])
 
         function hovered(){
             setLibraryItemsHovered(true);
@@ -73,9 +90,6 @@
             nav(`/search/query/${input}`);
         }
 
-        useEffect(()=>{
-            console.log(userLogoClicked)
-        },[userLogoClicked])
     return (
         <>
         <div className={`navbar ${backColor} ${scrolled ? 'scrolled':''}`}>
@@ -120,6 +134,8 @@
             
                 </div>
 
+                
+
                 <div className="navbarRight">
                   <form action="" className='inputForm' onSubmit={handleSearch}>
                        {width >=635 && <input className='inputSearch' value={input} onChange={handleInput} onClick={redirect} placeholder='Search...'/>}
@@ -129,9 +145,9 @@
                     </form>
                     <div className="userLogo">
                        {backColor==='dark' && <LightModeIcon style={{fontSize:'2rem'}} className='lightModeIcon' onClick={()=>setBackColor('light')}/> || <DarkModeIcon style={{fontSize:'2rem'}} className='darkModeIcon' onClick={()=>setBackColor('dark')}/>}
-                        <AccountCircleIcon onClick={()=>{setUserLogoClicked((prev)=>!prev)}} style={{fontSize:'2rem'}} className='userLogoIcon'/>
-                    </div>
+                       <i className="fa-solid fa-user userLogoIcon" ref={userLogoRef} ></i>
                         { userLogoClicked ? loggedInUser.status ? <LoggedUserInfo  /> : <UserLoginContainer setUserLogoClicked={setUserLogoClicked} userLogoClicked/> : null}
+                    </div>
                 </div>
            </>
                 }
@@ -210,37 +226,7 @@
             borderRadius:'30px',
             marginBottom:'0.3rem'
         }
-        
-        // useEffect(()=>{
-        //     function checkIsOpen(e){
-        //         if(userLogoClicked && userLogoRef.current && userLogoRef.current!==e.target){
-        //             console.log('hi im here')
-        //             setUserLogoClicked(false);
-        //         }else{
-        //             setUserLogoClicked(true);
-        //         }
-        //         e.stopPropagation();
-        //     }
-
-        //     window.addEventListener('click',checkIsOpen);
-        //     return ()=> window.removeEventListener('click',checkIsOpen);
-        // },[])
-
-        useEffect(() => {
-            function checkIsOpen(e) {
-                if (userLogoClicked && userLogoRef.current && userLogoRef.current !== e.target) {
-                    setUserLogoClicked(false);
-                } else {
-                    setUserLogoClicked((prev) => !prev);
-                }
-                e.stopPropagation();
-            }
-        
-            window.addEventListener('click', checkIsOpen);
-            return () => window.removeEventListener('click', checkIsOpen);
-        }, [userLogoClicked]);
-        
-
+    
         return (
             <div className='userLogoDiv' ref={userLogoRef} style={{ backgroundColor: 'rgba(0,0,0,0.8)',
             backdropFilter: 'blur(10rem)'}}>
