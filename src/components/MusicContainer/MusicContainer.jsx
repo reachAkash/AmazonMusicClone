@@ -21,6 +21,7 @@ export default function MusicContainer({musicData}) {
         nav(`/search/seeall/${title}`);
     }
 
+    const itemsToRender= data?.slice(0,10);
   
   return (
     <div className={`container ${backColor}`}>
@@ -53,8 +54,7 @@ export default function MusicContainer({musicData}) {
                 }
             }}>
             
-                {data?.map((music,idx)=>{   
-                    if(idx>=10) return null;
+                {itemsToRender?.map((music,idx)=>{   
                     return <MusicCard cardType={cardType} key={idx} music={music} type={type}/>
                 })}
             </div>
