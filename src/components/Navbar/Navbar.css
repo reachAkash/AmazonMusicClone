@@ -271,7 +271,7 @@
         gap: 2rem;
     }
     .logoImg{
-        width: 55px;
+        width: 167px;
     }
     .navbarRight{
         width: 60%;
@@ -305,8 +305,9 @@
         width: 60%;
     }
     .navbarRight{
-        width: 40%;
-        /* gap: 2rem; */
+    width: 40%;
+    padding: 1.5rem;
+    gap: 1rem;
     }
     .inputForm{
         width: 33%;

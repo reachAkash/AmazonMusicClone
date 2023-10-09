@@ -1,3 +1,4 @@
+import { useState , lazy, Suspense} from 'react';
 import './App.css'
 import {Routes,Route} from 'react-router-dom';
 import Provider from '../../utils/Provider';
@@ -11,14 +12,13 @@ import LoginForm from '../LoginForm/LoginForm.jsx';
 import SignUpForm from '../SignUpForm/SignUpForm.jsx';
 import Loader from '../Loader/Loader';
 import Artist from '../Artist/Artist';
-import SearchContainer from '../SearchContainer/SearchContainer';
-import { useState } from 'react';
 import Podcast from '../Podcast/Podcast';
 import Subscription from '../Subscription/Subscription';
 import MusicPreference from '../MusicPreference/MusicPreference.jsx';
 import User from '../User/User';
 import Explicit from '../Explicit/Explicit';
 import MusicProvider from '../../utils/MusicProvider';
+const SearchContainer = lazy(()=>import('../SearchContainer/SearchContainer'));
 function App() {
 
   return (
@@ -33,12 +33,16 @@ function App() {
           <Route path='/login' element={<LoginForm/>} />
           <Route path='/update' element={<UpdatePasswordForm/>} />
           <Route path='/:cardType/:id' element={<Artist/>}/>
-          <Route path='/search/:typeId/:queryId' element={<SearchContainer/>} />  
+          <Route path='/search/:typeId/:queryId' element={
+            <Suspense fallback={<Loader/>}>
+              <SearchContainer/>
+            </Suspense>
+          } />  
           <Route path='/search/:queryId' element={<SearchContainer/>} />  
           <Route path='/subscription' element={<Subscription/>} />  
           <Route path='/preference' element={<MusicPreference/>} />  
           <Route path='/user' element={<User/>} />  
-          <Route path='/explicit' element={<Explicit/>} />  
+          <Route path='/explicit  ' element={<Explicit/>} />  
        </Routes>
       </MusicProvider>
     </Provider> 

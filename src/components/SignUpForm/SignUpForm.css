@@ -52,6 +52,7 @@ height: 2.3rem;
 border-radius: 4px;
 }
 
+
 .signUpUserNameInput:focus,.signUpUserEmailInput:focus,.updatePasswordSubmit:focus{
 outline: 2px solid lightseagreen;
 border: none;

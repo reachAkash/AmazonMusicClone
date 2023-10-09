@@ -1,10 +1,12 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import Button from '../Button/Button'
 import './SignUpForm.css'
 import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import { ContextProvider } from '../../utils/Provider';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 function SignUpForm() {
 
@@ -12,7 +14,10 @@ function SignUpForm() {
   const[userEmail,setUserEmail]= useState('');
   const[userPassword,setUserPassword]= useState('');
   const nav= useNavigate();
+  const inputRef= useRef();
   const{setLoggedInUser}= ContextProvider();
+  const [passVisible,setPassVisible]= useState(false);
+
 
  async function signUpUser(e){
 
@@ -41,13 +46,15 @@ function SignUpForm() {
 
     if(data.status==='fail'){
       toast.error(data.message, {
-        position: toast.POSITION.TOP_CENTER
+        position: toast.POSITION.TOP_CENTER,
+        autoClose:1500
       });
       return;
     }
     document.cookie= data.token;
     toast.success("Sign Up Successful!", {
-      position: toast.POSITION.TOP_CENTER
+      position: toast.POSITION.TOP_CENTER,
+      autoClose:1500
     });
     console.log(userName,userEmail,userPassword)
     setLoggedInUser({
@@ -70,6 +77,17 @@ function SignUpForm() {
     nav('/login');
   }
 
+  function changeInputType(){
+    if(passVisible){
+      inputRef.current.type='password';
+      setPassVisible(false);
+    } 
+    else{
+      inputRef.current.type='text';
+      setPassVisible(true);
+    } 
+  }
+
 
   return (
     <div className='signUpFormContainer'>
@@ -90,9 +108,12 @@ function SignUpForm() {
             </div>
             <div className='userPasswordForm'>
             <label htmlFor='password'> Password</label>
-            <input value={userPassword} onChange={(e)=>{
-                setUserPassword(e.target.value)
-                }} type='password' className='signUpUserPasswordInput' required/>
+            <div className="loginInputDiv">
+                <input ref={inputRef} value={userPassword} onChange={(e)=>{
+                  setUserPassword(e.target.value)
+                  }} type='password' className='userPasswordInput' required/>
+                {passVisible && <VisibilityOffIcon onClick={changeInputType} style={{cursor:'pointer',color:'gray', position:'absolute',right:0,paddingRight:'0.5rem',fontSize:'2rem'}}/> || <VisibilityIcon onClick={changeInputType} style={{cursor:'pointer',color:'gray',position:'absolute',right:0,paddingRight:'0.5rem',fontSize:'2rem'}} />}
+            </div>
             </div> 
             <Button className='updatePasswordSubmit' style={{ fontWeight:'bold', backgroundColor:'yellow',width:'100%', borderRadius:'5px',padding:'0.5rem'}}>Sign Up</Button>
             </form>

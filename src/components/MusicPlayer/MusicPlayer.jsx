@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState } from 'react'
 import './MusicPlayer.css';
 import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
 import Replay10Icon from '@mui/icons-material/Replay10';
@@ -23,9 +23,6 @@ function MusicPlayer() {
     const[play,{pause,duration}]= useSound(audioUrl,{
         volume:1,
     });
-    const isFirstTimeRender= useRef(true);
-
-    const [isCapable,setIsCapable]= useState(false);
 
     useEffect(()=>{
         if(musicId){
@@ -33,7 +30,6 @@ function MusicPlayer() {
             musicDispatch({type:'pause'});
             stop();
             setAudioUrl(defaultAudio);
-            setIsCapable(false);
         }
         fetch(`https://academics.newtonschool.co/api/v1/music/song/${musicId}`,{
             headers:{
@@ -44,6 +40,7 @@ function MusicPlayer() {
         .then((data)=>{setMusic(data.data);
             setAudioUrl(data.data.audio_url);
             musicDispatch({type:'play'})
+            play();
         })
         .catch((err)=>console.log(err));
 
@@ -64,12 +61,12 @@ function MusicPlayer() {
     //     return ()=> stop();
     // },[duration])
 
-    useEffect(()=>{
-        if(isCapable){
-            if(musicStatus==='play') play();
-            else pause();
-        }
-    },[musicStatus])
+    // useEffect(()=>{
+    //     if(isCapable){
+    //         if(musicStatus==='play') play();
+    //         else pause();
+    //     }
+    // },[musicStatus])
 
     function handlePlay(){
         musicDispatch({type:'play'})

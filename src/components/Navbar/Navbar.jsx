@@ -16,6 +16,8 @@
     import Button from '../Button/Button.jsx'
     import PopUp from '../PopUp/PopUp';
     import {useNavigate} from 'react-router-dom';
+    import { toast, ToastContainer } from 'react-toastify';
+    import "react-toastify/dist/ReactToastify.css";
     import { ContextProvider } from '../../utils/Provider';
     import MusicPreference from '../MusicPreference/MusicPreference';
 
@@ -101,7 +103,6 @@
                     <img src={width>='840' ? AmazonLogo : AmazonLogoSmall}
                     alt="amazonLogo" className='logoImg'/>
                 </div>
-
                 <div className="navLinks">
                     <NavLink to={'/'} className="navItems">
                         <div className="navLinkHome">
@@ -153,6 +154,7 @@
                 }
         </div>
         {tryAmazonPopUp && <PopUp/>}
+                <ToastContainer />
         </>
     )
     }
@@ -161,6 +163,16 @@
         const {setLoggedInUser} = ContextProvider();
         const nav= useNavigate();
 
+        function handleLogout(){
+            if(true){
+                toast.success("Logout Successfull!", {
+                    position: toast.POSITION.TOP_CENTER,
+                    autoClose: 1500,
+                });
+            }
+            setLoggedInUser({name:'',status:false})
+            nav('/');
+        }
 
        return <div className='userLogoDiv' style={{ backgroundColor: 'rgba(0,0,0,0.8)',
        backdropFilter: 'blur(10rem)'}}>
@@ -171,7 +183,7 @@
             <Link className="hoverableItems" target='_blank' to='https://www.amazon.co.uk/b/?node=22830131031'>Import Your Playlist</Link>
             <Link className="hoverableItems" target='_blank' to='https://www.amazon.in/gp/help/customer/display.html?pop-up=1&nodeId=201380010&language=en_IN'>Terms & Conditions</Link>
             <Link className="hoverableItems" to='/gethelp'>Get Help</Link>
-            <div className="hoverableItems" onClick={()=>setLoggedInUser({name:'',status:false})} style={{border:'none'}}>Sign Out</div>
+            <div className="hoverableItems" onClick={handleLogout} style={{border:'none'}}>Sign Out</div>
         </div>
     }
 
@@ -226,7 +238,7 @@
             borderRadius:'30px',
             marginBottom:'0.3rem'
         }
-    
+        
         return (
             <div className='userLogoDiv' ref={userLogoRef} style={{ backgroundColor: 'rgba(0,0,0,0.8)',
             backdropFilter: 'blur(10rem)'}}>

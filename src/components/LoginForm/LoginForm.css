@@ -36,17 +36,34 @@
   padding: 0 1rem;
 }
 
-.loginUserNameInput,.userPasswordInput{
+.loginUserNameInput,.loginInputDiv{
   border: 2px solid black;
   width: 100%;
   padding: 0 5%;
   height: 2.3rem;
   border-radius: 4px;
+  position: relative;
 }
 
-.loginUserNameInput:focus,.userPasswordInput:focus{
+.loginUserNameInput:focus,.loginInputDiv:focus-within{
   outline: 2px solid lightseagreen;
   border: none;
+}
+
+.logoInputDiv{
+  display: flex;
+  align-items: center;
+}
+
+.userPasswordInput{
+  border: none;
+  outline: none;
+  width:100%;
+}
+
+.loginInputDiv{
+  display: flex; 
+  justify-content: space-between;
 }
 
 label{

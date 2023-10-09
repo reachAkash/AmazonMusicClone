@@ -14,7 +14,7 @@
 
 .popUpModal{
     width: 30%;
-    height: 50%;
+    height: 40%;
     color: white;
     border-radius: 5px;
     display: flex;
@@ -56,6 +56,14 @@
     font-weight: bold;
 }
 
+
+.modalBtns{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
 .modalBtn{
     border: 2px solid lightseagreen;
     border-radius: 20px;
@@ -64,10 +72,11 @@
     margin-right: 1rem;
     font-size: 0.7rem ;
     color: black;
-    font-weight: bolder;
+    font-weight:900;
     text-transform: uppercase;
     font-weight: 500;
 }
+
 
 .modalBtn:hover{
     border: 2px solid black;

@@ -9,6 +9,8 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { useNavigate } from 'react-router-dom';
 import { ContextProvider } from '../../utils/Provider';
 import { useMusic } from '../../utils/MusicProvider';
+import { toast, ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 export default function MusicCard({music,type,cardType}) {
 
@@ -40,6 +42,12 @@ export default function MusicCard({music,type,cardType}) {
       });
       const data= await res.json();
       console.log(data)
+      if(data.status){
+        toast.success(data.message, {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 1500,
+        });
+      }
     }
 
     function handlePlay(){
@@ -62,7 +70,20 @@ export default function MusicCard({music,type,cardType}) {
       return eArtist.name;
     });
 
+    const addIconFunc=()=>{
+      if(loggedInUser.status){
+        addFavFunction();
+      }else{
+        setTryAmazonPopUp(true)
+      }
+    }
 
+    function handleOptions(){
+      loggedInUser.status && toast.success('Feature Coming Soon', {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 1500,
+      }) || setTryAmazonPopUp(true);
+    }
     return (
       <div className={`musicCard ${backColor}Card`}>
         <div className="imgContainer" onMouseEnter={()=>setHovered(true)} onMouseLeave={()=>setHovered(false)}>
@@ -74,11 +95,11 @@ export default function MusicCard({music,type,cardType}) {
               <ChevronRightIcon style={{fontSize:'2rem'}} />
             </div> :
             <div className='songsIconContainer'>
-            {cardType!=='album' ? <AddRoundedIcon onClick={()=>loggedInUser.status && addFavFunction() || setTryAmazonPopUp(true)} className='cursor-pointer' style={{fontSize:'2rem',color:'white'}}/>: <div style={{paddingRight:'1.4rem'}}></div> }
+            {cardType!=='album' ? <AddRoundedIcon onClick={()=>addIconFunc()} className='cursor-pointer' style={{fontSize:'2rem',color:'white'}}/>: <div style={{paddingRight:'1.4rem'}}></div> }
             <div className="playPauseIcon">
             {musicStatus==='play' && clicked? <PauseIcon onClick={()=>handlePause()} style={{fontSize:'3rem',color:'white'}} /> : <PlayArrowIcon onClick={()=>{ !loggedInUser.status ? setTryAmazonPopUp(true) : handlePlay(); loggedInUser.status && cardType==='album' && handleRedirect() }} style={{fontSize:'3rem',color:'white'}}/>}
             </div>
-            <MoreHorizIcon className='cursor-pointer' style={{fontSize:'2rem',color:'white'}}/>
+            <MoreHorizIcon onClick={handleOptions} className='cursor-pointer' style={{fontSize:'2rem',color:'white'}}/>
           </div>
           }
           </div>
@@ -89,6 +110,7 @@ export default function MusicCard({music,type,cardType}) {
           <div className="name">{songName}</div>    
           <div className="artist">{artists? artists.slice(0,2)?.join(', ') : description?.split(' ').slice(0,3).join(' ')}</div>
         </div>
+        <ToastContainer/>
       </div>
     )
 }
