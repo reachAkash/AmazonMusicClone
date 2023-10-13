@@ -90,9 +90,9 @@ export default function MusicCard({music,type,cardType}) {
           <img src={thumbnail?thumbnail:image} className='mainImg' alt="" />
           {hovered && <div className='playerIcons'>
           {
-            cardType==='podcasts' || cardType==='artist'? 
+            cardType==='podcasts' || cardType==='artist'?
             <div className='artistAlbumIcon' onClick={()=>{ !loggedInUser.status ? setTryAmazonPopUp(true) : cardType==='artist' && handleRedirect(); cardType==='podcasts' && handleRedirect()}} >
-              <ChevronRightIcon style={{fontSize:'2rem'}} />
+              <ChevronRightIcon style={{fontSize:'2rem',color:'white'}} />
             </div> :
             <div className='songsIconContainer'>
             {cardType!=='album' ? <AddRoundedIcon onClick={()=>addIconFunc()} className='cursor-pointer' style={{fontSize:'2rem',color:'white'}}/>: <div style={{paddingRight:'1.4rem'}}></div> }

@@ -42,7 +42,7 @@ function App() {
           <Route path='/subscription' element={<Subscription/>} />  
           <Route path='/preference' element={<MusicPreference/>} />  
           <Route path='/user' element={<User/>} />  
-          <Route path='/explicit  ' element={<Explicit/>} />  
+          <Route path='/explicit' element={<Explicit/>}/>  
        </Routes>
       </MusicProvider>
     </Provider> 

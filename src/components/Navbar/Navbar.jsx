@@ -100,7 +100,7 @@
             <div className="navbarLeft">
 
                 <div className="navLogo">
-                    <img src={width>='840' ? AmazonLogo : AmazonLogoSmall}
+                    <img onClick={()=>nav('/')} src={width>='840' ? AmazonLogo : AmazonLogoSmall}
                     alt="amazonLogo" className='logoImg'/>
                 </div>
                 <div className="navLinks">
