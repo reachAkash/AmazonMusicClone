@@ -20,10 +20,6 @@ function MusicProvider({children}) {
         }
     }
     const [musicState,musicDispatch]= useReducer(musicReducer,initialState);
-
-    useEffect(()=>{
-        console.log(musicState);
-    },[musicState])
     
 
     let obj={

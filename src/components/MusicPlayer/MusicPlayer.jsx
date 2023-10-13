@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import './MusicPlayer.css';
 import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
 import Replay10Icon from '@mui/icons-material/Replay10';
@@ -19,12 +19,15 @@ function MusicPlayer() {
     const defaultAudio= 'https://newton-project-resume-backend.s3.amazonaws.com/audio/64cf934147ae38c3e33a509d.mp3';
     const {musicId,musicStatus,musicDispatch}= useMusic();
     const[music,setMusic]= useState();
+    const [isCapable,setIsCapable]= useState(false);
     const[audioUrl,setAudioUrl]= useState(defaultAudio);
+    const isFirstTimeRender= useRef();
     const[play,{pause,duration}]= useSound(audioUrl,{
         volume:1,
     });
 
     useEffect(()=>{
+        console.log(musicId)
         if(musicId){
             console.log(musicId);
             musicDispatch({type:'pause'});
@@ -37,36 +40,38 @@ function MusicPlayer() {
             }
         })
         .then((res)=>res.json())
-        .then((data)=>{setMusic(data.data);
+        .then((data)=>{
+            setMusic(data.data);
+            console.log(data);
             setAudioUrl(data.data.audio_url);
             musicDispatch({type:'play'})
-            play();
         })
         .catch((err)=>console.log(err));
+
+        if(isFirstTimeRender.current){
+            isFirstTimeRender.current= false;
+            return;
+        }
+        console.log('im playing');
+        if(musicStatus==='play'){
+            setIsCapable(true);
+        }
 
         return ()=> stop();
     },[musicId])
 
-    // useEffect(()=>{
-    //     if(duration>0){
-    //         if(isFirstTimeRender.current){
-    //             isFirstTimeRender.current= false;
-    //             return;
-    //         }
-    //         play();
-    //         if(musicStatus==='play'){
-    //             setIsCapable(true);
-    //         }
-    //     }
-    //     return ()=> stop();
-    // },[duration])
+    
 
-    // useEffect(()=>{
-    //     if(isCapable){
-    //         if(musicStatus==='play') play();
-    //         else pause();
-    //     }
-    // },[musicStatus])
+    useEffect(()=>{
+        if(isCapable){
+            if(musicStatus==='play'){
+                play();
+                console.log('hello im here')
+                console.log(audioUrl)
+            }
+            else pause();
+        }
+    },[musicStatus])
 
     function handlePlay(){
         musicDispatch({type:'play'})
@@ -85,7 +90,7 @@ function MusicPlayer() {
     console.log(musicStatus)
     return (
     
-        <div className='musicPlayerContainer'>
+        <div className='musicPlayerContainer' ref={isFirstTimeRender}>
             <div className='musicLeft'>
                 <img className='musicLogo' src={music?.thumbnail} />
                 <div className='musicDetails'>
