@@ -34,7 +34,7 @@
   }
   
   .albumTopLeft{
-    width: 30%;
+    width: 23rem;
   }
   .albumTopRight{
     display: flex;
@@ -111,6 +111,7 @@
     display: flex;
     justify-content: start;
     align-items: center;
+    width: 34%;
   }
   
   
@@ -137,13 +138,12 @@
   }
   
   .albumBottomLeft{
-    width: 60%;
     display: flex;
     justify-content: start;
   }
   
   .albumBottomRight{
-    width: 40%;
+    width: 60%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -162,4 +162,52 @@
 
   .artistSongMood{
     color: gray;
+  }
+
+  @media (width<=936px){
+    .albumBottomLeft{
+      width: 60%;
+    }
+    .albumBottomRight{
+      justify-content: end;
+    }
+  }
+
+  @media (width<=633px){
+    .albumTop{
+      display: flex;
+      flex-direction: column;
+    }
+     
+    div.albumTopRightContents.albumControls{
+      width: 21rem;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+    }
+
+    .albumTopLeft{
+      display: flex;
+      justify-content: center;
+    }
+
+    .albumTopLeftImg{
+      width: 17rem;
+    }
+
+    .albumTopRight{
+      text-align: center;
+    }
+    
+    .albumBottom{
+      padding:1rem 1rem;
+    }
+
+    .albumBottomLeft{
+      width: 45rem;
+    }
+
+    .albumBottom .albumBottomLeft img{
+      margin-left: 0.5rem;
+    }
   }

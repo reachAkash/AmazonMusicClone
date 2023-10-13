@@ -25,7 +25,7 @@
         name:'Akash',
         status: true,
       });
-      const[width,setWidth]= useState(1600);
+      const[width,setWidth]= useState('');
       const[backColor,setBackColor] = useState('dark');
       const paginationLastLink1= 'page=15&limit=10';
       const paginationLastLink2= 'page=16&limit=50';
@@ -141,13 +141,19 @@
         
             updateState();
             setWidth(window.innerWidth)
-          window.addEventListener('resize', () => {
+          const resize= window.addEventListener('resize', () => {
             setWidth(window.innerWidth);
           });
 
-          return window.removeEventListener('resize',()=>{
+          const load= window.addEventListener('load',()=>{
             setWidth(window.innerWidth);
+            console.log(window.innerWidth);
           })
+
+          return window.removeEventListener('load',load);
+          return window.removeEventListener('resize',resize)
+
+         
         }, []);
 
 

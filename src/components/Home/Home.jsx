@@ -8,7 +8,7 @@ import Navbar from '../Navbar/Navbar'
 import { useMusic } from '../../utils/MusicProvider'
 function Home({setSongUrl,setMusicPlayed,currentSong,setCurrentSong}) {
   
-    const {musicState,backColor,loggedIn}= ContextProvider();
+    const {musicState,backColor,loggedInUser}= ContextProvider();
     const {musicPlayer} = useMusic();
     
   return(
@@ -18,7 +18,7 @@ function Home({setSongUrl,setMusicPlayed,currentSong,setCurrentSong}) {
           return <MusicContainer key={idx} musicData={musicCard} />
         })
       }
-      {musicPlayer==='active' && <MusicPlayer/>}
+      {musicPlayer==='active' && loggedInUser.status && <MusicPlayer/>}
       </div>
   )
 }

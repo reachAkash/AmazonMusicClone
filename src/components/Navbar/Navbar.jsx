@@ -82,6 +82,12 @@
             setInput(e.target.value)
         }
 
+        useEffect(()=>{
+            if(inputFocused){
+                nav('/search');
+            }
+        },[inputFocused])
+
         function handleSearch(e){
             e.preventDefault();
             if(input.trim()==='') return ;
@@ -182,7 +188,6 @@
             <Link className="hoverableItems" to='/explicit'>Block Explicit Songs</Link>
             <Link className="hoverableItems" target='_blank' to='https://www.amazon.co.uk/b/?node=22830131031'>Import Your Playlist</Link>
             <Link className="hoverableItems" target='_blank' to='https://www.amazon.in/gp/help/customer/display.html?pop-up=1&nodeId=201380010&language=en_IN'>Terms & Conditions</Link>
-            <Link className="hoverableItems" to='/gethelp'>Get Help</Link>
             <div className="hoverableItems" onClick={handleLogout} style={{border:'none'}}>Sign Out</div>
         </div>
     }
