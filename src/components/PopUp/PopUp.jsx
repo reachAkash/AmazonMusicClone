@@ -2,6 +2,7 @@ import React from 'react'
 import Button from '../Button/Button.jsx'
 import CloseIcon from '@mui/icons-material/Close';
 import './PopUp.css';
+import { useParams } from 'react-router-dom';
 import { ContextProvider } from '../../utils/Provider.jsx';
 import { useNavigate } from 'react-router-dom';
 
@@ -9,12 +10,13 @@ function PopUp() {
 
     const {setTryAmazonPopUp}= ContextProvider();
     const nav= useNavigate();
+    const {queryId}= useParams();
   return (
     <div className='overlay'>
 
         <div className="popUpModal">
 
-            <div className="closeIconContainer" onClick={()=>setTryAmazonPopUp(false)}>
+            <div className="closeIconContainer" onClick={()=>{setTryAmazonPopUp(false); (queryId==='music'||queryId==='podcast') && nav(-1)}}>
                 <CloseIcon className='closeIcon'/>
             </div>
 

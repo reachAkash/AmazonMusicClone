@@ -4,13 +4,11 @@ import {Routes,Route} from 'react-router-dom';
 import Provider from '../../utils/Provider';
 import Navbar from '../Navbar/Navbar.jsx';
 import Home from '../Home/Home.jsx'
-import PopUp from '../PopUp/PopUp.jsx'
 import Search from '../Search/Search.jsx';
 import { ContextProvider } from '../../utils/Provider';
 import UpdatePasswordForm from '../UpdatePasswordForm/UpdatePasswordForm.jsx';
 import LoginForm from '../LoginForm/LoginForm.jsx';
 import SignUpForm from '../SignUpForm/SignUpForm.jsx';
-import Loader from '../Loader/Loader';
 import Artist from '../Artist/Artist';
 import Podcast from '../Podcast/Podcast';
 import Subscription from '../Subscription/Subscription';
@@ -18,6 +16,11 @@ import MusicPreference from '../MusicPreference/MusicPreference.jsx';
 import User from '../User/User';
 import Explicit from '../Explicit/Explicit';
 import MusicProvider from '../../utils/MusicProvider';
+import Favourites from '../Favourites/Favourites.jsx';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import FavouriteMusic from '../FavouriteMusic/FavouriteMusic';
+import FavouritePodcast from '../FavouritePodcast/FavouritePodcast';
+import Loader from '../Loader/Loader';
 const SearchContainer = lazy(()=>import('../SearchContainer/SearchContainer'));
 function App() {
 
@@ -39,6 +42,14 @@ function App() {
             </Suspense>
           } />  
           <Route path='/search/:queryId' element={<SearchContainer/>} />  
+          <Route path='/favourites' element={
+            <ProtectedRoute>
+                <Favourites/>
+            </ProtectedRoute>
+          }>
+            <Route path='music' element={<FavouriteMusic/>} />
+            <Route path='podcast' element={<FavouritePodcast/>} />
+            </Route>  
           <Route path='/subscription' element={<Subscription/>} />  
           <Route path='/preference' element={<MusicPreference/>} />  
           <Route path='/user' element={<User/>} />  

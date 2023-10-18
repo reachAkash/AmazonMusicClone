@@ -71,7 +71,7 @@ function Artist() {
                     <div>{artistData?.songs?.length} songs • {artistData?.songs?.length*1.5} mins</div>
                 </div>
                 <div className='albumTopRightContents albumControls' >
-                    <Button className='albumRightContentsButton' style={{backgroundColor:'lightseagreen',border:'none',gap:'0.3rem',color:'black',width:'7rem',height:'3rem',borderRadius:'20px',display:'flex',alignItems:'center',justifyContent:'center'}} ><PlayArrowIcon /> Play</Button>
+                    <Button className='albumRightContentsButton' style={{backgroundColor:'lightseagreen',border:'none',gap:'0.3rem',color:'black',width:'7rem',height:'3rem',borderRadius:'20px',display:'flex',alignItems:'center',justifyContent:'center',pointerEvents:'none',opacity:'0.5'}} ><PlayArrowIcon /> Play</Button>
                     <ShuffleIcon style={{fontSize:'1.7rem',opacity:'0.6',pointerEvents:'none'}} className='albumShuffleIcon'/>
                     <AddIcon style={{fontSize:'2.2rem',opacity:'0.6',pointerEvents:'none'}} className='albumAddIcon'/>
                     <ShareIcon style={{fontSize:'1.7rem',opacity:'0.6',pointerEvents:'none'}} className='albumShareIcon'/>

@@ -13,7 +13,7 @@
     display: flex;
     color: white;
     background-color: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(2rem);
+    backdrop-filter: blur(16px);
 }
 
 .musicLeft{

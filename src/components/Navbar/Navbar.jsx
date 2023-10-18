@@ -211,9 +211,9 @@
 
         const nav= useNavigate();
 
-        function handlePopUp(){
+        function handlePopUp(e){
             if(loggedInUser.status){
-                nav('/podcast');
+                nav(`/favourites/${e.target.innerText.toLowerCase()}`);
             }
             else{
                 setTryAmazonPopUp(true);
@@ -223,8 +223,8 @@
 
         return (
             <div className='navItems'>
-                <h3 className='hoverItem navHoverMusicItem' onClick={handlePopUp} >Music</h3>
-                <h3 className='hoverItem' onClick={handlePopUp}>Podcast</h3>
+                <Link className='hoverItem navHoverMusicItem' onClick={handlePopUp} to='/favourites/music'>Music</Link>
+                <Link className='hoverItem'  onClick={handlePopUp} to='/favourites/podcast'>Podcast</Link>
             </div>
         )    
     }

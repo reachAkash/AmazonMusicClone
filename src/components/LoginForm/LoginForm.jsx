@@ -11,8 +11,8 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 function LoginForm() {
 
-    const[userEmail,setUserEmail]= useState('');
-    const[userPassword,setUserPassword]= useState('');
+    const[userEmail,setUserEmail]= useState('akash@gmail.com');
+    const[userPassword,setUserPassword]= useState('ItsPersonal');
     const nav= useNavigate();
     const{setLoggedInUser}= ContextProvider();
     const [passVisible,setPassVisible]= useState(false);
@@ -86,7 +86,7 @@ function LoginForm() {
             <h2>Login</h2>
             <div className='loginUserNameForm'> 
             <label htmlFor='userName'>Email</label>
-            <input value={userEmail} onChange={(e)=>setUserEmail(e.target.value)} type='email' className='loginUserNameInput' required />
+            <input value={userEmail} autoFocus onChange={(e)=>setUserEmail(e.target.value)} type='email' className='loginUserNameInput' required />
             </div>
             <div className='loginUserPasswordForm'>
                 <div className='loginPasswordTop'>

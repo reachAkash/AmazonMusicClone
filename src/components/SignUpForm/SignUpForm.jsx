@@ -96,7 +96,7 @@ function SignUpForm() {
             <h2>Sign In</h2>
             <div className='signUpUserNameForm'>
             <label htmlFor='userName'>Username</label>
-            <input value={userName} onChange={(e)=>{
+            <input value={userName} autoFocus onChange={(e)=>{
                 setUserName(e.target.value)
                 }} type='text' className='signUpUserNameInput' style={{marginBottom:0}} required/>
             </div>

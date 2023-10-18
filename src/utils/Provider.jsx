@@ -41,18 +41,25 @@
           setLoader(true);
           const promises = musicState.map((eItem) => {
             if (eItem.type === 'song') {
+             
               return getData(eItem.type, paginations_Songs_URL + paginationLastLink1);
             } else if (eItem.type === 'album') {
+             
               return getData(eItem.type, Album_URL);
             } else if (eItem.type === 'artist') {
+           
               return getData(eItem.type, paginations_Songs_URL + artistsLastLink);
             } else if (eItem.type === 'latest') {
+             
               return getData(eItem.type, paginations_Songs_URL + paginationLastLink3);
             } else if (eItem.type === 'paginationsSong') {
+           
               return getData(eItem.type, paginations_Songs_URL+paginationLastLink2);
             }else if(eItem.type==='searchedMusic'){
+             
                return getData(eItem.type,paginations_Songs_URL+searchedMusicLink);
             }else{
+            
                return getData(eItem.type,Album_URL+'?'+podcastsLink);
             }
           });
@@ -64,6 +71,7 @@
         });
         }
         finally{
+         
           setTimeout(()=>{
             setLoader(false);
           },1000);
@@ -147,7 +155,6 @@
 
           const load= window.addEventListener('load',()=>{
             setWidth(window.innerWidth);
-            console.log(window.innerWidth);
           })
 
           return window.removeEventListener('load',load);
@@ -166,6 +173,8 @@
           setInputFocused,
           tryAmazonPopUp,
           setTryAmazonPopUp,
+          loader,
+          setLoader,
           musicState,
           width,
           backColor,

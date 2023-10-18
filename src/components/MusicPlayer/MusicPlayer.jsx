@@ -16,73 +16,78 @@ import useSound from 'use-sound';
 
 function MusicPlayer() {
 
-    const defaultAudio= 'https://newton-project-resume-backend.s3.amazonaws.com/audio/64cf934147ae38c3e33a509d.mp3';
-    const {musicId,musicStatus,musicDispatch}= useMusic();
-    const[music,setMusic]= useState();
-    const [isCapable,setIsCapable]= useState(false);
-    const[audioUrl,setAudioUrl]= useState(defaultAudio);
-    const isFirstTimeRender= useRef();
-    const[play,{pause,duration}]= useSound(audioUrl,{
-        volume:1,
+    const defaultAudioUrl= 'https://newton-project-resume-backend.s3.amazonaws.com/audio/64cf934147ae38c3e33a509d.mp3';
+    const { musicId, musicStatus, musicDispatch } = useMusic();
+    const [audioUrl, setAudioUrl] = useState(defaultAudioUrl);
+    const [music, setMusic] = useState({});
+  
+    const [play, { pause, stop, duration }] = useSound(audioUrl, {
+      volume: 1,
     });
-
-    useEffect(()=>{
-        console.log(musicId)
-        if(musicId){
-            console.log(musicId);
-            musicDispatch({type:'pause'});
-            stop();
-            setAudioUrl(defaultAudio);
-        }
-        fetch(`https://academics.newtonschool.co/api/v1/music/song/${musicId}`,{
-            headers:{
-                projectId:project_ID,
-            }
+  
+    const isFirstTimeRender = useRef(true);
+  
+    const [isCapable, setCapable] = useState(false);
+  
+    function handlePause() {
+      musicDispatch({ type: "pause" });
+      // play();
+    }
+  
+    function handlePlay() {
+      musicDispatch({ type: "play" });
+      // pause();
+    }
+  
+    function handleVolume() {
+      stop();
+      musicDispatch({ type: "stop" });
+    }
+  
+    useEffect(() => {
+      if (musicId) {
+        console.log(musicId);
+        musicDispatch({ type: "pause" });
+        stop();
+        setAudioUrl(defaultAudioUrl);
+        setCapable(false);
+        fetch(`https://academics.newtonschool.co/api/v1/music/song/${musicId}`, {
+          headers: {
+            projectId: "8nbih316dv01",
+          },
         })
-        .then((res)=>res.json())
-        .then((data)=>{
-            setMusic(data.data);
-            console.log(data);
-            setAudioUrl(data.data.audio_url);
-            musicDispatch({type:'play'})
-        })
-        .catch((err)=>console.log(err));
-
-        if(isFirstTimeRender.current){
-            isFirstTimeRender.current= false;
-            return;
+          .then((resp) => resp.json())
+          .then((rs) => {
+            setMusic(rs.data);
+            setAudioUrl(rs.data.audio_url);
+            musicDispatch({ type: "play" });
+          })
+          .catch((err) => console.log(err));
+      }
+  
+      return () => stop();
+    }, [musicId]);
+  
+    useEffect(() => {
+      if (duration > 0) {
+        if (isFirstTimeRender.current) {
+          isFirstTimeRender.current = false;
+          return;
         }
-        console.log('im playing');
-        if(musicStatus==='play'){
-            setIsCapable(true);
-        }
-
-        return ()=> stop();
-    },[musicId])
-
-    
-
-    useEffect(()=>{
-        if(isCapable){
-            if(musicStatus==='play'){
-                play();
-                console.log('hello im here')
-                console.log(audioUrl)
-            }
-            else pause();
-        }
-    },[musicStatus])
-
-    function handlePlay(){
-        musicDispatch({type:'play'})
-    }
-    function handlePause(){
-        musicDispatch({type:'pause'})
-    }
-    function handleVolume(){
-        console.log('hello');
-    }
-
+        play();
+        if (musicStatus === "play") setCapable(true);
+      }
+  
+      return () => stop();
+    }, [duration]);
+  
+    useEffect(() => {
+      if (isCapable) {
+        if (musicStatus === "play") play();
+        else pause();
+      }
+    }, [musicStatus]);
+  
     const artistArray= music?.artist?.map((eItem)=>{
         return eItem.name;
     })
@@ -100,15 +105,15 @@ function MusicPlayer() {
             </div>
             <div className='musicMiddle'>
                 <div className='musicPlayerIcons'>
-                <SkipPreviousIcon style={{fontSize:'2rem',cursor: 'pointer'}}/>
-                <Replay10Icon style={{fontSize:'2rem',cursor: 'pointer'}}/>
+                <SkipPreviousIcon style={{fontSize:'2rem',cursor: 'pointer',pointerEvents:'none',opacity:'0.5'}}/>
+                <Replay10Icon style={{fontSize:'2rem',cursor: 'pointer',pointerEvents:'none',opacity:'0.5'}}/>
                 {musicStatus!=='play' ? 
                 <PlayArrowIcon onClick={handlePlay} style={{fontSize:'3rem',cursor: 'pointer'}} />
                 : 
                 <PauseIcon onClick={handlePause} style={{fontSize:'3rem',cursor: 'pointer'}} />
                 }
-                <Forward10Icon style={{fontSize:'2rem',cursor: 'pointer'}}/>
-                <SkipNextIcon style={{fontSize:'2rem',cursor: 'pointer'}}/>
+                <Forward10Icon style={{fontSize:'2rem',cursor: 'pointer',pointerEvents:'none',opacity:'0.5'}}/>
+                <SkipNextIcon style={{fontSize:'2rem',cursor: 'pointer',pointerEvents:'none',opacity:'0.5'}}/>
                 </div>
             </div>
             <div className='musicRight'>
