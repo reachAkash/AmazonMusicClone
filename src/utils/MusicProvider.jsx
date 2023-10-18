@@ -14,7 +14,7 @@ function MusicProvider({children}) {
     function musicReducer(state,action){
         switch(action.type){
             case 'play': return {...state,musicStatus:'play'}
-            case 'pause': return {...state,musicStatus:'pause'}
+            case 'pause': return {...state,musicStatus:'pause'} 
             case 'setMusicId': return{...state,musicStatus:'play',musicPlayer:'active',musicId:action.payload}
             default: return state;
         }

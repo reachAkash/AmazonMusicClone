@@ -11,12 +11,13 @@ function PopUp() {
     const {setTryAmazonPopUp}= ContextProvider();
     const nav= useNavigate();
     const {queryId}= useParams();
+
   return (
     <div className='overlay'>
 
         <div className="popUpModal">
 
-            <div className="closeIconContainer" onClick={()=>{setTryAmazonPopUp(false); (queryId==='music'||queryId==='podcast') && nav(-1)}}>
+            <div className="closeIconContainer" onClick={()=>{setTryAmazonPopUp(false); nav(-1)}}>
                 <CloseIcon className='closeIcon'/>
             </div>
 
