@@ -55,3 +55,23 @@
 .musicRight{
   padding-right: 4rem ;
 }
+
+@media (width<708px){
+  .musicPlayerContainer{
+    padding: 0;
+    margin: 0;
+  }
+  .musicLeft{
+    width: 40%;
+  }
+ .musicPhone{
+  /* border: 2px solid red; */
+  width: 40%
+ }
+}
+
+@media (width<482px){
+  .musicDetails{
+    display: none;
+  }
+}

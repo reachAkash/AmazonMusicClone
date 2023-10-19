@@ -16,6 +16,7 @@ import useSound from 'use-sound';
 
 function MusicPlayer() {
 
+    const{width} = ContextProvider();
     const defaultAudioUrl= 'https://newton-project-resume-backend.s3.amazonaws.com/audio/64cf934147ae38c3e33a509d.mp3';
     const { musicId, musicStatus, musicDispatch } = useMusic();
     const [audioUrl, setAudioUrl] = useState(defaultAudioUrl);
@@ -41,6 +42,7 @@ function MusicPlayer() {
   
     function handleVolume() {
       stop();
+      console.log('stopped')
       musicDispatch({ type: "stop" });
     }
   
@@ -103,7 +105,7 @@ function MusicPlayer() {
                     <p>{artistArray?.join(', ')}</p>
                 </div>
             </div>
-            <div className='musicMiddle'>
+           { width>709 && <div className='musicMiddle'>
                 <div className='musicPlayerIcons'>
                 <SkipPreviousIcon style={{fontSize:'2rem',cursor: 'pointer',pointerEvents:'none',opacity:'0.5'}}/>
                 <Replay10Icon style={{fontSize:'2rem',cursor: 'pointer',pointerEvents:'none',opacity:'0.5'}}/>
@@ -115,7 +117,14 @@ function MusicPlayer() {
                 <Forward10Icon style={{fontSize:'2rem',cursor: 'pointer',pointerEvents:'none',opacity:'0.5'}}/>
                 <SkipNextIcon style={{fontSize:'2rem',cursor: 'pointer',pointerEvents:'none',opacity:'0.5'}}/>
                 </div>
-            </div>
+            </div>}
+            {width<709 && <div className='musicPhone'>
+            {musicStatus!=='play' ? 
+                <PlayArrowIcon onClick={handlePlay} style={{fontSize:'3rem',cursor: 'pointer'}} />
+                : 
+                <PauseIcon onClick={handlePause} style={{fontSize:'3rem',cursor: 'pointer'}} />
+                }
+              </div>}
             <div className='musicRight'>
                 <VolumeUpIcon onClick={handleVolume}  style={{fontSize:'2rem'}}/>
             </div>

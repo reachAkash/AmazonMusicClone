@@ -29,7 +29,6 @@ export default function MusicCard({music,type,cardType}) {
 
 
       async function addFavFunction(){
-        const songId= _id;
         const res= await fetch('https://academics.newtonschool.co/api/v1/music/favorites/like',{
           method:'PATCH',
           headers:{
@@ -37,7 +36,7 @@ export default function MusicCard({music,type,cardType}) {
             'projectId': 'b8cjykmftj1r'
           },
           body:JSON.stringify({
-            "songId": songId
+            songId: _id
           })
         });
       const data= await res.json();
