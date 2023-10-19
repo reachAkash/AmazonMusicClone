@@ -28,18 +28,18 @@ export default function MusicCard({music,type,cardType}) {
 
 
 
-    async function addFavFunction(){
-      const songId= _id;
-      const res= await fetch('https://academics.newtonschool.co/api/v1/music/favorites/like',{
-        method:'PATCH',
-        headers:{
-          'Authorization':`Bearer ${decodeURIComponent(document.cookie)}`,
-          'projectId': 'b8cjykmftj1r'
-        },
-        body:JSON.stringify({
-          "songId": songId
-        })
-      });
+      async function addFavFunction(){
+        const songId= _id;
+        const res= await fetch('https://academics.newtonschool.co/api/v1/music/favorites/like',{
+          method:'PATCH',
+          headers:{
+            'Authorization':`Bearer ${decodeURIComponent(document.cookie)}`,
+            'projectId': 'b8cjykmftj1r'
+          },
+          body:JSON.stringify({
+            "songId": songId
+          })
+        });
       const data= await res.json();
       console.log(data)
       if(data.status){
