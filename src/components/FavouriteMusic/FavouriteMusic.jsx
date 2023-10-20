@@ -10,13 +10,14 @@ function FavouriteMusic() {
             const res= await fetch(' https://academics.newtonschool.co/api/v1/music/favorites/like',{
                 method: 'GET',
                 headers:{
+                    'Content-Type': 'application/json',
                     'Authorization': `Bearer ${decodeURIComponent(document.cookie)}`,
                     'projectId': 'b8cjykmftj1r'
                 }
             })
             const data= await res.json();
-            setFavSongs(data.data.songs);
-            console.log(data.data.songs);
+            setFavSongs(data?.data?.songs);
+            console.log(data?.data?.songs);
         }
 
         getFavSongs();

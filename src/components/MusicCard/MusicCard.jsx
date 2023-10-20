@@ -29,25 +29,29 @@ export default function MusicCard({music,type,cardType}) {
 
 
       async function addFavFunction(){
+
+        console.log(_id);
         const res= await fetch('https://academics.newtonschool.co/api/v1/music/favorites/like',{
           method:'PATCH',
           headers:{
+            'Content-Type': 'application/json',
             'Authorization':`Bearer ${decodeURIComponent(document.cookie)}`,
-            'projectId': 'b8cjykmftj1r'
+            'projectID': 'b8cjykmftj1r'
           },
           body:JSON.stringify({
             songId: _id
           })
         });
       const data= await res.json();
+      
       console.log(data)
-      if(data.status){
-        toast.success(data.message, {
-          position: toast.POSITION.TOP_CENTER,
-          autoClose: 1500,
-        });
-      }
-    }
+      // if(data.status){
+      //   toast.success(data.message, {
+      //     position: toast.POSITION.TOP_CENTER,
+      //     autoClose: 1500,
+      //   });
+      // }
+    } 
 
     function handlePlay(){
       if(cardType!=='song') return;
