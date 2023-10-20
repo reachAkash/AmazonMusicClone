@@ -45,12 +45,12 @@ export default function MusicCard({music,type,cardType}) {
       const data= await res.json();
       
       console.log(data)
-      // if(data.status){
-      //   toast.success(data.message, {
-      //     position: toast.POSITION.TOP_CENTER,
-      //     autoClose: 1500,
-      //   });
-      // }
+      if(data.status){
+        toast.success(data.message, {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 1500,
+        });
+      }
     } 
 
     function handlePlay(){
