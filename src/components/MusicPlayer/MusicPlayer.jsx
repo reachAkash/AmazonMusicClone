@@ -70,31 +70,31 @@ function MusicPlayer() {
       return () => stop();
     }, [musicId]);
   
-    useEffect(() => {
-      if (duration > 0) {
-        if (isFirstTimeRender.current) {
-          isFirstTimeRender.current = false;
-          return;
-        }
-        play();
-        if (musicStatus === "play") setCapable(true);
-      }
+    // useEffect(() => {
+    //   if (duration > 0) {
+    //     if (isFirstTimeRender.current) {
+    //       isFirstTimeRender.current = false;
+    //       return;
+    //     }
+    //     play();
+    //     if (musicStatus === "play") setCapable(true);
+    //   }
   
-      return () => stop();
-    }, [duration]);
+    //   return () => stop();
+    // }, [duration]);
   
-    useEffect(() => {
-      if (isCapable) {
-        if (musicStatus === "play") play();
-        else pause();
-      }
-    }, [musicStatus]);
+    // useEffect(() => {
+    //   if (isCapable) {
+    //     if (musicStatus === "play") play();
+    //     else pause();
+    //   }
+    // }, [musicStatus]);
   
     const artistArray= music?.artist?.map((eItem)=>{
         return eItem.name;
     })
 
-    console.log(musicStatus)
+
     return (
     
         <div className='musicPlayerContainer' ref={isFirstTimeRender}>

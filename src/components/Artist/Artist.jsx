@@ -12,6 +12,8 @@ import { data } from 'autoprefixer';
 import Loader from '../Loader/Loader';
 import {album_Current_URL} from '../../utils/Constants';
 import { ContextProvider } from '../../utils/Provider';
+import MusicPlayer from '../MusicPlayer/MusicPlayer';
+import { useMusic } from '../../utils/MusicProvider';
 
 function Artist() {
     const[loader,setLoader]= useState(true);
