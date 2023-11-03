@@ -6,7 +6,7 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PauseIcon from '@mui/icons-material/Pause';
 import Forward10Icon from '@mui/icons-material/Forward10';
 import SkipNextIcon from '@mui/icons-material/SkipNext';
-import VolumeUpIcon from '@mui/icons-material/VolumeUp';
+import CloseIcon from '@mui/icons-material/Close';
 import { ContextProvider } from '../../utils/Provider';
 import { useMusic } from '../../utils/MusicProvider';
 import { project_ID } from '../../utils/Constants';
@@ -15,7 +15,7 @@ import useSound from 'use-sound';
 
 
 function MusicPlayer() {
-
+  
     const{width} = ContextProvider();
     const defaultAudioUrl= 'https://newton-project-resume-backend.s3.amazonaws.com/audio/64cf934147ae38c3e33a509d.mp3';
     const { musicId, musicStatus, musicDispatch } = useMusic();
@@ -32,17 +32,17 @@ function MusicPlayer() {
   
     function handlePause() {
       musicDispatch({ type: "pause" });
-      // play();
+      play();
     }
   
     function handlePlay() {
       musicDispatch({ type: "play" });
-      // pause();
+      pause();
     }
   
-    function handleVolume() {
-      stop();
+    function handleClose() {
       console.log('stopped')
+      stop();
       musicDispatch({ type: "stop" });
     }
   
@@ -70,30 +70,29 @@ function MusicPlayer() {
       return () => stop();
     }, [musicId]);
   
-    // useEffect(() => {
-    //   if (duration > 0) {
-    //     if (isFirstTimeRender.current) {
-    //       isFirstTimeRender.current = false;
-    //       return;
-    //     }
-    //     play();
-    //     if (musicStatus === "play") setCapable(true);
-    //   }
+    useEffect(() => {
+      if (duration > 0) {
+        if (isFirstTimeRender.current) {
+          isFirstTimeRender.current = false;
+          return;
+        }
+        play();
+        if (musicStatus === "play") setCapable(true);
+      }
   
-    //   return () => stop();
-    // }, [duration]);
+      return () => stop();
+    }, [duration]);
   
-    // useEffect(() => {
-    //   if (isCapable) {
-    //     if (musicStatus === "play") play();
-    //     else pause();
-    //   }
-    // }, [musicStatus]);
+    useEffect(() => {
+      if (isCapable) {
+        if (musicStatus === "play") play();
+        else pause();
+      }
+    }, [musicStatus]);
   
-    const artistArray= music?.artist?.map((eItem)=>{
+    let artistArray= music?.artist?.map((eItem)=>{
         return eItem.name;
-    })
-
+    }).slice(0,2);
 
     return (
     
@@ -126,7 +125,7 @@ function MusicPlayer() {
                 }
               </div>}
             <div className='musicRight'>
-                <VolumeUpIcon onClick={handleVolume}  style={{fontSize:'2rem'}}/>
+                <CloseIcon onClick={handleClose}  style={{fontSize:'2rem',cursor:'pointer'}}/>
             </div>
         </div>
       )

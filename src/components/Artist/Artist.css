@@ -150,6 +150,10 @@
     align-items: center;
   }
 
+  .artistSongImageContainer{
+    position: relative;
+  }
+
   .artistSongImageContainer img{
     border-radius: 5px;
   }
@@ -163,6 +167,19 @@
 
   .artistSongMood{
     color: gray;
+  }
+
+  .playIconAlbum{
+    position: absolute;
+    top: 31%;
+    left: 41%;
+    display: flex;
+    justify-content: center;
+    padding: 0.5rem;
+    border-radius: 50%;
+    align-items: center;
+    backdrop-filter: blur(9px);
+    cursor: pointer;
   }
 
   @media (width<=936px){

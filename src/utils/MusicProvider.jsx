@@ -16,6 +16,7 @@ function MusicProvider({children}) {
             case 'play': return {...state,musicStatus:'play'}
             case 'pause': return {...state,musicStatus:'pause'} 
             case 'setMusicId': return{...state,musicStatus:'play',musicPlayer:'active',musicId:action.payload}
+            case 'stop': return {initialState}
             default: return state;
         }
     }

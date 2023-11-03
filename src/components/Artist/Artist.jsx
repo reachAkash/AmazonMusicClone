@@ -3,6 +3,8 @@ import './Artist.css'
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import ShuffleIcon from '@mui/icons-material/Shuffle';
 import AddIcon from '@mui/icons-material/Add';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import Button from '../Button/Button.jsx';
@@ -13,14 +15,17 @@ import Loader from '../Loader/Loader';
 import {album_Current_URL} from '../../utils/Constants';
 import { ContextProvider } from '../../utils/Provider';
 import MusicPlayer from '../MusicPlayer/MusicPlayer';
-import { useMusic } from '../../utils/MusicProvider';
+import { useMusic } from '../../utils/MusicProvider.jsx';
+import musicAnimation from '../../assets/musicAnimation.mp4';
 
 function Artist() {
     const[loader,setLoader]= useState(true);
     const [artistData,setArtistData]= useState({});
-    
+    const {musicPlayer} = useMusic();
     const {cardType,id}= useParams();
-   console.log(cardType,id);
+    const [firstAlbumSong,setFirstAlbumSong]= useState('');
+    const {musicDispatch} = useMusic();
+   
 
     useEffect(()=>{
         function fetchArtist(){
@@ -42,7 +47,7 @@ function Artist() {
                 }
             })
             .then((res)=>res.json())
-            .then((data)=>{setArtistData(data.data); console.log(data.data)})
+            .then((data)=>{setArtistData(data.data); console.log(data.data);setFirstAlbumSong(data?.data?.songs[0])})
             .catch((err)=>alert(err));
         }
 
@@ -53,9 +58,14 @@ function Artist() {
         },500);
     },[]);
 
+    function handlePlayAlbum(){
+        musicDispatch({type:'setMusicId',payload:firstAlbumSong?._id});
+    }
+
     
 
   return loader ? <Loader/> : (
+    <>  
     <div className='albumImageContainer' style={{backgroundImage:`url(${artistData?.image})`,backgroundPosition:'bottom'}}>
     <div className='albumContainer'>
         <div className='albumTop'>
@@ -73,7 +83,7 @@ function Artist() {
                     <div>{artistData?.songs?.length} songs • {artistData?.songs?.length*1.5} mins</div>
                 </div>
                 <div className='albumTopRightContents albumControls' >
-                    <Button className='albumRightContentsButton' style={{backgroundColor:'lightseagreen',border:'none',gap:'0.3rem',color:'black',width:'7rem',height:'3rem',borderRadius:'20px',display:'flex',alignItems:'center',justifyContent:'center',pointerEvents:'none',opacity:'0.5'}} ><PlayArrowIcon /> Play</Button>
+                    <Button onClick={handlePlayAlbum} className='albumRightContentsButton' style={{backgroundColor:'lightseagreen',border:'none',gap:'0.3rem',color:'black',width:'7rem',height:'3rem',borderRadius:'20px',display:'flex',alignItems:'center',justifyContent:'center'}} ><PlayArrowIcon /> Play</Button>
                     <ShuffleIcon style={{fontSize:'1.7rem',opacity:'0.6',pointerEvents:'none'}} className='albumShuffleIcon'/>
                     <AddIcon style={{fontSize:'2.2rem',opacity:'0.6',pointerEvents:'none'}} className='albumAddIcon'/>
                     <ShareIcon style={{fontSize:'1.7rem',opacity:'0.6',pointerEvents:'none'}} className='albumShareIcon'/>
@@ -91,20 +101,65 @@ function Artist() {
         </div>
         </div>
     </div>
+        {musicPlayer=='active' && <MusicPlayer/>}
+    </>
   )
 }
 
 function ArtistSongs({data,count}){
 
     const{width} = ContextProvider();
+    const [showPlayerIcon,setShowPlayerIcon] = useState(false);
+    const {musicDispatch} = useMusic();
+    const [favIcon,setFavIcon] = useState(false);
+    const [clicked,setClicked]= useState(false);
+
+    function handleShowIcon(){
+        console.log('hi im inside')
+        setShowPlayerIcon(true);
+    }
+    
+    function handleHideIcon(){
+        console.log('hi im inside hide')
+        setShowPlayerIcon(false);
+    }
+
     console.log(data);
+
+    function handlePlay(){
+        musicDispatch({type:'setMusicId',payload:data._id})
+        setClicked((prev)=>!prev);
+        console.log('hi im clicked')
+      }
+
+      async function addFavFunction(){
+        setFavIcon((prev)=>!prev);
+        const res= await fetch('https://academics.newtonschool.co/api/v1/music/favorites/like',{
+          method:'PATCH',
+          headers:{
+            'Content-Type': 'application/json',
+            'Authorization':`Bearer ${decodeURIComponent(document.cookie)}`,
+            'projectID': 'b8cjykmftj1r'
+          },
+          body:JSON.stringify({
+            songId: data._id
+          })
+        });
+      const addedSong= await res.json();
+      console.log(addedSong)
+    } 
 
     return ( 
     <div className='albumBottomContainer'>
     <div className='albumBottomLeft'>
     <div>{count}</div>
-    <div className='artistSongImageContainer'>
-      <img className='artistSongListImage' src={data.thumbnail?data.thumbnail:data.image}/>
+    <div className='artistSongImageContainer' onMouseEnter={handleShowIcon} onMouseLeave={handleHideIcon}>
+      <img className='artistSongListImage'  src={data.thumbnail?data.thumbnail:data.image}/>
+      {showPlayerIcon && 
+      <div className='playIconAlbum' onClick={handlePlay}> {clicked ? <video className='w-4 h-4' src={musicAnimation} muted autoPlay loop /> 
+      : 
+      <PlayArrowIcon style={{fontSize:'1.4rem'}}/>}
+      </div>}
     </div>
     <div className='albumMiddle'>
         <div className='artistSongName'>{data?.title}</div>
@@ -117,7 +172,7 @@ function ArtistSongs({data,count}){
     <div className='w-1/2 flex align-middle justify-around'>
         {width>633 && <div>02:30</div>}
         <div className='albumBottomRightIcons'>
-            <AddIcon style={{opacity:'0.5',pointerEvents:'none'}} />
+            {!favIcon ? <FavoriteBorderIcon onClick={addFavFunction} style={{cursor:'pointer'}} />:<FavoriteIcon onClick={addFavFunction} style={{cursor:'pointer',color:'red'}}/>}
             <MoreHorizIcon style={{opacity:'0.5',pointerEvents:'none'}}/>
         </div>
     </div>
