@@ -45,6 +45,7 @@ function MusicPlayer() {
       stop();
       musicDispatch({ type: "stop" });
     }
+    // made changes
   
     useEffect(() => {
       if (musicId) {
