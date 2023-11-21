@@ -55,6 +55,7 @@ export default function MusicCard({music,type,cardType}) {
 
     function handlePlay(){
       if(cardType!=='song') return;
+      if(musicStatus=='play') musicDispatch({type:'stop'});
       musicDispatch({type:'setMusicId',payload:_id})
       setClicked(true);
     }

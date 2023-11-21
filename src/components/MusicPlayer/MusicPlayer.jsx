@@ -27,15 +27,19 @@ function MusicPlayer() {
     });
   
     const isFirstTimeRender = useRef(true);
+
+    console.log()
+    console.log(duration/60);
   
     const [isCapable, setCapable] = useState(false);
   
     function handlePause() {
       musicDispatch({ type: "pause" });
-      play();
+      // play();
     }
   
     function handlePlay() {
+      // if(musicPlayer==='active') return;
       musicDispatch({ type: "play" });
       pause();
     }
@@ -46,6 +50,10 @@ function MusicPlayer() {
       musicDispatch({ type: "stop" });
     }
     // made changes
+
+    useEffect(()=>{
+      musicDispatch({type:'play'});
+    },[]);
   
     useEffect(() => {
       if (musicId) {
@@ -67,8 +75,12 @@ function MusicPlayer() {
           })
           .catch((err) => console.log(err));
       }
+      let count = 0;
+      const interval = setInterval(()=>{
+        console.log(count++);
+      },1000);
   
-      return () => stop();
+      return () => {clearInterval(interval);stop()};
     }, [musicId]);
   
     useEffect(() => {
@@ -95,11 +107,12 @@ function MusicPlayer() {
         return eItem.name;
     }).slice(0,2);
 
+    const localImage= 'https://newton-project-resume-backend.s3.amazonaws.com/thumbnail/64cee72fe41f6d0a8b0cd0b4.jpg';
     return (
     
         <div className='musicPlayerContainer' ref={isFirstTimeRender}>
             <div className='musicLeft'>
-                <img className='musicLogo' src={music?.thumbnail} />
+                <img className='musicLogo' src={music?.thumbnail||localImage} />
                 <div className='musicDetails'>
                     <h3>{music?.title}</h3>
                     <p>{artistArray?.join(', ')}</p>
@@ -111,7 +124,7 @@ function MusicPlayer() {
                 <Replay10Icon style={{fontSize:'2rem',cursor: 'pointer',pointerEvents:'none',opacity:'0.5'}}/>
                 {musicStatus!=='play' ? 
                 <PlayArrowIcon onClick={handlePlay} style={{fontSize:'3rem',cursor: 'pointer'}} />
-                : 
+                :
                 <PauseIcon onClick={handlePause} style={{fontSize:'3rem',cursor: 'pointer'}} />
                 }
                 <Forward10Icon style={{fontSize:'2rem',cursor: 'pointer',pointerEvents:'none',opacity:'0.5'}}/>

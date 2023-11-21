@@ -91,7 +91,7 @@
   .albumRightContentsButton:hover,.albumShuffleIcon:hover,.albumAddIcon:hover,.albumShareIcon:hover,.albumOptionsIcon:hover{
     cursor: pointer;
     color: lightseagreen;
-    font-size: 1.1rem;
+    border: 2px solid white;
   }
   
   

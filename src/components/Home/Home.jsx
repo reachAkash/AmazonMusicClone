@@ -20,7 +20,7 @@ function Home({setSongUrl,setMusicPlayed,currentSong,setCurrentSong}) {
           return <MusicContainer key={idx} musicData={musicCard} />
         })
       }
-      {musicPlayer==='active' && loggedInUser.status && <MusicPlayer/>}
+      {loggedInUser.status && <div className={musicPlayer=='active'? 'block' : 'hidden'}><MusicPlayer/></div>}
       </div>
   )
 }

@@ -14,7 +14,7 @@ function Podcast() {
     <div className='home'>
         <MusicContainer musicData={podcastData} />
         <div className='podcastBtns'>
-          {console.log(podcastData.cardType)}
+          {/* {console.log(podcastData.cardType)} */}
         <Search cardType={podcastData.cardType} />
         </div>
     </div>

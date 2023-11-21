@@ -10,7 +10,6 @@ import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import Button from '../Button/Button.jsx';
 import { artist_URL } from '../../utils/Constants.js';
 import { useParams } from 'react-router-dom';
-import { data } from 'autoprefixer';
 import Loader from '../Loader/Loader';
 import {album_Current_URL} from '../../utils/Constants';
 import { ContextProvider } from '../../utils/Provider';
