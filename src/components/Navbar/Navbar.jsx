@@ -104,7 +104,6 @@
            {inputFocused ? <InputElement redirect={redirect} handleSearch={handleSearch} handleInput={handleInput} /> :
            <>
             <div className="navbarLeft">
-
                 <div className="navLogo">
                     <img onClick={()=>nav('/')} src={width>='840' ? AmazonLogo : AmazonLogoSmall}
                     alt="amazonLogo" className='logoImg'/>
@@ -122,7 +121,7 @@
                         {width>=1280 && <span>Podcast</span>}
                         </div>
                     </NavLink>
-                    <Link className="navItems navItemLibrary" onMouseEnter={hovered} onMouseLeave={outHovered}>
+                    {width>545 && <Link className="navItems navItemLibrary" onMouseEnter={hovered} onMouseLeave={outHovered}>
                         <div className="navLinkLibrary">
                             <HeadsetRoundedIcon/>
                             {width>=1280 && <span>Library</span>}
@@ -136,7 +135,7 @@
                             </div> 
                             }
                         </div>
-                    </Link>
+                    </Link>}
                 </div>
             
                 </div>

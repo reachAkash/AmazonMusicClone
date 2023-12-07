@@ -330,7 +330,7 @@
     }
     .navbarRight{
         width: 40%;
-        gap: 0;
+        gap: 1.5rem;
     }
     .inputForm{
         margin-left: 1rem;
@@ -338,7 +338,7 @@
        justify-content: end;
     }
     .userLogo{
-        gap: 0.8rem;
+        gap: 1rem;
         padding: 0;
     }
 }
