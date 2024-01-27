@@ -119,7 +119,6 @@ export default function MusicCard({music,type,cardType}) {
           <div className="name">{songName}</div>    
           <div className="artist">{artists? artists.slice(0,2)?.join(', ') : description?.split(' ').slice(0,3).join(' ')}</div>
         </div>
-        <ToastContainer/>
       </div>
     )
 }

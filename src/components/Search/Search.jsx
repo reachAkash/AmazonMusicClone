@@ -17,16 +17,11 @@ const colorDeg = ["0deg", "45deg", "90deg", "135deg", "180deg", "225deg", "270de
 function Search({cardType}) {
 
     const[searchedHistory,setSearchedHistory]= useState(null);
-const mood = [
-    "Romantic",
-    "Happy",
-    "Excited",
-    "Sad",
-];
+  
 
-const [artist,setArtist]= useState([]);
-const {musicState,backColor,input,setInput}= ContextProvider();
-const nav= useNavigate();
+    const [artist,setArtist]= useState([]);
+    const {musicState,backColor,input,setInput}= ContextProvider();
+    const nav= useNavigate();
     useEffect(()=>{
         setArtist(musicState.find((e)=>e.type==='artist'));
     })
@@ -64,15 +59,9 @@ return input && cardType!=='podcasts' ?  <Suggestions /> : (
                 })}
                 </div>
             </div>
-        </div>}
-        <div className="searchTop">
-            <h2>Mood</h2>
-        <div className="topButtonsContainer">
-            {mood?.map((eItem,idx)=>{
-                return <SearchCategory id='mood' handleSearched={handleSearched} data={eItem} key={idx} />
-            })}
         </div>
-        </div>
+        }
+        <MoodButtons handleSearched={handleSearched} />
        {
        cardType!=='podcasts' && <div className="searchBottom">
              <h2>Artists</h2>
@@ -88,13 +77,30 @@ return input && cardType!=='podcasts' ?  <Suggestions /> : (
     )
 }
 
-function SearchCategory({data,handleSearched,id}){
+export const MoodButtons = React.memo(({handleSearched})=>{
+    const mood = [
+        "Romantic",
+        "Happy",
+        "Excited",
+        "Sad",
+    ];
+    return <div className={`searchTop`}>
+                <h2>Mood</h2>
+                <div className="topButtonsContainer">
+                    {mood?.map((eItem,idx)=>{
+                        return <SearchCategory id='mood' handleSearched={handleSearched} data={eItem} key={idx} />
+                    })}
+                </div>
+            </div>
+})
+
+export const SearchCategory = React.memo(({data,handleSearched,id}) => {
     return <Button  style={{
         backgroundImage: `linear-gradient(${colorDeg[Math.floor(Math.random() * (colorDeg.length-1))]}, 
                                           #${Math.floor(Math.random()*8388607).toString(16)}, 
                                           #${(Math.floor(Math.random()*(16777215-8388608+1))+8388608).toString(16)})`
       }} onClick={handleSearched} id={id} className='searchButton'>{data}</Button>
-}
+})
 
 function Suggestions(){
     const {input} = ContextProvider();

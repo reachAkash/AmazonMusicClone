@@ -26,15 +26,15 @@ export default function MusicContainer({musicData}) {
   return (
     <div className={`container ${backColor}`}>
 
-        <div className="containerHeader">
-            <div className="title">
+        <div className="containerHeader items-center">
+            <div className="title md:text-sm">
                 {title}
             </div>
             <div className="seeAllItems">
-               {width>='438' && <div className="sliderIcons">
+               <div className="sliderIcons">
                     <KeyboardArrowLeftIcon className='sliderLeftIcon' disabled={isLeft} style={{opacity: isLeft && "0.5", color: isLeft && "grey", cursor: isLeft && "auto"}} onClick={()=>{containerRef.current.scrollBy({left: -width+150, behavior : "smooth"})}}/>
                     <KeyboardArrowRightIcon className='sliderRightIcon' disabled={isRight} style={{opacity: isRight && "0.5", color: isRight && "grey", cursor: isRight && "auto"}} onClick={()=>{containerRef.current.scrollBy({left: width-150, behavior : "smooth"})}}/>
-                    </div>}
+                </div>
                 <button className={`seeAllBtn`} onClick={handleSeeAll} >SEE ALL</button>
             </div>
         </div>

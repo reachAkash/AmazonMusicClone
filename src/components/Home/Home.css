@@ -2,12 +2,12 @@
 
 .home{
      position: relative;
-        padding-right: 1rem;
-        top: 5rem;
-        padding-left: 2rem;
-        display: flex;
-        flex-direction: column;
-        font-family: 'Roboto',sans-serif;
+     padding-right: 1rem;
+     top: 5rem;
+     padding-left: 2rem;
+     display: flex;
+     flex-direction: column;
+     font-family: 'Roboto',sans-serif;
 }
 
 .light{
@@ -18,4 +18,10 @@
 .dark{
         background-color: white;
         color: black;
+}
+
+@media (width<=408px){
+        .home{
+                padding-left: 1rem;
+        }
 }

@@ -51,10 +51,8 @@
             function checkUserLogo(e){
                 if(e.target==userLogoRef.current) setUserLogoClicked(!userLogoClicked);
 
-                else if(userLogoRef.current && userLogoRef.current!=e.target){
+                else{
                     setUserLogoClicked(false);
-                }else{
-                    setUserLogoClicked(true);
                 }
             }
 
@@ -99,69 +97,138 @@
         }
 
     return (
-        <>
-        <div className={`navbar ${backColor} ${scrolled ? 'scrolled':''}`}>
-           {inputFocused ? <InputElement redirect={redirect} handleSearch={handleSearch} handleInput={handleInput} /> :
-           <>
-            <div className="navbarLeft">
-                <div className="navLogo">
-                    <img onClick={()=>nav('/')} src={width>='840' ? AmazonLogo : AmazonLogoSmall}
-                    alt="amazonLogo" className='logoImg'/>
-                </div>
-                <div className="navLinks">
-                    <NavLink to={'/'} className="navItems">
-                        <div className="navLinkHome">
-                        <HomeRoundedIcon/>
-                        {width>=1280 && <span>Home</span>}
-                        </div>
-                    </NavLink>
-                    <NavLink to={'/podcast'} className="navItems">
-                        <div className="navLinkPodcast">
-                        <PodcastsRoundedIcon/>
-                        {width>=1280 && <span>Podcast</span>}
-                        </div>
-                    </NavLink>
-                    {width>545 && <Link className="navItems navItemLibrary" onMouseEnter={hovered} onMouseLeave={outHovered}>
-                        <div className="navLinkLibrary">
-                            <HeadsetRoundedIcon/>
-                            {width>=1280 && <span>Library</span>}
-                            {width>=1280 && <span>
-                               { LibraryItemsHovered ? <KeyboardArrowUpRounded/> : <KeyboardArrowDownRoundedIcon/>}
-                            </span>
-                            }
+       width<=639 ? <SmNavbar scrolled={scrolled} handleSearch={handleSearch} userLogoClicked={userLogoClicked} handleInput={handleInput} redirect={redirect} setUserLogoClicked={setUserLogoClicked}/>
+       : <>
+       <div className={`flex navbar ${backColor} ${scrolled ? 'scrolled':''}`}>
+          {inputFocused ? <InputElement redirect={redirect} handleSearch={handleSearch} handleInput={handleInput} /> :
+          <>
+           <div className="navbarLeft">
+               <div className="navLogo">
+                   <img onClick={()=>nav('/')} src={width>='842' ? AmazonLogo : AmazonLogoSmall}
+                   alt="amazonLogo" className='logoImg shrink-0'/>
+               </div>
+               <div className="navLinks">
+                   <NavLink to={'/'} className="navItems">
+                       <div className="navLinkHome">
+                       <HomeRoundedIcon/>
+                       {width>=1080 && <span>Home</span>}
+                       </div>
+                   </NavLink>
+                   <NavLink to={'/podcast'} className="navItems">
+                       <div className="navLinkPodcast">
+                       <PodcastsRoundedIcon/>
+                       {width>=1080 && <span>Podcast</span>}
+                       </div>
+                   </NavLink>
+                   {width>545 && <Link className="navItems navItemLibrary" onMouseEnter={hovered} onMouseLeave={outHovered}>
+                       <div className="navLinkLibrary">
+                           <HeadsetRoundedIcon/>
+                           {width>=1080 && <span>Library</span>}
+                           {width>=1080 && <span>
+                              { LibraryItemsHovered ? <KeyboardArrowUpRounded/> : <KeyboardArrowDownRoundedIcon/>}
+                           </span>
+                           }
 
-                            {LibraryItemsHovered && <div className='libraryHover'>
-                            <LibraryItems />
-                            </div> 
-                            }
-                        </div>
-                    </Link>}
-                </div>
-            
-                </div>
+                           {LibraryItemsHovered && <div className='libraryHover'>
+                           <LibraryItems />
+                           </div> 
+                           }
+                       </div>
+                   </Link>}
+               </div>
+           
+               </div>
 
-                
+               
 
-                <div className="navbarRight">
-                  <form action="" className='inputForm' onSubmit={handleSearch}>
-                       {width >=635 && <input className='inputSearch' value={input} onChange={handleInput} onClick={redirect} placeholder='Search...'/>}
-                        <div className='searchIconContainer'>
-                            <SearchOutlinedIcon style={{color:width>=640 ? 'black':'aqua'}} className='searchIcon' onClick={(e)=>width<=634? setInputFocused(true): handleSearch(e) } />
-                        </div>
-                    </form>
-                    <div className="userLogo">
-                       {backColor==='dark' && <LightModeIcon style={{fontSize:'2rem'}} className='lightModeIcon' onClick={()=>setBackColor('light')}/> || <DarkModeIcon style={{fontSize:'2rem'}} className='darkModeIcon' onClick={()=>setBackColor('dark')}/>}
-                       <i className="fa-solid fa-user userLogoIcon" ref={userLogoRef} ></i>
-                        { userLogoClicked ? loggedInUser.status ? <LoggedUserInfo  /> : <UserLoginContainer setUserLogoClicked={setUserLogoClicked} userLogoClicked/> : null}
-                    </div>
-                </div>
-           </>
+               <div className="navbarRight">
+                 <form action="" className='inputForm' onSubmit={handleSearch}>
+                       <input className='inputSearch' value={input} onChange={handleInput} onClick={redirect} placeholder='Search...'/>
+                       <div className='searchIconContainer'>
+                           <SearchOutlinedIcon style={{color:width>=640 ? 'black':'aqua'}} className='searchIcon' onClick={(e)=>width<=635? setInputFocused(true): handleSearch(e) } />
+                       </div>
+                   </form>
+                   <div className="userLogo">
+                      {backColor==='dark' && <LightModeIcon style={{fontSize:'2rem'}} className='lightModeIcon' onClick={()=>setBackColor('light')}/> || <DarkModeIcon style={{fontSize:'2rem'}} className='darkModeIcon' onClick={()=>setBackColor('dark')}/>}
+                      <i className="fa-solid fa-user userLogoIcon" ref={userLogoRef} ></i>
+                       { userLogoClicked ? loggedInUser.status ? <LoggedUserInfo  /> : <UserLoginContainer setUserLogoClicked={setUserLogoClicked} userLogoClicked/> : null}
+                   </div>
+               </div>
+          </>
+               }
+       </div>
+       {tryAmazonPopUp && <PopUp/>}
+               <ToastContainer />
+       </>)
+    }
+
+    const SmNavbar = ({scrolled,handleSearch,userLogoClicked,handleInput,redirect,setUserLogoClicked}) =>{
+        const {backColor,setInputFocused,inputFocused,
+            input,setInput,setBackColor,width,
+            loggedInUser,tryAmazonPopUp,setTryAmazonPopUp} = ContextProvider();
+        const userLogoRef= useRef();
+        const [hovered,setHovered] = useState(false);   
+
+        useEffect(()=>{
+            function checkUserLogo(e){
+                if(e.target==userLogoRef.current) setUserLogoClicked(true);
+
+                else if(userLogoRef.current && userLogoRef.current!=e.target){
+                    setUserLogoClicked(false);
+                }else{
+                    setUserLogoClicked(true);
                 }
-        </div>
-        {tryAmazonPopUp && <PopUp/>}
-                <ToastContainer />
+            }
+
+            window.addEventListener('click',checkUserLogo);
+
+            return function(){
+                window.removeEventListener('click',checkUserLogo);
+            }
+            },[userLogoClicked])
+
+        return <div className={`flex justify-between ${inputFocused?'px-0':'px-5'} items-center md:py-8 md:hidden navbar ${backColor} ${scrolled ? 'scrolled':''}`}>
+        {inputFocused ? <InputElement redirect={redirect} handleSearch={handleSearch} handleInput={handleInput} /> :
+        <>
+         <div className="">
+             <div className="navLogo">
+                 <img onClick={()=>nav('/')} src={width>='842' ? AmazonLogo : AmazonLogoSmall}
+                 alt="amazonLogo" className='logoImg shrink-0'/>
+             </div>
+             </div>
+
+             <div className={`flex items-center ${width>=500 ? 'w-[55%]': 'w-[60%]'} justify-around`}>
+                <NavLink to={'/'} className="navItems">
+                    <div className="navLinkHome">
+                    <HomeRoundedIcon/>
+                    </div>
+                </NavLink>
+                <NavLink to={'/podcast'} className="navItems">
+                    <div className="navLinkPodcast">
+                    <PodcastsRoundedIcon/>
+                    </div>
+                </NavLink>
+                {width>545 && <Link className="navItems navItemLibrary" onMouseEnter={()=>setHovered(true)} onMouseLeave={()=>setHovered(false)}>
+                    <div className="navLinkLibrary">
+                        <HeadsetRoundedIcon/>
+                        {hovered && <div className='libraryHover'>
+                        <LibraryItems />
+                        </div> 
+                        }
+                    </div>
+                </Link>}
+                <form action="" onSubmit={handleSearch}>
+                    <SearchOutlinedIcon style={{color:width>=640 ? 'black':'aqua'}} className='' onClick={(e)=>width<=634? setInputFocused(true): handleSearch(e) } />
+                </form>
+                {backColor==='dark' && <LightModeIcon onClick={()=>setBackColor('light')}/> || <DarkModeIcon onClick={()=>setBackColor('dark')}/>}
+                    <i className="fa-solid fa-user userLogoIcon" ref={userLogoRef} ></i>
+                     { userLogoClicked ? loggedInUser.status ? <LoggedUserInfo  /> : <UserLoginContainer setUserLogoClicked={setUserLogoClicked} userLogoClicked/> : null}
+             </div>
         </>
-    )
+             }
+     </div>
+     {tryAmazonPopUp && <PopUp/>}
+             <ToastContainer />
     }
 
     function LoggedUserInfo(){
@@ -196,7 +263,7 @@
 
         return (
             <form className='inputElementDiv' onSubmit={handleSearch}>
-                <input className='inputElementSearch'
+                <input className='inputElementSearch rounded-sm'
                 value={input} onChange={handleInput} autoFocus
                 onClick={redirect} placeholder='Search...'/>
                 <h3 onClick={()=>setInputFocused(false)} style={{cursor:'pointer'}} >Cancel</h3>
