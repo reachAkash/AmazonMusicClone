@@ -226,9 +226,8 @@
              </div>
         </>
              }
-     </div>
      {tryAmazonPopUp && <PopUp/>}
-             <ToastContainer />
+     </div>
     }
 
     function LoggedUserInfo(){
