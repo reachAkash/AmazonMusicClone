@@ -1,98 +1,94 @@
-.musicCard{
-    position: relative;
-    margin-right: 1rem;
-    box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.02);
-    border-radius: 5px;
-    padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+.musicCard {
+  position: relative;
+  margin-right: 1rem;
+  box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.02);
+  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
 }
 
-.lightCard{
-    background-color: white;
-    color: black;
-   
+.lightCard {
+  background-color: white;
+  color: black;
 }
 
 /* box-shadow: 5px 5px 15px  rgba(125,116,125,1); */
-.dark{
-    background-color: black;
-    color: white;
+.dark {
+  background-color: black;
+  color: white;
 }
 
-.imgContainer{
-    position: relative;
-    width: 248px;
-    height: 230px;
-    /* padding: 0 1rem 0 0; */
+.imgContainer {
+  position: relative;
+  width: 248px;
+  height: 230px;
+  /* padding: 0 1rem 0 0; */
 }
 
-img{
-    width: 100%;
-    height: 100%;
-    background-size: cover;
+img {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
 }
 
-.playerIcons{
-   position: absolute;
-   top: 0rem;
-   background-color: rgba(0,0,0,0.5);
-   backdrop-filter: blur(5px);
-   height: 100%;
-   width: 100%;
-   z-index: 888;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   gap: 2rem;
+.playerIcons {
+  position: absolute;
+  top: 0rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  height: 100%;
+  width: 100%;
+  z-index: 888;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
 }
 
-.songsIconContainer{
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    width: 100%;
-    height: 100%;
-    align-items: center;
+.songsIconContainer {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  width: 100%;
+  height: 100%;
+  align-items: center;
 }
 
-.playPauseIcon{
-    padding: 0.5rem;
-    background-color: rgba(0,0,0,0.5);
-    cursor: pointer;
-    border-radius: 50%;
+.playPauseIcon {
+  padding: 0.5rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  border-radius: 50%;
 }
 
-.playPauseIcon:hover{
-    background-color: rgba(255,255,255,0.3);
+.playPauseIcon:hover {
+  background-color: rgba(255, 255, 255, 0.3);
 }
 
-
-
-.musicDataContainer{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-    padding: 0.6rem 0;
+.musicDataContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: 0.6rem 0;
 }
 
-.musicDataContainer .name{
-    font-size: 0.9rem;
-    font-weight: bold;
+.musicDataContainer .name {
+  font-size: 0.9rem;
+  font-weight: bold;
 }
 
-.musicDataContainer .artist{
-    font-size: 0.9rem;
-    font-weight: 400;
-    color: gray;
+.musicDataContainer .artist {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: gray;
 }
 
-.artistAlbumIcon{
-    padding: 0.9rem;
-    background-color: rgba(0,0,0,0.5);
-    cursor: pointer;
-    border-radius: 50%;
+.artistAlbumIcon {
+  padding: 0.9rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  border-radius: 50%;
 }
 
-.artistAlbumIcon:hover{
-    background-color: rgba(255,255,255,0.3);
+.artistAlbumIcon:hover {
+  background-color: rgba(255, 255, 255, 0.3);
 }
