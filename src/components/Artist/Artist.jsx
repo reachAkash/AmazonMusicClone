@@ -236,7 +236,7 @@ function ArtistSongs({ data, count }) {
               {" "}
               {clicked ? (
                 <video
-                  className="w-4 h-4"
+                  className="w-6 h-6"
                   src={musicAnimation}
                   muted
                   autoPlay

@@ -196,6 +196,10 @@
     display: flex;
     flex-direction: column;
   }
+  .playIconAlbum {
+    left: 28%;
+    right: 28%;
+  }
 
   div.albumTopRightContents.albumControls {
     width: 100%;
