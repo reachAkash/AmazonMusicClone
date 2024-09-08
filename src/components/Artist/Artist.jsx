@@ -268,7 +268,7 @@ function ArtistSongs({ data, count }) {
       </div>
       <div className="albumBottomRight">
         {width > 935 && <div>{data?.title}</div>}
-        <div className=" flex align-middle justify-around">
+        <div className="w-full lg:w-1/2 flex align-middle justify-around">
           {width > 633 && <div>02:30</div>}
           <div className="albumBottomRightIcons">
             {!favIcon ? (
