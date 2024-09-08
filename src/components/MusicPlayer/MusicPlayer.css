@@ -61,10 +61,11 @@
   }
   .musicLeft {
     width: 33%;
+    justify-content: center;
   }
   .musicPhone {
     /* border: 2px solid red; */
-    width: 33%;
+    justify-content: center;
   }
 }
 
