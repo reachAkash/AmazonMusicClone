@@ -1,33 +1,33 @@
-.searchedPage{
-    max-width: 1500px;
-    margin-left: 2rem;
-    display: flex;
-    flex-direction: column;
-    font-family: 'Roboto',sans-serif;
+.searchedPage {
+  max-width: 1500px;
+  margin-left: 2rem;
+  display: flex;
+  flex-direction: column;
+  font-family: "Roboto", sans-serif;
 }
 
-.searchContainer{
-    display: flex;
-    flex-direction: column;
-    max-width: 1500px;
-    padding-top: 10rem;
-    gap: 2rem;
-    font-family: 'Poppins',sans-serif;
+.searchContainer {
+  display: flex;
+  flex-direction: column;
+  max-width: 1500px;
+  padding-top: 7rem;
+  gap: 2rem;
+  font-family: "Poppins", sans-serif;
 }
 
-.searchedHeader{
-    font-size: 1.4rem;
+.searchedHeader {
+  font-size: 1.4rem;
 }
 
-.searchedHeader span{
-    font-size: 1.5rem;
-    color: aqua
+.searchedHeader span {
+  font-size: 1.5rem;
+  color: aqua;
 }
 
-.searchedBody{
-    display: flex;
-    flex-wrap: wrap;
-    padding: 0 1rem;
-    row-gap: 2rem;
-    column-gap: 0.1rem;
+.searchedBody {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 1rem;
+  row-gap: 2rem;
+  column-gap: 0.1rem;
 }

@@ -1,96 +1,99 @@
-.searchPage{
-    width: 95%;
-    margin: auto;
-    max-width: 100%;
+.searchPage {
+  width: 95%;
+  margin: auto;
+  max-width: 100%;
 }
 
-h2{
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 1rem ;
+h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
 }
 
-.searchedHistoryHeader{
-    font-size: 1.4rem;
-    font-weight: bolder;
-    padding-bottom: 1rem;
+.searchedHistoryHeader {
+  font-size: 1.4rem;
+  font-weight: bolder;
+  padding-bottom: 1rem;
 }
 
-.searchedHistoryContainer,.searchedHistoryList{
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
+.searchedHistoryContainer,
+.searchedHistoryList {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
-.topButtonsContainer,.bottomButtonsContainer{
-    display: flex;
-    flex-wrap: wrap;
-    row-gap: 2rem;
-    column-gap: 3rem;
+.topButtonsContainer,
+.bottomButtonsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 2rem;
+  column-gap: 3rem;
 }
 
-.searchTop,.searchedHistory{
-    padding: 0 1rem;
-    margin-bottom: 1.5rem;
+.searchTop,
+.searchedHistory {
+  padding: 0 1rem;
+  margin-bottom: 1.5rem;
 }
-.searchBottom{
-    margin-top: 18rem;
-    padding: 2rem 1rem;
-}
-
-.searchButton{
-    border-radius: 4px;
-    font-size: 1.4rem;
-    font-weight: bolder;
-    height: 5rem;
-    width: 30rem;
-    max-width: 24rem;
-    scroll-behavior: smooth;
+.searchBottom {
+  margin-top: 0rem;
+  padding: 2rem 1rem;
 }
 
-.suggestionsContainer{
-    position: absolute;
-    width: 100%;
-    top: 6rem;
-    left: 1rem;
+.searchButton {
+  border-radius: 4px;
+  font-size: 1.4rem;
+  font-weight: bolder;
+  height: 5rem;
+  width: 30rem;
+  max-width: 24rem;
+  scroll-behavior: smooth;
 }
 
-.suggestionHeader{
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
-    font-weight: bolder;
+.suggestionsContainer {
+  position: absolute;
+  width: 100%;
+  top: 6rem;
+  left: 1rem;
 }
 
-.suggestionsList{
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
+.suggestionHeader {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  font-weight: bolder;
 }
 
-.suggestionItems{
-    width: 100%;
-    font-size: 1.2rem;
-    padding: 0.4rem;
+.suggestionsList {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
 }
 
-.suggestionItems:hover{
-    background-color: rgba(255, 255, 255, 0.2);
-    color: aqua;
-    cursor: pointer;
+.suggestionItems {
+  width: 100%;
+  font-size: 1.2rem;
+  padding: 0.4rem;
 }
 
-@media (width<=929px){
-    .searchButton{
-        width: 15rem;
-    }
+.suggestionItems:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: aqua;
+  cursor: pointer;
 }
 
-@media (width <= 589px){
-    .searchTop{
-        height: 80vh;
-    }
-    .searchButton{
-        width: 20rem;
-    }
+@media (width<=929px) {
+  .searchButton {
+    width: 15rem;
+  }
+}
+
+@media (width <= 589px) {
+  .searchTop {
+    height: 80vh;
+  }
+  .searchButton {
+    width: 20rem;
+  }
 }
