@@ -168,7 +168,7 @@ function Artist() {
           </div>
         </div>
       </div>
-      {musicPlayer == "active" && <MusicPlayer />}
+      {/* {musicPlayer == "active" && <MusicPlayer />} */}
     </>
   );
 }
