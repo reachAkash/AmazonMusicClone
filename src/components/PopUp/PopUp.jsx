@@ -14,13 +14,13 @@ function PopUp() {
   return (
     <div className="overlay">
       <div className="popUpModal">
-        <div
-          className="closeIconContainer"
-          onClick={() => {
-            setTryAmazonPopUp(false);
-          }}
-        >
-          <CloseIcon className="closeIcon" />
+        <div className="closeIconContainer">
+          <CloseIcon
+            onClick={() => {
+              setTryAmazonPopUp(false);
+            }}
+            className="closeIcon"
+          />
         </div>
 
         <div className="textContent">
