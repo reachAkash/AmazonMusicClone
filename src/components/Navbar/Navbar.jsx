@@ -109,7 +109,7 @@ function Navbar() {
     />
   ) : (
     <>
-      <div className={`flex navbar ${backColor} ${scrolled ? "scrolled" : ""}`}>
+      <div className={`flex navbar ${backColor}`}>
         {inputFocused ? (
           <InputElement
             redirect={redirect}
@@ -272,9 +272,7 @@ const SmNavbar = ({
     <div
       className={`flex justify-between ${
         inputFocused ? "px-0" : "px-5"
-      } items-center md:py-8 md:hidden navbar ${backColor} ${
-        scrolled ? "scrolled" : ""
-      }`}
+      } items-center md:py-8 md:hidden navbar ${backColor}`}
     >
       {inputFocused ? (
         <InputElement
@@ -519,3 +517,9 @@ function UserLoginContainer({ userLogoClicked, setUserLogoClicked }) {
 }
 
 export default Navbar;
+
+// const Navbar = () => {
+//   return <div>Navbar</div>;
+// };
+
+// export default Navbar;

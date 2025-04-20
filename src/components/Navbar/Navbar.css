@@ -1,343 +1,347 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
 
-.navbar{
-    color: white;
-    height: 5rem;
-    position: fixed;
-    width: 100%;
-    z-index: 999;
-    font-family: "Roboto",sans-serif;
-    border-bottom: 0.1px solid rgb(96, 96, 96);
+.navbar {
+  color: white;
+  height: 5rem;
+  position: fixed;
+  width: 100%;
+  z-index: 999;
+  font-family: "Roboto", sans-serif;
+  border-bottom: 0.1px solid rgb(96, 96, 96);
 }
 
-.scrolled{
-    background-color: rgba(0, 0, 0, 0.6) !important;
-    backdrop-filter: blur(1rem);
-    border-bottom: none;
+.scrolled {
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(1rem);
+  border-bottom: none;
 }
 
-.dark{
-    background-color: black;
-    color: white;
+.dark {
+  background-color: black;
+  color: white;
 }
 
-.light{
-    background-color: white;
-    color: black;
-    box-shadow: 10px 10px 10px solid black;
+.light {
+  background-color: white;
+  color: black;
+  box-shadow: 10px 10px 10px solid black;
 }
 
-.navbarLeft{
-    width: 50%;
-    display: flex;
-    justify-content: space-between;
-    padding: 0 0.5rem;
-    align-items: center;
+.navbarLeft {
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 0.5rem;
+  align-items: center;
 }
 
-.navLinks{
-    display: flex;
-    width: 70%;
-    justify-content: start;
-    gap: 4rem;
-    text-transform: uppercase;
-    font-size: 1rem;
+.navLinks {
+  display: flex;
+  width: 70%;
+  justify-content: start;
+  gap: 4rem;
+  text-transform: uppercase;
+  font-size: 1rem;
 }
 
-.navLinkHome, .navLinkPodcast, .navLinkLibrary{
-    display: flex;
-    justify-content: center;
-    align-items: center ;
-    gap: 0.3rem;
+.navLinkHome,
+.navLinkPodcast,
+.navLinkLibrary {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3rem;
 }
 
-.navLinkLibrary{
-    position: relative;
+.navLinkLibrary {
+  position: relative;
 }
 
-.libraryHover{
-    position: absolute;
-    top: 1.2rem;
-    width: 16rem;
-    height: 6rem;
-    left: 0;
-    background-color: rgba(47, 45, 45, 0.8);
-    backdrop-filter: blur(1rem);
-    color: white;
-    backdrop-filter: blur(1rem);
-    border-radius: 5px;
+.libraryHover {
+  position: absolute;
+  top: 1.2rem;
+  width: 16rem;
+  height: 6rem;
+  left: 0;
+  background-color: rgba(47, 45, 45, 0.8);
+  backdrop-filter: blur(1rem);
+  color: white;
+  backdrop-filter: blur(1rem);
+  border-radius: 5px;
 }
 
-.navItems{
-    display: flex;
-    height: 100%;
-    justify-content: center;
-    gap: 0.4rem;
-    flex-direction: column;
-    align-items: start;
+.navItems {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  gap: 0.4rem;
+  flex-direction: column;
+  align-items: start;
 }
 
-.hoverItem{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    padding: 0 1rem;
-    font-size: 0.8rem;
+.hoverItem {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding: 0 1rem;
+  font-size: 0.8rem;
 }
 
-.hoverItem:hover{
-    background-color: rgba(255, 255, 255, 0.3);
-    /* color: black; */
+.hoverItem:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+  /* color: black; */
 }
-.navHoverMusicItem{
-    border-bottom: 2px solid gray;
-}
-
-
-.navLinkHome:hover, .navLinkPodcast:hover, .navLinkLibrary:hover{
-    color: aqua;
+.navHoverMusicItem {
+  border-bottom: 2px solid gray;
 }
 
-.navLogo{
-    position: relative;
-    flex-shrink: 0;
+.navLinkHome:hover,
+.navLinkPodcast:hover,
+.navLinkLibrary:hover {
+  color: aqua;
 }
 
-.logoImg{
-    width: 11rem;
-    height: 2.7rem;
-    cursor: pointer;
+.navLogo {
+  position: relative;
+  flex-shrink: 0;
 }
 
-.navbarRight{
-    width: 50%;
-    display: flex;
+.logoImg {
+  width: 11rem;
+  height: 2.7rem;
+  cursor: pointer;
+}
+
+.navbarRight {
+  width: 50%;
+  display: flex;
+  gap: 2rem;
+  justify-content: end;
+  align-items: center;
+  padding: 0 2rem 0 0;
+}
+
+.inputForm {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+.inputSearch {
+  width: 14rem;
+  height: 2.1rem;
+  border-radius: 20px;
+  background-color: white;
+  outline: none;
+  color: black;
+  text-align: center;
+  font-weight: 600;
+  transition: 0.2s ease-in-out;
+}
+
+.inputSearch:focus {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+}
+.inputSearch::placeholder {
+  content: "Akash";
+  text-align: center;
+  color: darkgray;
+}
+
+.inputElementDiv {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.inputElementSearch {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(200, 193, 193, 0.4);
+  padding: 0 1rem;
+  font-size: 1rem;
+}
+.inputElementSearch:focus {
+  outline: 2px solid gray;
+}
+.inputElementDiv > h3 {
+  position: absolute;
+  color: white;
+  font-size: 1rem;
+  font-weight: bolder;
+  right: 2rem;
+}
+.searchIconContainer {
+  position: relative;
+}
+
+.searchIcon {
+  position: absolute;
+  top: -0.7rem;
+  right: 0.5rem;
+}
+
+.userLogo {
+  width: 15%;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  align-items: center;
+}
+
+.lightModeIcon,
+.userLogoIcon,
+.searchIcon,
+.darkModeIcon {
+  cursor: pointer;
+}
+
+.userLogoIcon {
+  background-color: gray;
+  padding: 0.8rem;
+  border-radius: 50%;
+  background-color: aqua;
+  font-size: 1.1rem;
+}
+
+.userLogoContainerDiv {
+  width: 10rem;
+  height: 5rem;
+  background-color: gray;
+  border-radius: 50%;
+}
+
+.userLogoDiv {
+  position: absolute;
+  top: 3rem;
+  right: 0rem;
+  border-radius: 5px;
+  height: fit-content;
+  width: 20rem;
+  padding: 1rem 0rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid gray;
+  z-index: 999999;
+  color: white;
+}
+
+.hoverableItems {
+  color: white;
+  width: 100%;
+  height: 2.5rem;
+  border-bottom: 1px solid gray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.hoverableItems:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+@media (width<=1280px) {
+  .navbarLeft {
     gap: 2rem;
-    justify-content: end;
-    align-items: center;
-    padding: 0 2rem 0 0;
-} 
-
-.inputForm{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: end;
-    align-items: center;
+  }
+  .navbarRight {
+    gap: 2rem;
+  }
+  .userLogo {
+    width: 30%;
+  }
 }
 
-.inputSearch{
-    width: 14rem;
-    height: 2.1rem;
-    border-radius: 20px;
-    background-color: white;
-    outline: none;
-    color: black;
-    text-align: center  ;
-    font-weight: 600;
-    transition: 0.2s ease-in-out;
-}
-
-.inputSearch:focus{
-    width: 100%;
-    height: 100%;
-    border-radius: 5px;
-}
-.inputSearch::placeholder{
-    content: 'Akash';
-    text-align: center;
-    color: darkgray;
-}
-
-.inputElementDiv{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.inputElementSearch{
-    width: 100%;
-    height: 100%;
-    background-color: rgba(200, 193, 193, 0.4);
+@media (width<=840px) {
+  .navbarLeft {
+    width: 40%;
     padding: 0 1rem;
-    font-size: 1rem;
-}
-.inputElementSearch:focus{
-    outline: 2px solid gray;
-}
-.inputElementDiv>h3{
-    position: absolute;
-    color: white;
-    font-size: 1rem;
-    font-weight: bolder;
-    right: 2rem;
-}
-.searchIconContainer{
-    position: relative;
+  }
+  .navLinks {
+    padding: 0 1rem;
+    margin: 0;
+    gap: 2rem;
+  }
+  .logoImg {
+    width: 60px;
+  }
+  .navbarRight {
+    width: 60%;
+  }
 }
 
-.searchIcon{
-    position: absolute;
-    top: -0.7rem;
-    right: 0.5rem;
-}
-
-.userLogo{
-    width: 15%;
-    display: flex;
-    justify-content: space-between;
-    position: relative;
-    align-items: center;
-}
-
-.lightModeIcon,.userLogoIcon,.searchIcon,.darkModeIcon{
-    cursor: pointer;
-}
-
-.userLogoIcon{
-    background-color: gray;
-    padding: 0.8rem;
-    border-radius: 50%;
-    background-color: aqua;
-    font-size: 1.1rem;
-}
-
-.userLogoContainerDiv{
-    width: 10rem;
-    height: 5rem;
-    background-color: gray;
-    border-radius: 50%;
-
-}
-
-.userLogoDiv{
-    position: absolute;
-    top: 3rem;
-    right: 0rem;
-    border-radius: 5px;
-    height: fit-content;
-    width: 20rem;
-    padding: 1rem 0rem;
-    display: flex;
-    flex-direction: column  ;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid gray;
-    z-index: 999999;
-    color: white;
-}
-
-.hoverableItems{
-    color:white;
-    width: 100%;
-    height: 2.5rem;
-    border-bottom: 1px solid gray;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1rem;
-    cursor: pointer;
-}
-
-.hoverableItems:hover{
-    background-color: rgba(255, 255, 255, 0.3);
-}
-
-@media (width<=1280px){
-    .navbarLeft{
-        gap: 2rem;
-    }
-    .navbarRight{
-        gap: 2rem;
-    }
-    .userLogo{
-        width: 30%;
-    }
-}
-
-@media (width<=840px){
-    .navbarLeft{
-        width: 40%;
-        padding: 0 1rem;
-    }
-    .navLinks{
-        padding: 0 1rem;
-        margin: 0;
-        gap: 2rem;
-    }
-    .logoImg{
-        width: 60px;
-    }
-    .navbarRight{
-        width: 60%;
-    }
-}
-
-@media (width<=640px){
-   .navbarLeft{
+@media (width<=640px) {
+  .navbarLeft {
     width: 40%;
     gap: 0;
-   }
+  }
 
-   .inputForm{
+  .inputForm {
     width: 50%;
-   }
+  }
 
-   .navbarRight{
+  .navbarRight {
     width: 60%;
     gap: 0;
     display: flex;
     justify-content: space-around;
-   }
-   .userLogo{
+  }
+  .userLogo {
     gap: 0rem;
-   }
-
+  }
 }
 
-@media (width<=634px){
-    .navbarLeft{
-        width: 60%;
-    }
-    .navbarRight{
+@media (width<=634px) {
+  .navbarLeft {
+    width: 60%;
+  }
+  .navbarRight {
     width: 40%;
     padding: 1.5rem;
     gap: 1rem;
-    }
-    .inputForm{
-        width: 33%;
-    }
-    .userLogo{
-        width: 77%;
-        gap: 2rem;
-    }
+  }
+  .inputForm {
+    width: 33%;
+  }
+  .userLogo {
+    width: 77%;
+    gap: 2rem;
+  }
 }
 
-@media (width<=378px){
-    .navbar{
-        /* gap: 1rem; */
-    }
-    .navbarLeft{
-        width: 60%;
-        /* padding: 0; */
-        gap: 0;
-    }
-    .navbarRight{
-        width: 40%;
-        gap: 1.5rem;
-    }
-    .inputForm{
-        margin-left: 1rem;
-       display: flex;
-       justify-content: end;
-    }
-    .userLogo{
-        gap: 1rem;
-        padding: 0;
-    }
+@media (width<=378px) {
+  .navbar {
+    /* gap: 1rem; */
+  }
+  .navbarLeft {
+    width: 60%;
+    /* padding: 0; */
+    gap: 0;
+  }
+  .navbarRight {
+    width: 40%;
+    gap: 1.5rem;
+  }
+  .inputForm {
+    margin-left: 1rem;
+    display: flex;
+    justify-content: end;
+  }
+  .userLogo {
+    gap: 1rem;
+    padding: 0;
+  }
 }
